@@ -6,7 +6,7 @@ navbar:
       href: index.html
     - text: "Explorations"
       href: project.html
-  output:
+output:
   html_document:
-    theme: flatly
-    css: style.css
+    theme: paper
+    css: 'styles.css'
