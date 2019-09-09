@@ -39,7 +39,7 @@ library(dplyr)
 # Step 1: Data Loading 
 
 First thing, get a list of the DOIs of your institution's works. This list would be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following.
-![](D:/R test/full_text/2019-09-06_100004.png)
+![](C:/Users/clbti/Documents/itanudjaja.github.io/images/2019-09-06_100004.png)
 
 ```{r Data loading}
 
@@ -313,7 +313,7 @@ for(j in 1:length(doi1)){
 ```
 
 There will be warnings or errors displayed if the full text is not downloaded.
-![](D:/R test/full_text/error.png)
+![](C:/Users/clbti/Documents/itanudjaja.github.io/images/error.png)
 
 ## 5.2. Using direct url
 

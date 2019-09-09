@@ -421,7 +421,7 @@ library(dplyr)</code></pre>
 </div>
 <div id="step-1-data-loading" class="section level1">
 <h1>Step 1: Data Loading</h1>
-<p>First thing, get a list of the DOIs of your institution’s works. This list would be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following. <img src="D:/R%20test/full_text/2019-09-06_100004.png" /></p>
+<p>First thing, get a list of the DOIs of your institution’s works. This list would be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following. <img src="images/2019-09-06_100004.png" /></p>
 <pre class="r"><code>list.filenames&lt;-list.files(pattern=&quot;.csv$&quot;) </code></pre>
 </div>
 <div id="step-2-query-unpaywall-api" class="section level1">
@@ -3678,7 +3678,7 @@ for(j in 1:length(doi1)){
 
 #note:
 #the location of the full text downloaded can be found at /Users/xxx/Library/Caches/R/fulltext</code></pre>
-<p>There will be warnings or errors displayed if the full text is not downloaded. <img src="D:/R%20test/full_text/error.png" /></p>
+<p>There will be warnings or errors displayed if the full text is not downloaded. <img src="images/error.png" /></p>
 </div>
 <div id="using-direct-url" class="section level2">
 <h2>5.2. Using direct url</h2>
