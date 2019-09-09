@@ -1,0 +1,4048 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Irine Tanudjaja</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="project.html">Explorations</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="using-r-packages-to-populate-ir" class="section level1">
+<h1>Using R packages to populate IR</h1>
+<p>Many institutions have reported that <strong>participation rates of article deposit in their IR are low</strong> regardless of their various efforts in outreach and engagement. Even when the deposit is mandated, the participation rate can still be quite low.</p>
+<p>Once this hurdle was overcome, there is another challenge faced by the IR administrators, ensuring that the version submitted by the researcher is the appropriate version. For example, by checking in Sherpa/Romeo, they can ascertain that “Journal X” only allows researcher to deposit a post-print and not the final published version in the IR. If the final published version was submitted, IR administrators would need to take additional steps to correspond with the researcher to obtain the appropriate version. Thus, <strong>increasing their administrative work load</strong>.</p>
+<p>Therefore, some institutions had taken the pro-active initiative to complete the deposit on behalf of their researchers. This certainly is not a small undertaking. However, there are openly available R packages (<a href="https://ropensci.org/" class="uri">https://ropensci.org/</a>) that can be used to automate some of the processes. In this report, I will summarize the steps to do that.</p>
+<p>The following packages are required, please install them beforehand.</p>
+<pre class="r"><code># install.packages(&quot;fulltext&quot;)
+
+library(kableExtra)</code></pre>
+<pre><code>## Warning: package &#39;kableExtra&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(fulltext)
+library(tidyverse)</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.2.1 --</code></pre>
+<pre><code>## v ggplot2 3.1.0     v purrr   0.3.2
+## v tibble  2.0.1     v dplyr   0.8.3
+## v tidyr   0.8.3     v stringr 1.3.1
+## v readr   1.3.1     v forcats 0.4.0</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::collect()    masks fulltext::collect()
+## x dplyr::filter()     masks stats::filter()
+## x dplyr::group_rows() masks kableExtra::group_rows()
+## x dplyr::lag()        masks stats::lag()</code></pre>
+<pre class="r"><code>library(plyr)</code></pre>
+<pre><code>## -------------------------------------------------------------------------</code></pre>
+<pre><code>## You have loaded plyr after dplyr - this is likely to cause problems.
+## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+## library(plyr); library(dplyr)</code></pre>
+<pre><code>## -------------------------------------------------------------------------</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     arrange, count, desc, failwith, id, mutate, rename, summarise,
+##     summarize</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     compact</code></pre>
+<pre class="r"><code>library(roadoi)
+library(purrr)
+library(rromeo)</code></pre>
+<pre><code>## Warning: package &#39;rromeo&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(rcrossref)
+library(tidyr)
+library(dplyr)</code></pre>
+</div>
+<div id="step-1-data-loading" class="section level1">
+<h1>Step 1: Data Loading</h1>
+<p>First thing, get a list of the DOIs of your institution’s works. This list would be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following. <img src="D:/R%20test/full_text/2019-09-06_100004.png" /></p>
+<pre class="r"><code>list.filenames&lt;-list.files(pattern=&quot;.csv$&quot;) </code></pre>
+</div>
+<div id="step-2-query-unpaywall-api" class="section level1">
+<h1>Step 2: Query Unpaywall API</h1>
+<p>Unpaywall is a non profit organization that aims to make scholarly works more open. They maintain a database of links to full-text articles from open-access sources all over the world. The content is harvested from legal sources including repositories run by universities, governments, and scholarly societies, as well as open content hosted by publishers themselves.</p>
+<p>Unpaywall requests users to keep the API requests to below 100k per day and to include their email to the URL of requests.</p>
+<pre class="r"><code>unpaywall&lt;- tibble()
+
+# Creating loop so that we can query Unpaywall API based on dois in several CSV files
+
+for (i in 1:length(list.filenames))
+{
+  #reading dois from csv file
+  
+  dois &lt;- read.csv(list.filenames[i], header=TRUE)
+  vec_doi &lt;- as_tibble(dois)
+  
+  ##querying unpaywall API &amp; to 
+  #catch error when the API does not return valid JSON or is not available
+  
+  df_data &lt;- purrr::map(vec_doi, .f = safely(function(x) oadoi_fetch(x, 
+                                                                     email =your_own_email)))
+  df &lt;- purrr::map_df(df_data, &quot;result&quot;)
+  
+  ##getting values from best_oa_location
+  best_oa_evidence &lt;- df %&gt;%
+    mutate(evidences = map(best_oa_location, &quot;evidence&quot;) %&gt;% 
+             map_if(is_empty, ~ NA_character_) %&gt;% 
+             flatten_chr())%&gt;%
+    .$evidences 
+  
+  best_oa_host &lt;- df %&gt;%
+    mutate(hosts = map(best_oa_location, &quot;host_type&quot;) %&gt;% 
+             map_if(is_empty, ~ NA_character_) %&gt;% 
+             flatten_chr())%&gt;%
+    .$hosts 
+  
+  best_oa_license &lt;- df %&gt;%
+    mutate(licenses = map(best_oa_location, &quot;license&quot;) %&gt;% 
+             map_if(is_empty, ~ NA_character_) %&gt;% 
+             flatten_chr())%&gt;%
+    .$licenses
+  
+  best_oa_url &lt;- df %&gt;%
+    mutate(urls = map(best_oa_location, &quot;url&quot;) %&gt;% 
+             map_if(is_empty, ~ NA_character_) %&gt;% 
+             flatten_chr())%&gt;%
+    .$urls 
+  
+  best_oa_url_for_pdf &lt;- df %&gt;%
+    mutate(pdfs = map(best_oa_location, &quot;url_for_pdf&quot;) %&gt;% 
+             map_if(is_empty, ~ NA_character_) %&gt;% 
+             flatten_chr())%&gt;%
+    .$pdfs 
+  
+  best_oa_version &lt;- df %&gt;%
+    mutate(versions = map(best_oa_location, &quot;version&quot;) %&gt;% 
+             map_if(is_empty, ~ NA_character_) %&gt;% 
+             flatten_chr())%&gt;%
+    .$versions 
+  
+  #selecting specific columns from the results
+  df_selection &lt;- df %&gt;% select(1, 4:13)
+  
+  ##merging the columns together
+  df_final &lt;- add_column(df_selection, best_oa_evidence, best_oa_host, best_oa_license,best_oa_url,best_oa_url_for_pdf,best_oa_version)
+  
+  #to combine all the entries
+  unpaywall &lt;- bind_rows(unpaywall, df_final)
+  
+  Sys.sleep(60)  
+  
+}
+
+# changing year from factor to numeric
+unpaywall$year1 &lt;- as.numeric(as.character(unpaywall$year))
+
+#limit to only journal article only
+
+unpaywall &lt;- unpaywall %&gt;% 
+  filter(genre == &quot;journal-article&quot;)</code></pre>
+<p>Unpaywall does not provide OA classification; however, they provide other fields (for e.g. best OA evidence) that can be used as a guide in determining the classification:</p>
+<ul>
+<li><p>Closed: No free copy</p></li>
+<li><p>Bronze: Journal is closed, article is free on publisher page, with no license.</p></li>
+<li><p>Hybrid: Journal is closed, article is free on publisher page under some kind of open license.</p></li>
+<li><p>Gold: Journal is open</p></li>
+<li><p>Green: Free-to-read on repository</p></li>
+</ul>
+<p>Based on the above, we will categorize the publication’s OA level.</p>
+<pre class="r"><code>unpaywall1 &lt;- unpaywall %&gt;% 
+  mutate(oa = case_when((journal_is_oa == FALSE &amp; is_oa == FALSE) ~ &quot;closed&quot;,
+                        (best_oa_host == &quot;publisher&quot; &amp; is.na(best_oa_license) == TRUE &amp; is_oa ==
+                           TRUE &amp; journal_is_oa == FALSE) ~ &quot;bronze&quot;,
+                        (best_oa_host == &quot;publisher&quot; &amp; is.na(best_oa_license) != TRUE &amp; is_oa ==
+                           TRUE &amp; journal_is_oa == FALSE) ~ &quot;hybrid&quot;,
+                        (best_oa_host == &quot;publisher&quot; &amp; is_oa == TRUE &amp; journal_is_oa == TRUE) 
+                        ~ &quot;gold&quot;,
+                        (best_oa_host == &quot;repository&quot; &amp; is_oa == TRUE &amp; journal_is_oa == FALSE) 
+                        ~ &quot;green&quot;))
+
+kable(unpaywall1) %&gt;% 
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;)) %&gt;% 
+  scroll_box(width = &quot;100%&quot;, height = &quot;400px&quot;)</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+doi
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+data_standard
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+is_oa
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+genre
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+journal_is_oa
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+journal_is_in_doaj
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+journal_issns
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+journal_name
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+publisher
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+title
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+year
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_evidence
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_host
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_license
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_url
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_url_for_pdf
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_version
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+year1
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+oa
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+10.1145/903893.903896
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-0782
+</td>
+<td style="text-align:left;">
+Communications of the ACM
+</td>
+<td style="text-align:left;">
+Association for Computing Machinery (ACM)
+</td>
+<td style="text-align:left;">
+The role of IT in successful knowledge management initiatives
+</td>
+<td style="text-align:left;">
+2003
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:left;">
+closed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2514/1.j055143
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+Nonlinear Aerodynamic and Aeroelastic Model Reduction Using a Discrete Empirical Interpolation Method
+</td>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH title and first author match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf" class="uri">https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf" class="uri">https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:left;">
+green
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1002/aic.12373
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1541
+</td>
+<td style="text-align:left;">
+AIChE Journal
+</td>
+<td style="text-align:left;">
+Wiley-Blackwell
+</td>
+<td style="text-align:left;">
+Acid-sensitive magnetic nanoparticles as potential drug depots
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3134249?pdf=render" class="uri">http://europepmc.org/articles/pmc3134249?pdf=render</a>
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3134249?pdf=render" class="uri">http://europepmc.org/articles/pmc3134249?pdf=render</a>
+</td>
+<td style="text-align:left;">
+acceptedVersion
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:left;">
+green
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1111/j.1399-0039.2011.01796.x
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-2815
+</td>
+<td style="text-align:left;">
+Tissue Antigens
+</td>
+<td style="text-align:left;">
+Wiley-Blackwell
+</td>
+<td style="text-align:left;">
+Natural killer cell engineering for cellular therapy of cancer
+</td>
+<td style="text-align:left;">
+2011
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3218564?pdf=render" class="uri">http://europepmc.org/articles/pmc3218564?pdf=render</a>
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3218564?pdf=render" class="uri">http://europepmc.org/articles/pmc3218564?pdf=render</a>
+</td>
+<td style="text-align:left;">
+acceptedVersion
+</td>
+<td style="text-align:right;">
+2011
+</td>
+<td style="text-align:left;">
+green
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2307/30040617
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+The Academy of Management
+</td>
+<td style="text-align:left;">
+OWNERSHIP STRUCTURE, EXPROPRIATION, AND PERFORMANCE OF GROUP-AFFILIATED COMPANIES IN KOREA.
+</td>
+<td style="text-align:left;">
+2003
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH title match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+cc-by-nc-nd
+</td>
+<td style="text-align:left;">
+<a href="https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf" class="uri">https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf" class="uri">https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:left;">
+green
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.5465/amj.2011.0727
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+The Academy of Management
+</td>
+<td style="text-align:left;">
+“I Put in Effort, Therefore I Am Passionate”: Investigating the Path from Effort to Passion in Entrepreneurship
+</td>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH title and first author match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf" class="uri">http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf" class="uri">http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:left;">
+green
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1134/s0001434610090324
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4346,1573-8876
+</td>
+<td style="text-align:left;">
+Mathematical Notes
+</td>
+<td style="text-align:left;">
+Pleiades Publishing Ltd
+</td>
+<td style="text-align:left;">
+A supercongruence motivated by the Legendre family of elliptic curves
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://wain.mi.ras.ru/PS/supercong-MN2010.pdf" class="uri">http://wain.mi.ras.ru/PS/supercong-MN2010.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://wain.mi.ras.ru/PS/supercong-MN2010.pdf" class="uri">http://wain.mi.ras.ru/PS/supercong-MN2010.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:left;">
+green
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2308/accr.2010.85.6.2047
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4826,1558-7967
+</td>
+<td style="text-align:left;">
+The Accounting Review
+</td>
+<td style="text-align:left;">
+American Accounting Association
+</td>
+<td style="text-align:left;">
+Do Supplementary Sales Forecasts Increase the Credibility of Financial Analystsâ€™ Earnings Forecasts?
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:left;">
+closed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.3109/17453679509157668
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-6470
+</td>
+<td style="text-align:left;">
+Acta Orthopaedica Scandinavica
+</td>
+<td style="text-align:left;">
+Informa UK Limited
+</td>
+<td style="text-align:left;">
+Detection and monitoring of progressive degeneration of osteoarthritic cartilage by MRI
+</td>
+<td style="text-align:left;">
+1995
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true" class="uri">https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true</a>
+</td>
+<td style="text-align:left;">
+<a href="https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true" class="uri">https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.5688/aj710351
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0002-9459,1553-6467
+</td>
+<td style="text-align:left;">
+American Journal of Pharmaceutical Education
+</td>
+<td style="text-align:left;">
+American Journal of Pharmaceutical Education
+</td>
+<td style="text-align:left;">
+Using a Human Patient Simulation Mannequin to Teach Interdisciplinary Team Skills to Pharmacy Students
+</td>
+<td style="text-align:left;">
+2007
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc1913308?pdf=render" class="uri">http://europepmc.org/articles/pmc1913308?pdf=render</a>
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc1913308?pdf=render" class="uri">http://europepmc.org/articles/pmc1913308?pdf=render</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2007
+</td>
+<td style="text-align:left;">
+green
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1206/3863.1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0003-0082,1937-352X
+</td>
+<td style="text-align:left;">
+American Museum Novitates
+</td>
+<td style="text-align:left;">
+American Museum of Natural History (BioOne sponsored)
+</td>
+<td style="text-align:left;">
+Larval Diversity in the Bee GenusMegachile(Hymenoptera: Apoidea: Megachilidae)
+</td>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH title and first author match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf" class="uri">http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf" class="uri">http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+green
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2319/021809-104.1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0003-3219,1945-7103
+</td>
+<td style="text-align:left;">
+The Angle Orthodontist
+</td>
+<td style="text-align:left;">
+The Angle Orthodontist (EH Angle Education &amp; Research Foundation)
+</td>
+<td style="text-align:left;">
+Laterality of Asymmetry in Movements of the Corners of the Mouth during Voluntary Smile
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.angle.org/doi/pdf/10.2319/021809-104.1" class="uri">http://www.angle.org/doi/pdf/10.2319/021809-104.1</a>
+</td>
+<td style="text-align:left;">
+<a href="http://www.angle.org/doi/pdf/10.2319/021809-104.1" class="uri">http://www.angle.org/doi/pdf/10.2319/021809-104.1</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1590/s0004-27302007000200027
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0004-2730
+</td>
+<td style="text-align:left;">
+Arquivos Brasileiros de Endocrinologia &amp; Metabologia
+</td>
+<td style="text-align:left;">
+FapUNIFESP (SciELO)
+</td>
+<td style="text-align:left;">
+Retinal vascular signs in diabetes and hypertension - review
+</td>
+<td style="text-align:left;">
+2007
+</td>
+<td style="text-align:left;">
+open (via page says license)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+cc-by-nc
+</td>
+<td style="text-align:left;">
+<a href="http://www.scielo.br/pdf/abem/v51n2/27.pdf" class="uri">http://www.scielo.br/pdf/abem/v51n2/27.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://www.scielo.br/pdf/abem/v51n2/27.pdf" class="uri">http://www.scielo.br/pdf/abem/v51n2/27.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2007
+</td>
+<td style="text-align:left;">
+gold
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1071/ph920451
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0004-9506
+</td>
+<td style="text-align:left;">
+Australian Journal of Physics
+</td>
+<td style="text-align:left;">
+CSIRO Publishing
+</td>
+<td style="text-align:left;">
+The Gas-phase Chemical Evolution of Dark Clouds
+</td>
+<td style="text-align:left;">
+1992
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.publish.csiro.au/ph/pdf/ph920451" class="uri">http://www.publish.csiro.au/ph/pdf/ph920451</a>
+</td>
+<td style="text-align:left;">
+<a href="http://www.publish.csiro.au/ph/pdf/ph920451" class="uri">http://www.publish.csiro.au/ph/pdf/ph920451</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1637/9878-080511-case.1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0005-2086,1938-4351
+</td>
+<td style="text-align:left;">
+Avian Diseases
+</td>
+<td style="text-align:left;">
+American Association of Avian Pathologists (AAAP)
+</td>
+<td style="text-align:left;">
+Serologic Evidence of Avian Influenza H9N2 and Paramyxovirus Type 1 Infectionin Emus (Dromaius novaehollandiae) in India
+</td>
+<td style="text-align:left;">
+2012
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+closed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1136/hrt.2003.013631
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0007-0769
+</td>
+<td style="text-align:left;">
+Heart
+</td>
+<td style="text-align:left;">
+BMJ
+</td>
+<td style="text-align:left;">
+Risk factors for non-fatal myocardial infarction in young South Asian adults
+</td>
+<td style="text-align:left;">
+2004
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://heart.bmj.com/content/90/3/259.full.pdf" class="uri">https://heart.bmj.com/content/90/3/259.full.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://heart.bmj.com/content/90/3/259.full.pdf" class="uri">https://heart.bmj.com/content/90/3/259.full.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2004
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1348/000711200160363
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0007-1129
+</td>
+<td style="text-align:left;">
+British Journal of Medical Psychology
+</td>
+<td style="text-align:left;">
+Wiley-Blackwell
+</td>
+<td style="text-align:left;">
+Childhood trauma, dissociation and self-harming behaviour: A pilot study
+</td>
+<td style="text-align:left;">
+2000
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.brown.uk.com/selfinjury/low.pdf" class="uri">http://www.brown.uk.com/selfinjury/low.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://www.brown.uk.com/selfinjury/low.pdf" class="uri">http://www.brown.uk.com/selfinjury/low.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+green
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1538/expanim1978.41.2_247
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0007-5124,1881-7122
+</td>
+<td style="text-align:left;">
+Experimental Animals
+</td>
+<td style="text-align:left;">
+Japanese Association for Laboratory Animal Science
+</td>
+<td style="text-align:left;">
+Mortality in Swiss Albino Mice after i. p. Injection of Oxazepam in Dimethyl Sulphoxide
+</td>
+<td style="text-align:left;">
+1992
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf" class="uri">https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf" class="uri">https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1007/bf03006075
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0008-2856,1496-8975
+</td>
+<td style="text-align:left;">
+Canadian Anaesthetistsâ€™ Society Journal
+</td>
+<td style="text-align:left;">
+Springer Nature
+</td>
+<td style="text-align:left;">
+Cataract extractions without tracheal intubation
+</td>
+<td style="text-align:left;">
+1974
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf">https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf">https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+1974
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="step-3-compliment-with-sherparomeo-information" class="section level1">
+<h1>Step 3: Compliment with Sherpa/Romeo information</h1>
+<p>SHERPA RoMEO is an online resource that aggregates and analyses publisher open access policies from around the world and provides summaries of self-archiving permissions and conditions of rights given to authors on a journal-by-journal basis.</p>
+<p>To apply for API key, please refer to this page - <a href="http://www.sherpa.ac.uk/romeo/api.html" class="uri">http://www.sherpa.ac.uk/romeo/api.html</a></p>
+<pre class="r"><code>#separate the 2 ISSNs
+unpaywall2 &lt;- unpaywall1 %&gt;% 
+  separate(journal_issns, c(&quot;issn1&quot;,&quot;issn2&quot;), sep = &quot;\\,&quot;, remove = TRUE)
+
+#querying romeo API using the issn1
+#your_own_key : please use your own API key
+
+romeo &lt;- map(unpaywall2$issn1, .f = safely(function(x) rr_journal_issn(x, your_own_key)))
+
+# pluck the data, get rid of duplicate ISSNs and the extra title column
+romeo_df &lt;- map_df(romeo, &quot;result&quot;) %&gt;% 
+  filter(!duplicated(issn)) %&gt;%
+  select(-title)
+
+# join by ISSN
+unpaywall_romeo1 &lt;- unpaywall2 %&gt;%
+  left_join(romeo_df, by = c(&quot;issn1&quot; = &quot;issn&quot;))
+
+# Using issn2 for those resulted in NA using issn
+
+# add rownames as identifiers so we can bind together
+unpaywall_romeo1 &lt;- unpaywall_romeo1 %&gt;%
+  rownames_to_column()
+
+# create table of items not found by issn1 (where romeocolour is NA)
+unp.na &lt;- unpaywall_romeo1 %&gt;%
+  filter(is.na(romeocolour))
+
+# create vector of NA rownames
+na_rownames &lt;- as.integer(unp.na$rowname)
+
+# query sherpa-romeo with issn2
+romeo2 &lt;- map(unp.na$issn2, .f = safely(function(x) rr_journal_issn(x, key=your_own_key)))
+
+# pluck data, remove duplicates and extra title column
+romeo2_df &lt;-  map_df(romeo2, &quot;result&quot;) %&gt;%
+  filter(!duplicated(issn)) %&gt;%
+  select(-title)
+
+# delete columsn with NA create new table with the values we just retrieved
+unp.na2 &lt;- unp.na %&gt;%
+  select(-romeocolour, -preprint, -postprint, -pdf, -pre_embargo, -post_embargo, -pdf_embargo) %&gt;%
+  left_join(romeo2_df, by = c(&quot;issn2&quot; = &quot;issn&quot;))
+
+# join NA data back
+# remove NA data from unpaywall_romeo1 and replace with new data, rearrange by rowname
+unpaywall_romeo2 &lt;- unpaywall_romeo1 %&gt;%
+  slice(-na_rownames) %&gt;%
+  bind_rows(unp.na2) %&gt;%
+  mutate(rowname = as.integer(rowname)) %&gt;%
+  arrange(rowname)
+
+# create new column to give information about publisher permissions
+`%notin%` &lt;- negate(`%in%`)
+
+unpaywall_romeo_final &lt;- unpaywall_romeo2 %&gt;%
+  mutate(status = case_when(pdf == &quot;can&quot; &amp; pdf_embargo == &quot;NA&quot; ~ &quot;final_immediate&quot;,
+                            pdf == &quot;restricted&quot; ~ &quot;final_restricted&quot;,
+                            postprint == &quot;can&quot; &amp; post_embargo == &quot;NA&quot; &amp;
+                              pdf %notin% c(&quot;can&quot;, &quot;restricted&quot;) ~                          
+                              &quot;postprint_immediate&quot;,
+                            postprint == &quot;restricted&quot; &amp; pdf %notin% c(&quot;can&quot;, &quot;restricted&quot;) ~
+                              &quot;postprint_restricted&quot;,
+                            preprint == &quot;can&quot;  &amp; pre_embargo == &quot;NA&quot; &amp;
+                              postprint %notin% c(&quot;can&quot;, &quot;restricted&quot;) &amp; 
+                              pdf %notin% c(&quot;can&quot;, &quot;restricted&quot;) ~ &quot;preprint_immediate&quot;,
+                            preprint == &quot;restricted&quot; &amp; postprint %notin% c(&quot;can&quot;, &quot;restricted&quot;) &amp;
+                              pdf %notin% c(&quot;can&quot;, &quot;restricted&quot;) ~ &quot;preprint_restricted&quot;,
+                            preprint == &quot;cannot&quot; &amp; postprint == &quot;cannot&quot; &amp; pdf == &quot;cannot&quot; ~
+                              &quot;fully_restricted&quot;))
+
+kable(unpaywall_romeo_final) %&gt;% 
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;)) %&gt;% 
+  scroll_box(width = &quot;100%&quot;, height = &quot;400px&quot;)</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+rowname
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+doi
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+data_standard
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+is_oa
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+genre
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+journal_is_oa
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+journal_is_in_doaj
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+issn1
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+issn2
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+journal_name
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+publisher
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+title
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+year
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_evidence
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_host
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_license
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_url
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_url_for_pdf
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_version
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+year1
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+oa
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+romeocolour
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+preprint
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+postprint
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+pdf
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+pre_embargo
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+post_embargo
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+pdf_embargo
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+status
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10.1145/903893.903896
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-0782
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Communications of the ACM
+</td>
+<td style="text-align:left;">
+Association for Computing Machinery (ACM)
+</td>
+<td style="text-align:left;">
+The role of IT in successful knowledge management initiatives
+</td>
+<td style="text-align:left;">
+2003
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:left;">
+closed
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+cannot
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+10.2514/1.j055143
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1452
+</td>
+<td style="text-align:left;">
+1533-385X
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+Nonlinear Aerodynamic and Aeroelastic Model Reduction Using a Discrete Empirical Interpolation Method
+</td>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH title and first author match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf" class="uri">https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf" class="uri">https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+cannot
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+10.1002/aic.12373
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1541
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+AIChE Journal
+</td>
+<td style="text-align:left;">
+Wiley-Blackwell
+</td>
+<td style="text-align:left;">
+Acid-sensitive magnetic nanoparticles as potential drug depots
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3134249?pdf=render" class="uri">http://europepmc.org/articles/pmc3134249?pdf=render</a>
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3134249?pdf=render" class="uri">http://europepmc.org/articles/pmc3134249?pdf=render</a>
+</td>
+<td style="text-align:left;">
+acceptedVersion
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+yellow
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+restricted
+</td>
+<td style="text-align:left;">
+cannot
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+12 months
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+postprint_restricted
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+10.1111/j.1399-0039.2011.01796.x
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-2815
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Tissue Antigens
+</td>
+<td style="text-align:left;">
+Wiley-Blackwell
+</td>
+<td style="text-align:left;">
+Natural killer cell engineering for cellular therapy of cancer
+</td>
+<td style="text-align:left;">
+2011
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3218564?pdf=render" class="uri">http://europepmc.org/articles/pmc3218564?pdf=render</a>
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3218564?pdf=render" class="uri">http://europepmc.org/articles/pmc3218564?pdf=render</a>
+</td>
+<td style="text-align:left;">
+acceptedVersion
+</td>
+<td style="text-align:right;">
+2011
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+yellow
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+restricted
+</td>
+<td style="text-align:left;">
+cannot
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+12 months
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+postprint_restricted
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+10.2307/30040617
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4273
+</td>
+<td style="text-align:left;">
+1948-0989
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+The Academy of Management
+</td>
+<td style="text-align:left;">
+OWNERSHIP STRUCTURE, EXPROPRIATION, AND PERFORMANCE OF GROUP-AFFILIATED COMPANIES IN KOREA.
+</td>
+<td style="text-align:left;">
+2003
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH title match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+cc-by-nc-nd
+</td>
+<td style="text-align:left;">
+<a href="https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf" class="uri">https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf" class="uri">https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+restricted
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+final_restricted
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+10.5465/amj.2011.0727
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4273
+</td>
+<td style="text-align:left;">
+1948-0989
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+The Academy of Management
+</td>
+<td style="text-align:left;">
+“I Put in Effort, Therefore I Am Passionate”: Investigating the Path from Effort to Passion in Entrepreneurship
+</td>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH title and first author match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf" class="uri">http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf" class="uri">http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+restricted
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+final_restricted
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+10.1134/s0001434610090324
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4346
+</td>
+<td style="text-align:left;">
+1573-8876
+</td>
+<td style="text-align:left;">
+Mathematical Notes
+</td>
+<td style="text-align:left;">
+Pleiades Publishing Ltd
+</td>
+<td style="text-align:left;">
+A supercongruence motivated by the Legendre family of elliptic curves
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://wain.mi.ras.ru/PS/supercong-MN2010.pdf" class="uri">http://wain.mi.ras.ru/PS/supercong-MN2010.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://wain.mi.ras.ru/PS/supercong-MN2010.pdf" class="uri">http://wain.mi.ras.ru/PS/supercong-MN2010.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+blue
+</td>
+<td style="text-align:left;">
+unclear
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+10.2308/accr.2010.85.6.2047
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4826
+</td>
+<td style="text-align:left;">
+1558-7967
+</td>
+<td style="text-align:left;">
+The Accounting Review
+</td>
+<td style="text-align:left;">
+American Accounting Association
+</td>
+<td style="text-align:left;">
+Do Supplementary Sales Forecasts Increase the Credibility of Financial Analystsâ€™ Earnings Forecasts?
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:left;">
+closed
+</td>
+<td style="text-align:left;">
+white
+</td>
+<td style="text-align:left;">
+cannot
+</td>
+<td style="text-align:left;">
+cannot
+</td>
+<td style="text-align:left;">
+cannot
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+fully_restricted
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+10.3109/17453679509157668
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-6470
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Acta Orthopaedica Scandinavica
+</td>
+<td style="text-align:left;">
+Informa UK Limited
+</td>
+<td style="text-align:left;">
+Detection and monitoring of progressive degeneration of osteoarthritic cartilage by MRI
+</td>
+<td style="text-align:left;">
+1995
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true" class="uri">https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true</a>
+</td>
+<td style="text-align:left;">
+<a href="https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true" class="uri">https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+10.5688/aj710351
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0002-9459
+</td>
+<td style="text-align:left;">
+1553-6467
+</td>
+<td style="text-align:left;">
+American Journal of Pharmaceutical Education
+</td>
+<td style="text-align:left;">
+American Journal of Pharmaceutical Education
+</td>
+<td style="text-align:left;">
+Using a Human Patient Simulation Mannequin to Teach Interdisciplinary Team Skills to Pharmacy Students
+</td>
+<td style="text-align:left;">
+2007
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc1913308?pdf=render" class="uri">http://europepmc.org/articles/pmc1913308?pdf=render</a>
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc1913308?pdf=render" class="uri">http://europepmc.org/articles/pmc1913308?pdf=render</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2007
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+10.1206/3863.1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0003-0082
+</td>
+<td style="text-align:left;">
+1937-352X
+</td>
+<td style="text-align:left;">
+American Museum Novitates
+</td>
+<td style="text-align:left;">
+American Museum of Natural History (BioOne sponsored)
+</td>
+<td style="text-align:left;">
+Larval Diversity in the Bee GenusMegachile(Hymenoptera: Apoidea: Megachilidae)
+</td>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH title and first author match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf" class="uri">http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf" class="uri">http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+10.2319/021809-104.1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0003-3219
+</td>
+<td style="text-align:left;">
+1945-7103
+</td>
+<td style="text-align:left;">
+The Angle Orthodontist
+</td>
+<td style="text-align:left;">
+The Angle Orthodontist (EH Angle Education &amp; Research Foundation)
+</td>
+<td style="text-align:left;">
+Laterality of Asymmetry in Movements of the Corners of the Mouth during Voluntary Smile
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.angle.org/doi/pdf/10.2319/021809-104.1" class="uri">http://www.angle.org/doi/pdf/10.2319/021809-104.1</a>
+</td>
+<td style="text-align:left;">
+<a href="http://www.angle.org/doi/pdf/10.2319/021809-104.1" class="uri">http://www.angle.org/doi/pdf/10.2319/021809-104.1</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+10.1590/s0004-27302007000200027
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0004-2730
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Arquivos Brasileiros de Endocrinologia &amp; Metabologia
+</td>
+<td style="text-align:left;">
+FapUNIFESP (SciELO)
+</td>
+<td style="text-align:left;">
+Retinal vascular signs in diabetes and hypertension - review
+</td>
+<td style="text-align:left;">
+2007
+</td>
+<td style="text-align:left;">
+open (via page says license)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+cc-by-nc
+</td>
+<td style="text-align:left;">
+<a href="http://www.scielo.br/pdf/abem/v51n2/27.pdf" class="uri">http://www.scielo.br/pdf/abem/v51n2/27.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://www.scielo.br/pdf/abem/v51n2/27.pdf" class="uri">http://www.scielo.br/pdf/abem/v51n2/27.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2007
+</td>
+<td style="text-align:left;">
+gold
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+10.1071/ph920451
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0004-9506
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Australian Journal of Physics
+</td>
+<td style="text-align:left;">
+CSIRO Publishing
+</td>
+<td style="text-align:left;">
+The Gas-phase Chemical Evolution of Dark Clouds
+</td>
+<td style="text-align:left;">
+1992
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.publish.csiro.au/ph/pdf/ph920451" class="uri">http://www.publish.csiro.au/ph/pdf/ph920451</a>
+</td>
+<td style="text-align:left;">
+<a href="http://www.publish.csiro.au/ph/pdf/ph920451" class="uri">http://www.publish.csiro.au/ph/pdf/ph920451</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+10.1637/9878-080511-case.1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0005-2086
+</td>
+<td style="text-align:left;">
+1938-4351
+</td>
+<td style="text-align:left;">
+Avian Diseases
+</td>
+<td style="text-align:left;">
+American Association of Avian Pathologists (AAAP)
+</td>
+<td style="text-align:left;">
+Serologic Evidence of Avian Influenza H9N2 and Paramyxovirus Type 1 Infectionin Emus (Dromaius novaehollandiae) in India
+</td>
+<td style="text-align:left;">
+2012
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+closed
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+10.1136/hrt.2003.013631
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0007-0769
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Heart
+</td>
+<td style="text-align:left;">
+BMJ
+</td>
+<td style="text-align:left;">
+Risk factors for non-fatal myocardial infarction in young South Asian adults
+</td>
+<td style="text-align:left;">
+2004
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://heart.bmj.com/content/90/3/259.full.pdf" class="uri">https://heart.bmj.com/content/90/3/259.full.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://heart.bmj.com/content/90/3/259.full.pdf" class="uri">https://heart.bmj.com/content/90/3/259.full.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2004
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+10.1348/000711200160363
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0007-1129
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+British Journal of Medical Psychology
+</td>
+<td style="text-align:left;">
+Wiley-Blackwell
+</td>
+<td style="text-align:left;">
+Childhood trauma, dissociation and self-harming behaviour: A pilot study
+</td>
+<td style="text-align:left;">
+2000
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.brown.uk.com/selfinjury/low.pdf" class="uri">http://www.brown.uk.com/selfinjury/low.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://www.brown.uk.com/selfinjury/low.pdf" class="uri">http://www.brown.uk.com/selfinjury/low.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+10.1538/expanim1978.41.2_247
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0007-5124
+</td>
+<td style="text-align:left;">
+1881-7122
+</td>
+<td style="text-align:left;">
+Experimental Animals
+</td>
+<td style="text-align:left;">
+Japanese Association for Laboratory Animal Science
+</td>
+<td style="text-align:left;">
+Mortality in Swiss Albino Mice after i. p. Injection of Oxazepam in Dimethyl Sulphoxide
+</td>
+<td style="text-align:left;">
+1992
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf" class="uri">https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf" class="uri">https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+10.1007/bf03006075
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0008-2856
+</td>
+<td style="text-align:left;">
+1496-8975
+</td>
+<td style="text-align:left;">
+Canadian Anaesthetistsâ€™ Society Journal
+</td>
+<td style="text-align:left;">
+Springer Nature
+</td>
+<td style="text-align:left;">
+Cataract extractions without tracheal intubation
+</td>
+<td style="text-align:left;">
+1974
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf">https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf">https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+1974
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="r"><code># create a summary table
+unpaywall_romeo_summary &lt;- unpaywall_romeo_final %&gt;%
+  group_by(status) %&gt;%
+  tally()
+
+kable(unpaywall_romeo_summary) %&gt;% 
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;)) </code></pre>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+status
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+final_restricted
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fully_restricted
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+postprint_restricted
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="step-4-identify-the-works-that-can-be-deposited" class="section level1">
+<h1>Step 4: Identify the works that can be deposited</h1>
+<p>For example, let’s say we only want to deposit full text that the publisher allows PDF version to be deposited immediately.</p>
+<pre class="r"><code>to_dl &lt;- sample %&gt;% 
+  filter(status == &quot;final_immediate&quot; &amp; best_oa_license == &quot;cc-by&quot;)</code></pre>
+</div>
+<div id="step-5-download-the-full-text" class="section level1">
+<h1>Step 5: Download the full text</h1>
+<p>There are 2 methods to download the full text :</p>
+<ul>
+<li><p>Using another R package called fulltext</p></li>
+<li><p>Using direct URL download</p></li>
+</ul>
+<div id="using-fulltext-package" class="section level2">
+<h2>5.1. Using fulltext package</h2>
+<p>The fulltext package made it easy to download the full text of a publication based on a DOI. They have several data sources, for e.g. PLOS, arXiv.</p>
+<pre class="r"><code>#change the class of DOI from factor to character
+df &lt;- to_dl %&gt;% 
+  mutate(doi = as.character(doi))
+
+#splitting the data into a smaller dataframe for example 100 dois per dataframe
+
+#get the number of dataframes to be created, in this case, it is variable s 
+s &lt;- (nrow(df)-1) %/% 100
+
+dt &lt;- split(df, (seq(nrow(df))-1) %/% 100)
+
+#so we will create s dataframe that is named as doi1, doi2, ... till doi(s)
+for(i in 1:s){
+  nam &lt;- paste(&quot;doi&quot;, i, sep = &quot;&quot;)
+  assign(nam, dt [[i]])
+}
+
+#creating loop to download full text 
+#note: once you are done with the first dataframe, doi, change it to doi2 and so on
+
+for(j in 1:length(doi1)){
+  cat(&quot;.&quot;)
+  res &lt;- purrr::map(doi1, .f = safely(function(x) ft_get(x,type=&quot;pdf&quot;)))
+}
+
+#note:
+#the location of the full text downloaded can be found at /Users/xxx/Library/Caches/R/fulltext</code></pre>
+<p>There will be warnings or errors displayed if the full text is not downloaded. <img src="D:/R%20test/full_text/error.png" /></p>
+</div>
+<div id="using-direct-url" class="section level2">
+<h2>5.2. Using direct url</h2>
+<p>For full text that cannot be downloaded using the fulltext package, we can use the direct URL approach as Unpaywall has provided the direct URL to get the full text of the publication.</p>
+<pre class="r"><code># convert the url as charcter, as by default it is assigned as factor
+urls &lt;- to_dl %&gt;% 
+  select(doi,best_oa_url_for_pdf) %&gt;% 
+  mutate(doi=as.character(doi), url=as.character(best_oa_url_for_pdf))
+
+#set location to download the files
+setwd(&quot;~/Desktop/ft/files/&quot;)
+
+#create empty error file (error1.txt) if the url is not working
+for(s in 1:nrow(urls)){
+  name=paste(&quot;doi&quot;,s,&quot;.pdf&quot;,sep=&quot;&quot;) #create a name for the file to be downloaded
+  url_n=urls$url[[s]]
+  tryCatch(download.file(url_n,
+                         destfile=name, method=&#39;auto&#39;),
+           error = function(e) {
+             file.create(paste(&quot;error&quot;, s, &quot;.txt&quot;,sep=&quot;&quot;)) 
+             
+           }) #if the url error, create an empty error file and skip to next url
+}</code></pre>
+</div>
+</div>
+<div id="step-6-optional-create-the-metadata-file" class="section level1">
+<h1>Step 6 (Optional): Create the metadata file</h1>
+<p>Use Crossref as a source to create the metadata file.</p>
+<pre class="r"><code>#get the metadata based on a list of doi from dataframe called doi1
+works_list &lt;- purrr::map(unpaywall_romeo_final$doi,
+                         function(x) {
+                           my_works &lt;- cr_works(doi = x) %&gt;%
+                             purrr::pluck(&quot;data&quot;)
+                         })
+
+#unnest the list
+works_df &lt;- works_list %&gt;%
+  purrr::map_dfr(., function(x) {
+    x[, ] 
+  })
+
+#unnest the authors field to combine them
+authors &lt;- works_df %&gt;% 
+  filter(!map_lgl(author, is.null)) %&gt;% 
+  unnest(author, .drop = TRUE) %&gt;% 
+  unite(author, c(family, given), sep = &quot; &quot;, remove = FALSE) %&gt;% 
+  dplyr::group_by(doi) %&gt;% 
+  filter(!is.na(author)) %&gt;% 
+  dplyr::summarise(all_authors=paste(author, collapse=&quot; ; &quot;))
+
+#combine back with metadata
+
+works_df1 &lt;- works_df %&gt;% 
+  select(c(title,container.title, doi,issn,issue,volume,page,publisher, published.print))
+
+combined &lt;- left_join(x=works_df1, y=authors, by=&quot;doi&quot;)
+
+cls &lt;- sapply(combined, class)
+
+newCombined &lt;- combined %&gt;% select(which(cls==&quot;character&quot;))
+
+kable(newCombined) %&gt;% 
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;)) %&gt;% 
+  scroll_box(width = &quot;100%&quot;, height = &quot;400px&quot;)</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+title
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+container.title
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+doi
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+issn
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+issue
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+volume
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+page
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+publisher
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+published.print
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+all_authors
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+The role of IT in successful knowledge management initiatives
+</td>
+<td style="text-align:left;">
+Communications of the ACM
+</td>
+<td style="text-align:left;">
+10.1145/903893.903896
+</td>
+<td style="text-align:left;">
+0001-0782
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+46
+</td>
+<td style="text-align:left;">
+69-73
+</td>
+<td style="text-align:left;">
+Association for Computing Machinery (ACM)
+</td>
+<td style="text-align:left;">
+2003-09-01
+</td>
+<td style="text-align:left;">
+Kankanhalli Atreyi ; Tanudidjaja Fransiska ; Sutanto Juliana ; Tan Bernard C. Y.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Nonlinear Aerodynamic and Aeroelastic Model Reduction Using a Discrete Empirical Interpolation Method
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+10.2514/1.j055143
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+55
+</td>
+<td style="text-align:left;">
+624-637
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+2017-02
+</td>
+<td style="text-align:left;">
+Yao W. ; Marques S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acid-sensitive magnetic nanoparticles as potential drug depots
+</td>
+<td style="text-align:left;">
+AIChE Journal
+</td>
+<td style="text-align:left;">
+10.1002/aic.12373
+</td>
+<td style="text-align:left;">
+0001-1541
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+57
+</td>
+<td style="text-align:left;">
+1638-1645
+</td>
+<td style="text-align:left;">
+Wiley
+</td>
+<td style="text-align:left;">
+2011-06
+</td>
+<td style="text-align:left;">
+Wuang Shy Chyi ; Neoh Koon Gee ; Kang En-Tang ; Leckband Deborah E. ; Pack Daniel W.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Natural killer cell engineering for cellular therapy of cancer
+</td>
+<td style="text-align:left;">
+Tissue Antigens
+</td>
+<td style="text-align:left;">
+10.1111/j.1399-0039.2011.01796.x
+</td>
+<td style="text-align:left;">
+0001-2815
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+78
+</td>
+<td style="text-align:left;">
+409-415
+</td>
+<td style="text-align:left;">
+Wiley
+</td>
+<td style="text-align:left;">
+2011-12
+</td>
+<td style="text-align:left;">
+Shook D. R. ; Campana D.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OWNERSHIP STRUCTURE, EXPROPRIATION, AND PERFORMANCE OF GROUP-AFFILIATED COMPANIES IN KOREA.
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+10.2307/30040617
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+46
+</td>
+<td style="text-align:left;">
+238-253
+</td>
+<td style="text-align:left;">
+Academy of Management
+</td>
+<td style="text-align:left;">
+2003-04-01
+</td>
+<td style="text-align:left;">
+Chang S. J.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+â€œI Put in Effort, Therefore I Am Passionateâ€: Investigating the Path from Effort to Passion in Entrepreneurship
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+10.5465/amj.2011.0727
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+58
+</td>
+<td style="text-align:left;">
+1012-1031
+</td>
+<td style="text-align:left;">
+Academy of Management
+</td>
+<td style="text-align:left;">
+2015-08
+</td>
+<td style="text-align:left;">
+Gielnik Michael M. ; Spitzmuller Matthias ; Schmitt Antje ; Klemann D. Katharina ; Frese Michael
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>I used various resources to help me develop the script:</p>
+<ul>
+<li><p><a href="https://ropensci.org/" class="uri">https://ropensci.org/</a></p></li>
+<li><p><a href="https://ciakovx.github.io/rcrossref.html" class="uri">https://ciakovx.github.io/rcrossref.html</a></p></li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

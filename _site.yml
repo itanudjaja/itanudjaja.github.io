@@ -1,0 +1,12 @@
+name: "my-website"
+navbar:
+  title: "Irine Tanudjaja"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Explorations"
+      href: project.html
+  output:
+  html_document:
+    theme: flatly
+    css: style.css
