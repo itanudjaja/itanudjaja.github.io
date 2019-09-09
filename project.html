@@ -403,31 +403,61 @@ div.tocify {
 <div id="using-r-packages-to-populate-ir" class="section level1">
 <h1>Using R packages to populate IR</h1>
 <p>Many institutions have reported that <strong>participation rates of article deposit in their IR are low</strong> regardless of their various efforts in outreach and engagement. Even when the deposit is mandated, the participation rate can still be quite low.</p>
-<p>Once this hurdle was overcome, there is another challenge faced by the IR administrators, ensuring that the version submitted by the researcher is the appropriate version. For example, by checking in Sherpa/Romeo, they can ascertain that “Journal X” only allows researcher to deposit a post-print and not the final published version in the IR. If the final published version was submitted, IR administrators would need to take additional steps to correspond with the researcher to obtain the appropriate version. Thus, <strong>increasing their administrative work load</strong>.</p>
-<p>Therefore, some institutions had taken the pro-active initiative to complete the deposit on behalf of their researchers. This certainly is not a small undertaking. However, there are openly available R packages (<a href="https://ropensci.org/" class="uri">https://ropensci.org/</a>) that can be used to automate some of the processes. In this report, I will summarize the steps to do that.</p>
+<p>Once this hurdle was overcome, there is another challenge faced by the IR administrators, ensuring that the version submitted by the researcher is the appropriate version. If it is not, IR administrators would need to take additional steps to correspond with the researcher to obtain the appropriate version. Thus, <strong>increasing their administrative work load</strong>.</p>
+<p>Therefore, some institutions had taken the pro-active initiative to complete the deposit on behalf of their researchers. This certainly is not a small undertaking. However, there are openly available R packages (<a href="https://ropensci.org/" class="uri">https://ropensci.org/</a>) that can be used to automate some of the processes. In this page, I will summarize the steps to do that.</p>
 <p>The following packages are required, please install them beforehand.</p>
 <pre class="r"><code># install.packages(&quot;fulltext&quot;)
 
-library(kableExtra)
-library(fulltext)
-library(tidyverse)
-library(plyr)
-library(roadoi)
+library(kableExtra)</code></pre>
+<pre><code>## Warning: package &#39;kableExtra&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(fulltext)
+library(tidyverse)</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.2.1 --</code></pre>
+<pre><code>## v ggplot2 3.1.0     v purrr   0.3.2
+## v tibble  2.0.1     v dplyr   0.8.3
+## v tidyr   0.8.3     v stringr 1.3.1
+## v readr   1.3.1     v forcats 0.4.0</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::collect()    masks fulltext::collect()
+## x dplyr::filter()     masks stats::filter()
+## x dplyr::group_rows() masks kableExtra::group_rows()
+## x dplyr::lag()        masks stats::lag()</code></pre>
+<pre class="r"><code>library(plyr)</code></pre>
+<pre><code>## -------------------------------------------------------------------------</code></pre>
+<pre><code>## You have loaded plyr after dplyr - this is likely to cause problems.
+## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+## library(plyr); library(dplyr)</code></pre>
+<pre><code>## -------------------------------------------------------------------------</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     arrange, count, desc, failwith, id, mutate, rename, summarise,
+##     summarize</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     compact</code></pre>
+<pre class="r"><code>library(roadoi)
 library(purrr)
-library(rromeo)
-library(rcrossref)
+library(rromeo)</code></pre>
+<pre><code>## Warning: package &#39;rromeo&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(rcrossref)
 library(tidyr)
 library(dplyr)</code></pre>
 </div>
 <div id="step-1-data-loading" class="section level1">
 <h1>Step 1: Data Loading</h1>
-<p>First thing, get a list of the DOIs of your institution’s works. This list would be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following. <img src="images/2019-09-06_100004.png" /></p>
+<p>First thing, get a list of the DOIs of your institution’s works that you would like to deposit. This list might be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following. <img src="images/2019-09-06_100004.png" /></p>
 <pre class="r"><code>list.filenames&lt;-list.files(pattern=&quot;.csv$&quot;) </code></pre>
 </div>
 <div id="step-2-query-unpaywall-api" class="section level1">
 <h1>Step 2: Query Unpaywall API</h1>
-<p>Unpaywall is a non profit organization that aims to make scholarly works more open. They maintain a database of links to full-text articles from open-access sources all over the world. The content is harvested from legal sources including repositories run by universities, governments, and scholarly societies, as well as open content hosted by publishers themselves.</p>
-<p>Unpaywall requests users to keep the API requests to below 100k per day and to include their email to the URL of requests.</p>
+<p>Unpaywall (<a href="https://unpaywall.org/" class="uri">https://unpaywall.org/</a>) is a non profit organization that aims to make scholarly works more open. They maintain a database of links to full-text articles from open-access sources all over the world. The content is harvested from legal sources including repositories run by universities, governments, and scholarly societies, as well as open content hosted by publishers themselves.</p>
+<p>Unpaywall requests users to keep the API requests to below 100k per day and to include their email to the URL of requests. Please include your own email below.</p>
 <pre class="r"><code>unpaywall&lt;- tibble()
 
 # Creating loop so that we can query Unpaywall API based on dois in several CSV files
@@ -3682,7 +3712,7 @@ for(j in 1:length(doi1)){
 </div>
 <div id="using-direct-url" class="section level2">
 <h2>5.2. Using direct url</h2>
-<p>For full text that cannot be downloaded using the fulltext package, we can use the direct URL approach as Unpaywall has provided the direct URL to get the full text of the publication.</p>
+<p>For full text that cannot be downloaded using the fulltext package, we can use the direct URL approach as Unpaywall has provided the direct URL to get the full text of the publication. Similarly, there will be a warning if the full text cannot be downloaded from the URL.</p>
 <pre class="r"><code># convert the url as charcter, as by default it is assigned as factor
 urls &lt;- to_dl %&gt;% 
   select(doi,best_oa_url_for_pdf) %&gt;% 
@@ -4392,9 +4422,9 @@ Delilkan A. E. ; Chandran S.
 </table>
 </div>
 </div>
-<div id="references" class="section level1">
-<h1>References</h1>
-<p>I used various resources to help me develop the script:</p>
+<div id="note" class="section level1">
+<h1>Note</h1>
+<p>Various resources and lots of Googling were involved in developing the above script, please feel free to contact me if you have suggestions to further improve it.</p>
 <ul>
 <li><p><a href="https://ropensci.org/" class="uri">https://ropensci.org/</a></p></li>
 <li><p><a href="https://ciakovx.github.io/rcrossref.html" class="uri">https://ciakovx.github.io/rcrossref.html</a></p></li>

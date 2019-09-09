@@ -10,9 +10,9 @@ output:
 
 Many institutions have reported that **participation rates of article deposit in their IR are low** regardless of their various efforts in outreach and engagement. Even when the deposit is mandated, the participation rate can still be quite low. 
 
-Once this hurdle was overcome, there is another challenge faced by the IR administrators, ensuring that the version submitted by the researcher is the appropriate version. For example, by checking in Sherpa/Romeo, they can ascertain that "Journal X" only allows researcher to deposit a post-print and not the final published version in the IR. If the final published version was submitted, IR administrators would need to take additional steps to correspond with the researcher to obtain the appropriate version. Thus, **increasing their administrative work load**.
+Once this hurdle was overcome, there is another challenge faced by the IR administrators, ensuring that the version submitted by the researcher is the appropriate version. If it is not, IR administrators would need to take additional steps to correspond with the researcher to obtain the appropriate version. Thus, **increasing their administrative work load**.
 
-Therefore, some institutions had taken the pro-active initiative to complete the deposit on behalf of their researchers. This certainly is not a small undertaking. However, there are openly available R packages (https://ropensci.org/) that can be used to automate some of the processes. In this report, I will summarize the steps to do that.  
+Therefore, some institutions had taken the pro-active initiative to complete the deposit on behalf of their researchers. This certainly is not a small undertaking. However, there are openly available R packages (https://ropensci.org/) that can be used to automate some of the processes. In this page, I will summarize the steps to do that.  
 
 The following packages are required, please install them beforehand.
 
@@ -38,7 +38,7 @@ library(dplyr)
 
 # Step 1: Data Loading 
 
-First thing, get a list of the DOIs of your institution's works. This list would be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following.
+First thing, get a list of the DOIs of your institution's works that you would like to deposit. This list might be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following.
 ![](C:/Users/clbti/Documents/itanudjaja.github.io/images/2019-09-06_100004.png)
 
 ```{r Data loading}
@@ -48,9 +48,9 @@ list.filenames<-list.files(pattern=".csv$")
 
 # Step 2: Query Unpaywall API
 
-Unpaywall is a non profit organization that aims to make scholarly works more open. They maintain a database of links to full-text articles from open-access sources all over the world. The content is harvested from legal sources including repositories run by universities, governments, and scholarly societies, as well as open content hosted by publishers themselves. 
+Unpaywall (https://unpaywall.org/) is a non profit organization that aims to make scholarly works more open. They maintain a database of links to full-text articles from open-access sources all over the world. The content is harvested from legal sources including repositories run by universities, governments, and scholarly societies, as well as open content hosted by publishers themselves. 
 
-Unpaywall requests users to keep the API requests to below 100k per day and to include their email to the URL of requests. 
+Unpaywall requests users to keep the API requests to below 100k per day and to include their email to the URL of requests. Please include your own email below.
 
 ```{r unpaywall, echo=-1}
 your_own_email <- "clbti@nus.edu.sg"
@@ -317,7 +317,7 @@ There will be warnings or errors displayed if the full text is not downloaded.
 
 ## 5.2. Using direct url
 
-For full text that cannot be downloaded using the fulltext package, we can use the direct URL approach as Unpaywall has provided the direct URL to get the full text of the publication.
+For full text that cannot be downloaded using the fulltext package, we can use the direct URL approach as Unpaywall has provided the direct URL to get the full text of the publication. Similarly, there will be a warning if the full text cannot be downloaded from the URL.
 
 ```{r direct, eval=F, echo=T}
 # convert the url as charcter, as by default it is assigned as factor
@@ -384,8 +384,8 @@ kable(newCombined) %>%
   scroll_box(width = "100%", height = "400px")
 ```
 
-#References
-I used various resources to help me develop the script:
+#Note
+Various resources and lots of Googling were involved in developing the above script, please feel free to contact me if you have suggestions to further improve it.
 
 - https://ropensci.org/
 
