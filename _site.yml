@@ -8,3 +8,8 @@ navbar:
       href: project.html
     - text: "OA of funded publications"
       href: funders.html
+output:
+  html_document:
+    theme: paper
+    css: 'styles.css'
+
