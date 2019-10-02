@@ -6,7 +6,7 @@ navbar:
       href: index.html
     - text: "Populating IR"
       href: project.html
-    - text: "OA of funded publications "
+    - text: "OA of funded publications"
       href: funders.html
 output:
   html_document:

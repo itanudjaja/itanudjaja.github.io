@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>Using R packages to populate IR</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -382,7 +382,10 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="project.html">Explorations</a>
+  <a href="project.html">Populating IR</a>
+</li>
+<li>
+  <a href="funders.html">OA of funded publications</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -396,6 +399,7 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Using R packages to populate IR</h1>
 
 </div>
 
@@ -413,15 +417,16 @@ library(kableExtra)</code></pre>
 <pre class="r"><code>library(fulltext)
 library(tidyverse)</code></pre>
 <pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.2.1 --</code></pre>
+<pre><code>## -- Attaching packages --------------------------------- tidyverse 1.2.1 --</code></pre>
 <pre><code>## v ggplot2 3.1.0     v purrr   0.3.2
 ## v tibble  2.0.1     v dplyr   0.8.3
-## v tidyr   0.8.3     v stringr 1.3.1
+## v tidyr   0.8.3     v stringr 1.4.0
 ## v readr   1.3.1     v forcats 0.4.0</code></pre>
 <pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.5.3</code></pre>
 <pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.5.3</code></pre>
 <pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## -- Conflicts ------------------------------------ tidyverse_conflicts() --
 ## x dplyr::collect()    masks fulltext::collect()
 ## x dplyr::filter()     masks stats::filter()
 ## x dplyr::group_rows() masks kableExtra::group_rows()
@@ -524,9 +529,12 @@ for (i in 1:length(list.filenames))
   
   Sys.sleep(60)  
   
-}
-
-# changing year from factor to numeric
+}</code></pre>
+<pre><code>## Request failed [404]. Retrying in 1 seconds...</code></pre>
+<pre><code>## Request failed [404]. Retrying in 1.3 seconds...</code></pre>
+<pre><code>## Warning: Unpaywall request failed [404]
+## &#39;10.1371/joumal.pone.0122795&#39; is an invalid doi. See https://doi.org/10.1371/joumal.pone.0122795</code></pre>
+<pre class="r"><code># changing year from factor to numeric
 unpaywall$year1 &lt;- as.numeric(as.character(unpaywall$year))
 
 #limit to only journal article only
@@ -622,7 +630,7 @@ oa
 <tbody>
 <tr>
 <td style="text-align:left;">
-10.1145/903893.903896
+10.5343/bms.2016.1062
 </td>
 <td style="text-align:right;">
 2
@@ -640,19 +648,19 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0001-0782
+0007-4977
 </td>
 <td style="text-align:left;">
-Communications of the ACM
+Bulletin of Marine Science
 </td>
 <td style="text-align:left;">
-Association for Computing Machinery (ACM)
+Bulletin of Marine Science
 </td>
 <td style="text-align:left;">
-The role of IT in successful knowledge management initiatives
+First observation of &lt;I&gt;Drupella rugosa&lt;/I&gt; egg capsules on scleractinian coral &lt;I&gt;Pocillopora damicornis&lt;/I&gt;
 </td>
 <td style="text-align:left;">
-2003
+2016
 </td>
 <td style="text-align:left;">
 NA
@@ -673,7 +681,7 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-2003
+2016
 </td>
 <td style="text-align:left;">
 closed
@@ -681,361 +689,7 @@ closed
 </tr>
 <tr>
 <td style="text-align:left;">
-10.2514/1.j055143
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0001-1452,1533-385X
-</td>
-<td style="text-align:left;">
-AIAA Journal
-</td>
-<td style="text-align:left;">
-American Institute of Aeronautics and Astronautics (AIAA)
-</td>
-<td style="text-align:left;">
-Nonlinear Aerodynamic and Aeroelastic Model Reduction Using a Discrete Empirical Interpolation Method
-</td>
-<td style="text-align:left;">
-2017
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH title and first author match)
-</td>
-<td style="text-align:left;">
-repository
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf" class="uri">https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf</a>
-</td>
-<td style="text-align:left;">
-<a href="https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf" class="uri">https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf</a>
-</td>
-<td style="text-align:left;">
-publishedVersion
-</td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:left;">
-green
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.1002/aic.12373
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0001-1541
-</td>
-<td style="text-align:left;">
-AIChE Journal
-</td>
-<td style="text-align:left;">
-Wiley-Blackwell
-</td>
-<td style="text-align:left;">
-Acid-sensitive magnetic nanoparticles as potential drug depots
-</td>
-<td style="text-align:left;">
-2010
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH doi match)
-</td>
-<td style="text-align:left;">
-repository
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc3134249?pdf=render" class="uri">http://europepmc.org/articles/pmc3134249?pdf=render</a>
-</td>
-<td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc3134249?pdf=render" class="uri">http://europepmc.org/articles/pmc3134249?pdf=render</a>
-</td>
-<td style="text-align:left;">
-acceptedVersion
-</td>
-<td style="text-align:right;">
-2010
-</td>
-<td style="text-align:left;">
-green
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.1111/j.1399-0039.2011.01796.x
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0001-2815
-</td>
-<td style="text-align:left;">
-Tissue Antigens
-</td>
-<td style="text-align:left;">
-Wiley-Blackwell
-</td>
-<td style="text-align:left;">
-Natural killer cell engineering for cellular therapy of cancer
-</td>
-<td style="text-align:left;">
-2011
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH doi match)
-</td>
-<td style="text-align:left;">
-repository
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc3218564?pdf=render" class="uri">http://europepmc.org/articles/pmc3218564?pdf=render</a>
-</td>
-<td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc3218564?pdf=render" class="uri">http://europepmc.org/articles/pmc3218564?pdf=render</a>
-</td>
-<td style="text-align:left;">
-acceptedVersion
-</td>
-<td style="text-align:right;">
-2011
-</td>
-<td style="text-align:left;">
-green
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.2307/30040617
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0001-4273,1948-0989
-</td>
-<td style="text-align:left;">
-Academy of Management Journal
-</td>
-<td style="text-align:left;">
-The Academy of Management
-</td>
-<td style="text-align:left;">
-OWNERSHIP STRUCTURE, EXPROPRIATION, AND PERFORMANCE OF GROUP-AFFILIATED COMPANIES IN KOREA.
-</td>
-<td style="text-align:left;">
-2003
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH title match)
-</td>
-<td style="text-align:left;">
-repository
-</td>
-<td style="text-align:left;">
-cc-by-nc-nd
-</td>
-<td style="text-align:left;">
-<a href="https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf" class="uri">https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf</a>
-</td>
-<td style="text-align:left;">
-<a href="https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf" class="uri">https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf</a>
-</td>
-<td style="text-align:left;">
-submittedVersion
-</td>
-<td style="text-align:right;">
-2003
-</td>
-<td style="text-align:left;">
-green
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.5465/amj.2011.0727
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0001-4273,1948-0989
-</td>
-<td style="text-align:left;">
-Academy of Management Journal
-</td>
-<td style="text-align:left;">
-The Academy of Management
-</td>
-<td style="text-align:left;">
-“I Put in Effort, Therefore I Am Passionate”: Investigating the Path from Effort to Passion in Entrepreneurship
-</td>
-<td style="text-align:left;">
-2014
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH title and first author match)
-</td>
-<td style="text-align:left;">
-repository
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf" class="uri">http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf</a>
-</td>
-<td style="text-align:left;">
-<a href="http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf" class="uri">http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf</a>
-</td>
-<td style="text-align:left;">
-publishedVersion
-</td>
-<td style="text-align:right;">
-2014
-</td>
-<td style="text-align:left;">
-green
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.1134/s0001434610090324
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0001-4346,1573-8876
-</td>
-<td style="text-align:left;">
-Mathematical Notes
-</td>
-<td style="text-align:left;">
-Pleiades Publishing Ltd
-</td>
-<td style="text-align:left;">
-A supercongruence motivated by the Legendre family of elliptic curves
-</td>
-<td style="text-align:left;">
-2010
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH doi match)
-</td>
-<td style="text-align:left;">
-repository
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="http://wain.mi.ras.ru/PS/supercong-MN2010.pdf" class="uri">http://wain.mi.ras.ru/PS/supercong-MN2010.pdf</a>
-</td>
-<td style="text-align:left;">
-<a href="http://wain.mi.ras.ru/PS/supercong-MN2010.pdf" class="uri">http://wain.mi.ras.ru/PS/supercong-MN2010.pdf</a>
-</td>
-<td style="text-align:left;">
-submittedVersion
-</td>
-<td style="text-align:right;">
-2010
-</td>
-<td style="text-align:left;">
-green
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.2308/accr.2010.85.6.2047
+10.1007/s11252-016-0589-2
 </td>
 <td style="text-align:right;">
 2
@@ -1053,19 +707,19 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0001-4826,1558-7967
+1083-8155,1573-1642
 </td>
 <td style="text-align:left;">
-The Accounting Review
+Urban Ecosystems
 </td>
 <td style="text-align:left;">
-American Accounting Association
+Springer Nature
 </td>
 <td style="text-align:left;">
-Do Supplementary Sales Forecasts Increase the Credibility of Financial Analystsâ€™ Earnings Forecasts?
+Spatial variability of epibiotic assemblages on marina pontoons in Singapore
 </td>
 <td style="text-align:left;">
-2010
+2016
 </td>
 <td style="text-align:left;">
 NA
@@ -1086,7 +740,7 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-2010
+2016
 </td>
 <td style="text-align:left;">
 closed
@@ -1094,7 +748,7 @@ closed
 </tr>
 <tr>
 <td style="text-align:left;">
-10.3109/17453679509157668
+10.1371/journal.pone.0159755
 </td>
 <td style="text-align:right;">
 2
@@ -1106,261 +760,25 @@ TRUE
 journal-article
 </td>
 <td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0001-6470
-</td>
-<td style="text-align:left;">
-Acta Orthopaedica Scandinavica
-</td>
-<td style="text-align:left;">
-Informa UK Limited
-</td>
-<td style="text-align:left;">
-Detection and monitoring of progressive degeneration of osteoarthritic cartilage by MRI
-</td>
-<td style="text-align:left;">
-1995
-</td>
-<td style="text-align:left;">
-open (via free pdf)
-</td>
-<td style="text-align:left;">
-publisher
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true" class="uri">https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true</a>
-</td>
-<td style="text-align:left;">
-<a href="https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true" class="uri">https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true</a>
-</td>
-<td style="text-align:left;">
-publishedVersion
-</td>
-<td style="text-align:right;">
-1995
-</td>
-<td style="text-align:left;">
-bronze
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.5688/aj710351
-</td>
-<td style="text-align:right;">
-2
+TRUE
 </td>
 <td style="text-align:left;">
 TRUE
 </td>
 <td style="text-align:left;">
-journal-article
+1932-6203
 </td>
 <td style="text-align:left;">
-FALSE
+PLOS ONE
 </td>
 <td style="text-align:left;">
-FALSE
+Public Library of Science (PLoS)
 </td>
 <td style="text-align:left;">
-0002-9459,1553-6467
-</td>
-<td style="text-align:left;">
-American Journal of Pharmaceutical Education
-</td>
-<td style="text-align:left;">
-American Journal of Pharmaceutical Education
-</td>
-<td style="text-align:left;">
-Using a Human Patient Simulation Mannequin to Teach Interdisciplinary Team Skills to Pharmacy Students
-</td>
-<td style="text-align:left;">
-2007
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH doi match)
-</td>
-<td style="text-align:left;">
-repository
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc1913308?pdf=render" class="uri">http://europepmc.org/articles/pmc1913308?pdf=render</a>
-</td>
-<td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc1913308?pdf=render" class="uri">http://europepmc.org/articles/pmc1913308?pdf=render</a>
-</td>
-<td style="text-align:left;">
-publishedVersion
-</td>
-<td style="text-align:right;">
-2007
-</td>
-<td style="text-align:left;">
-green
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.1206/3863.1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0003-0082,1937-352X
-</td>
-<td style="text-align:left;">
-American Museum Novitates
-</td>
-<td style="text-align:left;">
-American Museum of Natural History (BioOne sponsored)
-</td>
-<td style="text-align:left;">
-Larval Diversity in the Bee GenusMegachile(Hymenoptera: Apoidea: Megachilidae)
+Differential Response of Coral Assemblages to Thermal Stress Underscores the Complexity in Predicting Bleaching Susceptibility
 </td>
 <td style="text-align:left;">
 2016
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH title and first author match)
-</td>
-<td style="text-align:left;">
-repository
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf" class="uri">http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf</a>
-</td>
-<td style="text-align:left;">
-<a href="http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf" class="uri">http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf</a>
-</td>
-<td style="text-align:left;">
-submittedVersion
-</td>
-<td style="text-align:right;">
-2016
-</td>
-<td style="text-align:left;">
-green
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.2319/021809-104.1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0003-3219,1945-7103
-</td>
-<td style="text-align:left;">
-The Angle Orthodontist
-</td>
-<td style="text-align:left;">
-The Angle Orthodontist (EH Angle Education &amp; Research Foundation)
-</td>
-<td style="text-align:left;">
-Laterality of Asymmetry in Movements of the Corners of the Mouth during Voluntary Smile
-</td>
-<td style="text-align:left;">
-2010
-</td>
-<td style="text-align:left;">
-open (via free pdf)
-</td>
-<td style="text-align:left;">
-publisher
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="http://www.angle.org/doi/pdf/10.2319/021809-104.1" class="uri">http://www.angle.org/doi/pdf/10.2319/021809-104.1</a>
-</td>
-<td style="text-align:left;">
-<a href="http://www.angle.org/doi/pdf/10.2319/021809-104.1" class="uri">http://www.angle.org/doi/pdf/10.2319/021809-104.1</a>
-</td>
-<td style="text-align:left;">
-publishedVersion
-</td>
-<td style="text-align:right;">
-2010
-</td>
-<td style="text-align:left;">
-bronze
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.1590/s0004-27302007000200027
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0004-2730
-</td>
-<td style="text-align:left;">
-Arquivos Brasileiros de Endocrinologia &amp; Metabologia
-</td>
-<td style="text-align:left;">
-FapUNIFESP (SciELO)
-</td>
-<td style="text-align:left;">
-Retinal vascular signs in diabetes and hypertension - review
-</td>
-<td style="text-align:left;">
-2007
 </td>
 <td style="text-align:left;">
 open (via page says license)
@@ -1369,19 +787,19 @@ open (via page says license)
 publisher
 </td>
 <td style="text-align:left;">
-cc-by-nc
+cc-by
 </td>
 <td style="text-align:left;">
-<a href="http://www.scielo.br/pdf/abem/v51n2/27.pdf" class="uri">http://www.scielo.br/pdf/abem/v51n2/27.pdf</a>
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0159755&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0159755&amp;type=printable</a>
 </td>
 <td style="text-align:left;">
-<a href="http://www.scielo.br/pdf/abem/v51n2/27.pdf" class="uri">http://www.scielo.br/pdf/abem/v51n2/27.pdf</a>
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0159755&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0159755&amp;type=printable</a>
 </td>
 <td style="text-align:left;">
 publishedVersion
 </td>
 <td style="text-align:right;">
-2007
+2016
 </td>
 <td style="text-align:left;">
 gold
@@ -1389,7 +807,7 @@ gold
 </tr>
 <tr>
 <td style="text-align:left;">
-10.1071/ph920451
+10.1177/2010105815624121
 </td>
 <td style="text-align:right;">
 2
@@ -1401,54 +819,113 @@ TRUE
 journal-article
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-0004-9506
+2010-1058,2059-2329
 </td>
 <td style="text-align:left;">
-Australian Journal of Physics
+Proceedings of Singapore Healthcare
 </td>
 <td style="text-align:left;">
-CSIRO Publishing
+SAGE Publications
 </td>
 <td style="text-align:left;">
-The Gas-phase Chemical Evolution of Dark Clouds
+Living with heart failure: Perspectives of patients from Singapore
 </td>
 <td style="text-align:left;">
-1992
+2016
 </td>
 <td style="text-align:left;">
-open (via free pdf)
+oa journal (via doaj)
 </td>
 <td style="text-align:left;">
 publisher
 </td>
 <td style="text-align:left;">
+cc-by-nc
+</td>
+<td style="text-align:left;">
+<a href="https://doi.org/10.1177/2010105815624121" class="uri">https://doi.org/10.1177/2010105815624121</a>
+</td>
+<td style="text-align:left;">
 NA
-</td>
-<td style="text-align:left;">
-<a href="http://www.publish.csiro.au/ph/pdf/ph920451" class="uri">http://www.publish.csiro.au/ph/pdf/ph920451</a>
-</td>
-<td style="text-align:left;">
-<a href="http://www.publish.csiro.au/ph/pdf/ph920451" class="uri">http://www.publish.csiro.au/ph/pdf/ph920451</a>
 </td>
 <td style="text-align:left;">
 publishedVersion
 </td>
 <td style="text-align:right;">
-1992
+2016
 </td>
 <td style="text-align:left;">
-bronze
+gold
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-10.1637/9878-080511-case.1
+10.1186/s13063-016-1414-1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+1745-6215
+</td>
+<td style="text-align:left;">
+Trials
+</td>
+<td style="text-align:left;">
+Springer Nature
+</td>
+<td style="text-align:left;">
+Impact of advance care planning on the care of patients with heart failure: study protocol for a randomized controlled trial
+</td>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:left;">
+open (via page says license)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+cc-by
+</td>
+<td style="text-align:left;">
+<a href="https://trialsjournal.biomedcentral.com/track/pdf/10.1186/s13063-016-1414-1" class="uri">https://trialsjournal.biomedcentral.com/track/pdf/10.1186/s13063-016-1414-1</a>
+</td>
+<td style="text-align:left;">
+<a href="https://trialsjournal.biomedcentral.com/track/pdf/10.1186/s13063-016-1414-1" class="uri">https://trialsjournal.biomedcentral.com/track/pdf/10.1186/s13063-016-1414-1</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+gold
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1007/s12526-016-0513-2
 </td>
 <td style="text-align:right;">
 2
@@ -1466,19 +943,19 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0005-2086,1938-4351
+1867-1616,1867-1624
 </td>
 <td style="text-align:left;">
-Avian Diseases
+Marine Biodiversity
 </td>
 <td style="text-align:left;">
-American Association of Avian Pathologists (AAAP)
+Springer Nature
 </td>
 <td style="text-align:left;">
-Serologic Evidence of Avian Influenza H9N2 and Paramyxovirus Type 1 Infectionin Emus (Dromaius novaehollandiae) in India
+Coral nurseries as habitats for juvenile corallivorous butterflyfish
 </td>
 <td style="text-align:left;">
-2012
+2016
 </td>
 <td style="text-align:left;">
 NA
@@ -1499,7 +976,7 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-2012
+2016
 </td>
 <td style="text-align:left;">
 closed
@@ -1507,13 +984,13 @@ closed
 </tr>
 <tr>
 <td style="text-align:left;">
-10.1136/hrt.2003.013631
+10.1016/j.rsma.2016.05.005
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:left;">
-TRUE
+FALSE
 </td>
 <td style="text-align:left;">
 journal-article
@@ -1525,166 +1002,48 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0007-0769
+2352-4855
 </td>
 <td style="text-align:left;">
-Heart
+Regional Studies in Marine Science
 </td>
 <td style="text-align:left;">
-BMJ
+Elsevier BV
 </td>
 <td style="text-align:left;">
-Risk factors for non-fatal myocardial infarction in young South Asian adults
+Coral restoration in Singapore’s sediment-challenged sea
 </td>
 <td style="text-align:left;">
-2004
-</td>
-<td style="text-align:left;">
-open (via free pdf)
-</td>
-<td style="text-align:left;">
-publisher
+2016
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-<a href="https://heart.bmj.com/content/90/3/259.full.pdf" class="uri">https://heart.bmj.com/content/90/3/259.full.pdf</a>
-</td>
-<td style="text-align:left;">
-<a href="https://heart.bmj.com/content/90/3/259.full.pdf" class="uri">https://heart.bmj.com/content/90/3/259.full.pdf</a>
-</td>
-<td style="text-align:left;">
-publishedVersion
-</td>
-<td style="text-align:right;">
-2004
-</td>
-<td style="text-align:left;">
-bronze
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.1348/000711200160363
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0007-1129
-</td>
-<td style="text-align:left;">
-British Journal of Medical Psychology
-</td>
-<td style="text-align:left;">
-Wiley-Blackwell
-</td>
-<td style="text-align:left;">
-Childhood trauma, dissociation and self-harming behaviour: A pilot study
-</td>
-<td style="text-align:left;">
-2000
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH doi match)
-</td>
-<td style="text-align:left;">
-repository
+NA
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-<a href="http://www.brown.uk.com/selfinjury/low.pdf" class="uri">http://www.brown.uk.com/selfinjury/low.pdf</a>
-</td>
-<td style="text-align:left;">
-<a href="http://www.brown.uk.com/selfinjury/low.pdf" class="uri">http://www.brown.uk.com/selfinjury/low.pdf</a>
-</td>
-<td style="text-align:left;">
-submittedVersion
-</td>
-<td style="text-align:right;">
-2000
-</td>
-<td style="text-align:left;">
-green
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-10.1538/expanim1978.41.2_247
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0007-5124,1881-7122
-</td>
-<td style="text-align:left;">
-Experimental Animals
-</td>
-<td style="text-align:left;">
-Japanese Association for Laboratory Animal Science
-</td>
-<td style="text-align:left;">
-Mortality in Swiss Albino Mice after i. p. Injection of Oxazepam in Dimethyl Sulphoxide
-</td>
-<td style="text-align:left;">
-1992
-</td>
-<td style="text-align:left;">
-open (via free pdf)
-</td>
-<td style="text-align:left;">
-publisher
+NA
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-<a href="https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf" class="uri">https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf</a>
-</td>
-<td style="text-align:left;">
-<a href="https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf" class="uri">https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf</a>
-</td>
-<td style="text-align:left;">
-publishedVersion
+NA
 </td>
 <td style="text-align:right;">
-1992
+2016
 </td>
 <td style="text-align:left;">
-bronze
+closed
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-10.1007/bf03006075
+10.1007/s00338-016-1433-0
 </td>
 <td style="text-align:right;">
 2
@@ -1702,19 +1061,19 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0008-2856,1496-8975
+0722-4028,1432-0975
 </td>
 <td style="text-align:left;">
-Canadian Anaesthetistsâ€™ Society Journal
+Coral Reefs
 </td>
 <td style="text-align:left;">
 Springer Nature
 </td>
 <td style="text-align:left;">
-Cataract extractions without tracheal intubation
+Tentacular autotomy and polyp regeneration in the scleractinian coral Euphyllia glabrescens
 </td>
 <td style="text-align:left;">
-1974
+2016
 </td>
 <td style="text-align:left;">
 open (via free pdf)
@@ -1726,16 +1085,606 @@ publisher
 NA
 </td>
 <td style="text-align:left;">
-<a href="https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf">https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf</a>
+<a href="https://link.springer.com/content/pdf/10.1007%2Fs00338-016-1433-0.pdf">https://link.springer.com/content/pdf/10.1007%2Fs00338-016-1433-0.pdf</a>
 </td>
 <td style="text-align:left;">
-<a href="https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf">https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf</a>
+<a href="https://link.springer.com/content/pdf/10.1007%2Fs00338-016-1433-0.pdf">https://link.springer.com/content/pdf/10.1007%2Fs00338-016-1433-0.pdf</a>
 </td>
 <td style="text-align:left;">
 publishedVersion
 </td>
 <td style="text-align:right;">
-1974
+2016
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1371/journal.pone.0122795
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+1932-6203
+</td>
+<td style="text-align:left;">
+PLOS ONE
+</td>
+<td style="text-align:left;">
+Public Library of Science (PLoS)
+</td>
+<td style="text-align:left;">
+Direct Medical Cost of Type 2 Diabetes in Singapore
+</td>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:left;">
+open (via page says license)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+cc-by
+</td>
+<td style="text-align:left;">
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0122795&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0122795&amp;type=printable</a>
+</td>
+<td style="text-align:left;">
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0122795&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0122795&amp;type=printable</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:left;">
+gold
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1111/ijs.12576
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+1747-4930,1747-4949
+</td>
+<td style="text-align:left;">
+International Journal of Stroke
+</td>
+<td style="text-align:left;">
+SAGE Publications
+</td>
+<td style="text-align:left;">
+Direct medical cost of stroke in Singapore
+</td>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:left;">
+closed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1016/j.ecoleng.2015.05.016
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0925-8574
+</td>
+<td style="text-align:left;">
+Ecological Engineering
+</td>
+<td style="text-align:left;">
+Elsevier BV
+</td>
+<td style="text-align:left;">
+Enhancing the biodiversity of coastal defence structures: transplantation of nursery-reared reef biota onto intertidal seawalls
+</td>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:left;">
+closed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1007/s12526-014-0228-1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+1867-1616,1867-1624
+</td>
+<td style="text-align:left;">
+Marine Biodiversity
+</td>
+<td style="text-align:left;">
+Springer Nature
+</td>
+<td style="text-align:left;">
+High density aggregations of cucumariids (Echinodermata: Holothuroidea) on a Singapore sedimented reef
+</td>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:left;">
+closed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1016/j.diabres.2014.03.020
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0168-8227
+</td>
+<td style="text-align:left;">
+Diabetes Research and Clinical Practice
+</td>
+<td style="text-align:left;">
+Elsevier BV
+</td>
+<td style="text-align:left;">
+Cost-of-illness studies of diabetes mellitus: A systematic review
+</td>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:left;">
+closed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1371/journal.pone.0098529
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+1932-6203
+</td>
+<td style="text-align:left;">
+PLoS ONE
+</td>
+<td style="text-align:left;">
+Public Library of Science (PLoS)
+</td>
+<td style="text-align:left;">
+Augmenting the Post-Transplantation Growth and Survivorship of Juvenile Scleractinian Corals via Nutritional Enhancement
+</td>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:left;">
+open (via page says license)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+cc-by
+</td>
+<td style="text-align:left;">
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0098529&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0098529&amp;type=printable</a>
+</td>
+<td style="text-align:left;">
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0098529&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0098529&amp;type=printable</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:left;">
+gold
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1080/17451000.2013.853124
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+1745-1000,1745-1019
+</td>
+<td style="text-align:left;">
+Marine Biology Research
+</td>
+<td style="text-align:left;">
+Informa UK Limited
+</td>
+<td style="text-align:left;">
+Rearing juvenile ‘corals of opportunity’ inin situnurseries – A reef rehabilitation approach for sediment-impacted environments
+</td>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:left;">
+closed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1093/nar/gkt668
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+1362-4962,0305-1048
+</td>
+<td style="text-align:left;">
+Nucleic Acids Research
+</td>
+<td style="text-align:left;">
+Oxford University Press (OUP)
+</td>
+<td style="text-align:left;">
+A multidimensional platform for the purification of non-coding RNA species
+</td>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:left;">
+open (via page says Open Access)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+implied-oa
+</td>
+<td style="text-align:left;">
+<a href="https://academic.oup.com/nar/article-pdf/41/17/e168/25362576/gkt668.pdf" class="uri">https://academic.oup.com/nar/article-pdf/41/17/e168/25362576/gkt668.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://academic.oup.com/nar/article-pdf/41/17/e168/25362576/gkt668.pdf" class="uri">https://academic.oup.com/nar/article-pdf/41/17/e168/25362576/gkt668.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2013
+</td>
+<td style="text-align:left;">
+gold
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1016/j.aquaculture.2013.08.025
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0044-8486
+</td>
+<td style="text-align:left;">
+Aquaculture
+</td>
+<td style="text-align:left;">
+Elsevier BV
+</td>
+<td style="text-align:left;">
+Grazers improve health of coral juveniles in ex situ mariculture
+</td>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2013
+</td>
+<td style="text-align:left;">
+closed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.11622/smedj.2013122
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0037-5675
+</td>
+<td style="text-align:left;">
+Singapore Medical Journal
+</td>
+<td style="text-align:left;">
+Singapore Medical Journal
+</td>
+<td style="text-align:left;">
+Prescribing health: exercise
+</td>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://smj.org.sg/sites/default/files/5406/5406practice1.pdf" class="uri">http://smj.org.sg/sites/default/files/5406/5406practice1.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://smj.org.sg/sites/default/files/5406/5406practice1.pdf" class="uri">http://smj.org.sg/sites/default/files/5406/5406practice1.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2013
 </td>
 <td style="text-align:left;">
 bronze
@@ -1922,7 +1871,7 @@ status
 1
 </td>
 <td style="text-align:left;">
-10.1145/903893.903896
+10.5343/bms.2016.1062
 </td>
 <td style="text-align:right;">
 2
@@ -1940,22 +1889,22 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0001-0782
+0007-4977
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-Communications of the ACM
+Bulletin of Marine Science
 </td>
 <td style="text-align:left;">
-Association for Computing Machinery (ACM)
+Bulletin of Marine Science
 </td>
 <td style="text-align:left;">
-The role of IT in successful knowledge management initiatives
+First observation of &lt;I&gt;Drupella rugosa&lt;/I&gt; egg capsules on scleractinian coral &lt;I&gt;Pocillopora damicornis&lt;/I&gt;
 </td>
 <td style="text-align:left;">
-2003
+2016
 </td>
 <td style="text-align:left;">
 NA
@@ -1976,25 +1925,22 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-2003
+2016
 </td>
 <td style="text-align:left;">
 closed
 </td>
 <td style="text-align:left;">
-green
-</td>
-<td style="text-align:left;">
-can
-</td>
-<td style="text-align:left;">
-can
+white
 </td>
 <td style="text-align:left;">
 cannot
 </td>
 <td style="text-align:left;">
-NA
+cannot
+</td>
+<td style="text-align:left;">
+restricted
 </td>
 <td style="text-align:left;">
 NA
@@ -2003,7 +1949,10 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-NA
+5 years
+</td>
+<td style="text-align:left;">
+final_restricted
 </td>
 </tr>
 <tr>
@@ -2011,13 +1960,13 @@ NA
 2
 </td>
 <td style="text-align:left;">
-10.2514/1.j055143
+10.1007/s11252-016-0589-2
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:left;">
-TRUE
+FALSE
 </td>
 <td style="text-align:left;">
 journal-article
@@ -2029,46 +1978,46 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0001-1452
+1083-8155
 </td>
 <td style="text-align:left;">
-1533-385X
+1573-1642
 </td>
 <td style="text-align:left;">
-AIAA Journal
+Urban Ecosystems
 </td>
 <td style="text-align:left;">
-American Institute of Aeronautics and Astronautics (AIAA)
+Springer Nature
 </td>
 <td style="text-align:left;">
-Nonlinear Aerodynamic and Aeroelastic Model Reduction Using a Discrete Empirical Interpolation Method
+Spatial variability of epibiotic assemblages on marina pontoons in Singapore
 </td>
 <td style="text-align:left;">
-2017
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH title and first author match)
-</td>
-<td style="text-align:left;">
-repository
+2016
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-<a href="https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf" class="uri">https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf</a>
+NA
 </td>
 <td style="text-align:left;">
-<a href="https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf" class="uri">https://pure.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf</a>
+NA
 </td>
 <td style="text-align:left;">
-publishedVersion
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:right;">
-2017
+2016
 </td>
 <td style="text-align:left;">
-green
+closed
 </td>
 <td style="text-align:left;">
 green
@@ -2100,7 +2049,7 @@ NA
 3
 </td>
 <td style="text-align:left;">
-10.1002/aic.12373
+10.1371/journal.pone.0159755
 </td>
 <td style="text-align:right;">
 2
@@ -2112,76 +2061,76 @@ TRUE
 journal-article
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-0001-1541
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-AIChE Journal
-</td>
-<td style="text-align:left;">
-Wiley-Blackwell
-</td>
-<td style="text-align:left;">
-Acid-sensitive magnetic nanoparticles as potential drug depots
-</td>
-<td style="text-align:left;">
-2010
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH doi match)
-</td>
-<td style="text-align:left;">
-repository
+1932-6203
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc3134249?pdf=render" class="uri">http://europepmc.org/articles/pmc3134249?pdf=render</a>
+PLOS ONE
 </td>
 <td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc3134249?pdf=render" class="uri">http://europepmc.org/articles/pmc3134249?pdf=render</a>
+Public Library of Science (PLoS)
 </td>
 <td style="text-align:left;">
-acceptedVersion
+Differential Response of Coral Assemblages to Thermal Stress Underscores the Complexity in Predicting Bleaching Susceptibility
+</td>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:left;">
+open (via page says license)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+cc-by
+</td>
+<td style="text-align:left;">
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0159755&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0159755&amp;type=printable</a>
+</td>
+<td style="text-align:left;">
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0159755&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0159755&amp;type=printable</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
 </td>
 <td style="text-align:right;">
-2010
+2016
+</td>
+<td style="text-align:left;">
+gold
 </td>
 <td style="text-align:left;">
 green
 </td>
 <td style="text-align:left;">
-yellow
+can
 </td>
 <td style="text-align:left;">
 can
 </td>
 <td style="text-align:left;">
-restricted
-</td>
-<td style="text-align:left;">
-cannot
+can
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-12 months
+NA
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-postprint_restricted
+NA
 </td>
 </tr>
 <tr>
@@ -2189,7 +2138,7 @@ postprint_restricted
 4
 </td>
 <td style="text-align:left;">
-10.1111/j.1399-0039.2011.01796.x
+10.1177/2010105815624121
 </td>
 <td style="text-align:right;">
 2
@@ -2201,61 +2150,239 @@ TRUE
 journal-article
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-0001-2815
+2010-1058
+</td>
+<td style="text-align:left;">
+2059-2329
+</td>
+<td style="text-align:left;">
+Proceedings of Singapore Healthcare
+</td>
+<td style="text-align:left;">
+SAGE Publications
+</td>
+<td style="text-align:left;">
+Living with heart failure: Perspectives of patients from Singapore
+</td>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:left;">
+oa journal (via doaj)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+cc-by-nc
+</td>
+<td style="text-align:left;">
+<a href="https://doi.org/10.1177/2010105815624121" class="uri">https://doi.org/10.1177/2010105815624121</a>
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-Tissue Antigens
-</td>
-<td style="text-align:left;">
-Wiley-Blackwell
-</td>
-<td style="text-align:left;">
-Natural killer cell engineering for cellular therapy of cancer
-</td>
-<td style="text-align:left;">
-2011
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH doi match)
-</td>
-<td style="text-align:left;">
-repository
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc3218564?pdf=render" class="uri">http://europepmc.org/articles/pmc3218564?pdf=render</a>
-</td>
-<td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc3218564?pdf=render" class="uri">http://europepmc.org/articles/pmc3218564?pdf=render</a>
-</td>
-<td style="text-align:left;">
-acceptedVersion
+publishedVersion
 </td>
 <td style="text-align:right;">
-2011
+2016
+</td>
+<td style="text-align:left;">
+gold
 </td>
 <td style="text-align:left;">
 green
 </td>
 <td style="text-align:left;">
-yellow
+can
 </td>
 <td style="text-align:left;">
 can
 </td>
 <td style="text-align:left;">
-restricted
+can
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+10.1186/s13063-016-1414-1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+1745-6215
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Trials
+</td>
+<td style="text-align:left;">
+Springer Nature
+</td>
+<td style="text-align:left;">
+Impact of advance care planning on the care of patients with heart failure: study protocol for a randomized controlled trial
+</td>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:left;">
+open (via page says license)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+cc-by
+</td>
+<td style="text-align:left;">
+<a href="https://trialsjournal.biomedcentral.com/track/pdf/10.1186/s13063-016-1414-1" class="uri">https://trialsjournal.biomedcentral.com/track/pdf/10.1186/s13063-016-1414-1</a>
+</td>
+<td style="text-align:left;">
+<a href="https://trialsjournal.biomedcentral.com/track/pdf/10.1186/s13063-016-1414-1" class="uri">https://trialsjournal.biomedcentral.com/track/pdf/10.1186/s13063-016-1414-1</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+gold
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+10.1007/s12526-016-0513-2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+1867-1616
+</td>
+<td style="text-align:left;">
+1867-1624
+</td>
+<td style="text-align:left;">
+Marine Biodiversity
+</td>
+<td style="text-align:left;">
+Springer Nature
+</td>
+<td style="text-align:left;">
+Coral nurseries as habitats for juvenile corallivorous butterflyfish
+</td>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+closed
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+can
 </td>
 <td style="text-align:left;">
 cannot
@@ -2264,92 +2391,6 @@ cannot
 NA
 </td>
 <td style="text-align:left;">
-12 months
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-postprint_restricted
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:left;">
-10.2307/30040617
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0001-4273
-</td>
-<td style="text-align:left;">
-1948-0989
-</td>
-<td style="text-align:left;">
-Academy of Management Journal
-</td>
-<td style="text-align:left;">
-The Academy of Management
-</td>
-<td style="text-align:left;">
-OWNERSHIP STRUCTURE, EXPROPRIATION, AND PERFORMANCE OF GROUP-AFFILIATED COMPANIES IN KOREA.
-</td>
-<td style="text-align:left;">
-2003
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH title match)
-</td>
-<td style="text-align:left;">
-repository
-</td>
-<td style="text-align:left;">
-cc-by-nc-nd
-</td>
-<td style="text-align:left;">
-<a href="https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf" class="uri">https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf</a>
-</td>
-<td style="text-align:left;">
-<a href="https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf" class="uri">https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf</a>
-</td>
-<td style="text-align:left;">
-submittedVersion
-</td>
-<td style="text-align:right;">
-2003
-</td>
-<td style="text-align:left;">
-green
-</td>
-<td style="text-align:left;">
-green
-</td>
-<td style="text-align:left;">
-can
-</td>
-<td style="text-align:left;">
-can
-</td>
-<td style="text-align:left;">
-restricted
-</td>
-<td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
@@ -2357,98 +2398,6 @@ NA
 </td>
 <td style="text-align:left;">
 NA
-</td>
-<td style="text-align:left;">
-final_restricted
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:left;">
-10.5465/amj.2011.0727
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0001-4273
-</td>
-<td style="text-align:left;">
-1948-0989
-</td>
-<td style="text-align:left;">
-Academy of Management Journal
-</td>
-<td style="text-align:left;">
-The Academy of Management
-</td>
-<td style="text-align:left;">
-“I Put in Effort, Therefore I Am Passionate”: Investigating the Path from Effort to Passion in Entrepreneurship
-</td>
-<td style="text-align:left;">
-2014
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH title and first author match)
-</td>
-<td style="text-align:left;">
-repository
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf" class="uri">http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf</a>
-</td>
-<td style="text-align:left;">
-<a href="http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf" class="uri">http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf</a>
-</td>
-<td style="text-align:left;">
-publishedVersion
-</td>
-<td style="text-align:right;">
-2014
-</td>
-<td style="text-align:left;">
-green
-</td>
-<td style="text-align:left;">
-green
-</td>
-<td style="text-align:left;">
-can
-</td>
-<td style="text-align:left;">
-can
-</td>
-<td style="text-align:left;">
-restricted
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-final_restricted
 </td>
 </tr>
 <tr>
@@ -2456,13 +2405,13 @@ final_restricted
 7
 </td>
 <td style="text-align:left;">
-10.1134/s0001434610090324
+10.1016/j.rsma.2016.05.005
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:left;">
-TRUE
+FALSE
 </td>
 <td style="text-align:left;">
 journal-article
@@ -2474,55 +2423,55 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0001-4346
-</td>
-<td style="text-align:left;">
-1573-8876
-</td>
-<td style="text-align:left;">
-Mathematical Notes
-</td>
-<td style="text-align:left;">
-Pleiades Publishing Ltd
-</td>
-<td style="text-align:left;">
-A supercongruence motivated by the Legendre family of elliptic curves
-</td>
-<td style="text-align:left;">
-2010
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH doi match)
-</td>
-<td style="text-align:left;">
-repository
+2352-4855
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-<a href="http://wain.mi.ras.ru/PS/supercong-MN2010.pdf" class="uri">http://wain.mi.ras.ru/PS/supercong-MN2010.pdf</a>
+Regional Studies in Marine Science
 </td>
 <td style="text-align:left;">
-<a href="http://wain.mi.ras.ru/PS/supercong-MN2010.pdf" class="uri">http://wain.mi.ras.ru/PS/supercong-MN2010.pdf</a>
+Elsevier BV
 </td>
 <td style="text-align:left;">
-submittedVersion
+Coral restoration in Singapore’s sediment-challenged sea
+</td>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:right;">
-2010
+2016
 </td>
 <td style="text-align:left;">
-green
+closed
 </td>
 <td style="text-align:left;">
-blue
+NA
 </td>
 <td style="text-align:left;">
-unclear
+NA
 </td>
 <td style="text-align:left;">
-can
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -2545,96 +2494,7 @@ NA
 8
 </td>
 <td style="text-align:left;">
-10.2308/accr.2010.85.6.2047
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0001-4826
-</td>
-<td style="text-align:left;">
-1558-7967
-</td>
-<td style="text-align:left;">
-The Accounting Review
-</td>
-<td style="text-align:left;">
-American Accounting Association
-</td>
-<td style="text-align:left;">
-Do Supplementary Sales Forecasts Increase the Credibility of Financial Analystsâ€™ Earnings Forecasts?
-</td>
-<td style="text-align:left;">
-2010
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-2010
-</td>
-<td style="text-align:left;">
-closed
-</td>
-<td style="text-align:left;">
-white
-</td>
-<td style="text-align:left;">
-cannot
-</td>
-<td style="text-align:left;">
-cannot
-</td>
-<td style="text-align:left;">
-cannot
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-fully_restricted
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:left;">
-10.3109/17453679509157668
+10.1007/s00338-016-1433-0
 </td>
 <td style="text-align:right;">
 2
@@ -2652,22 +2512,22 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0001-6470
+0722-4028
 </td>
 <td style="text-align:left;">
-NA
+1432-0975
 </td>
 <td style="text-align:left;">
-Acta Orthopaedica Scandinavica
+Coral Reefs
 </td>
 <td style="text-align:left;">
-Informa UK Limited
+Springer Nature
 </td>
 <td style="text-align:left;">
-Detection and monitoring of progressive degeneration of osteoarthritic cartilage by MRI
+Tentacular autotomy and polyp regeneration in the scleractinian coral Euphyllia glabrescens
 </td>
 <td style="text-align:left;">
-1995
+2016
 </td>
 <td style="text-align:left;">
 open (via free pdf)
@@ -2679,22 +2539,31 @@ publisher
 NA
 </td>
 <td style="text-align:left;">
-<a href="https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true" class="uri">https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true</a>
+<a href="https://link.springer.com/content/pdf/10.1007%2Fs00338-016-1433-0.pdf">https://link.springer.com/content/pdf/10.1007%2Fs00338-016-1433-0.pdf</a>
 </td>
 <td style="text-align:left;">
-<a href="https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true" class="uri">https://www.tandfonline.com/doi/pdf/10.3109/17453679509157668?needAccess=true</a>
+<a href="https://link.springer.com/content/pdf/10.1007%2Fs00338-016-1433-0.pdf">https://link.springer.com/content/pdf/10.1007%2Fs00338-016-1433-0.pdf</a>
 </td>
 <td style="text-align:left;">
 publishedVersion
 </td>
 <td style="text-align:right;">
-1995
+2016
 </td>
 <td style="text-align:left;">
 bronze
 </td>
 <td style="text-align:left;">
-NA
+green
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+cannot
 </td>
 <td style="text-align:left;">
 NA
@@ -2704,6 +2573,86 @@ NA
 </td>
 <td style="text-align:left;">
 NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+10.1371/journal.pone.0122795
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+1932-6203
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+PLOS ONE
+</td>
+<td style="text-align:left;">
+Public Library of Science (PLoS)
+</td>
+<td style="text-align:left;">
+Direct Medical Cost of Type 2 Diabetes in Singapore
+</td>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:left;">
+open (via page says license)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+cc-by
+</td>
+<td style="text-align:left;">
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0122795&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0122795&amp;type=printable</a>
+</td>
+<td style="text-align:left;">
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0122795&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0122795&amp;type=printable</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:left;">
+gold
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+can
 </td>
 <td style="text-align:left;">
 NA
@@ -2723,13 +2672,13 @@ NA
 10
 </td>
 <td style="text-align:left;">
-10.5688/aj710351
+10.1111/ijs.12576
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:left;">
-TRUE
+FALSE
 </td>
 <td style="text-align:left;">
 journal-article
@@ -2741,58 +2690,58 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0002-9459
+1747-4930
 </td>
 <td style="text-align:left;">
-1553-6467
+1747-4949
 </td>
 <td style="text-align:left;">
-American Journal of Pharmaceutical Education
+International Journal of Stroke
 </td>
 <td style="text-align:left;">
-American Journal of Pharmaceutical Education
+SAGE Publications
 </td>
 <td style="text-align:left;">
-Using a Human Patient Simulation Mannequin to Teach Interdisciplinary Team Skills to Pharmacy Students
+Direct medical cost of stroke in Singapore
 </td>
 <td style="text-align:left;">
-2007
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH doi match)
-</td>
-<td style="text-align:left;">
-repository
+2015
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc1913308?pdf=render" class="uri">http://europepmc.org/articles/pmc1913308?pdf=render</a>
+NA
 </td>
 <td style="text-align:left;">
-<a href="http://europepmc.org/articles/pmc1913308?pdf=render" class="uri">http://europepmc.org/articles/pmc1913308?pdf=render</a>
+NA
 </td>
 <td style="text-align:left;">
-publishedVersion
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:right;">
-2007
+2015
+</td>
+<td style="text-align:left;">
+closed
 </td>
 <td style="text-align:left;">
 green
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
+cannot
 </td>
 <td style="text-align:left;">
 NA
@@ -2812,13 +2761,13 @@ NA
 11
 </td>
 <td style="text-align:left;">
-10.1206/3863.1
+10.1016/j.ecoleng.2015.05.016
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:left;">
-TRUE
+FALSE
 </td>
 <td style="text-align:left;">
 journal-article
@@ -2830,58 +2779,58 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0003-0082
-</td>
-<td style="text-align:left;">
-1937-352X
-</td>
-<td style="text-align:left;">
-American Museum Novitates
-</td>
-<td style="text-align:left;">
-American Museum of Natural History (BioOne sponsored)
-</td>
-<td style="text-align:left;">
-Larval Diversity in the Bee GenusMegachile(Hymenoptera: Apoidea: Megachilidae)
-</td>
-<td style="text-align:left;">
-2016
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH title and first author match)
-</td>
-<td style="text-align:left;">
-repository
+0925-8574
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-<a href="http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf" class="uri">http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf</a>
+Ecological Engineering
 </td>
 <td style="text-align:left;">
-<a href="http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf" class="uri">http://digitallibrary.amnh.org/bitstream/2246/6668/1/N3863.pdf</a>
+Elsevier BV
 </td>
 <td style="text-align:left;">
-submittedVersion
+Enhancing the biodiversity of coastal defence structures: transplantation of nursery-reared reef biota onto intertidal seawalls
+</td>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:right;">
-2016
+2015
+</td>
+<td style="text-align:left;">
+closed
 </td>
 <td style="text-align:left;">
 green
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
+cannot
 </td>
 <td style="text-align:left;">
 NA
@@ -2901,13 +2850,13 @@ NA
 12
 </td>
 <td style="text-align:left;">
-10.2319/021809-104.1
+10.1007/s12526-014-0228-1
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:left;">
-TRUE
+FALSE
 </td>
 <td style="text-align:left;">
 journal-article
@@ -2919,58 +2868,58 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0003-3219
+1867-1616
 </td>
 <td style="text-align:left;">
-1945-7103
+1867-1624
 </td>
 <td style="text-align:left;">
-The Angle Orthodontist
+Marine Biodiversity
 </td>
 <td style="text-align:left;">
-The Angle Orthodontist (EH Angle Education &amp; Research Foundation)
+Springer Nature
 </td>
 <td style="text-align:left;">
-Laterality of Asymmetry in Movements of the Corners of the Mouth during Voluntary Smile
+High density aggregations of cucumariids (Echinodermata: Holothuroidea) on a Singapore sedimented reef
 </td>
 <td style="text-align:left;">
-2010
-</td>
-<td style="text-align:left;">
-open (via free pdf)
-</td>
-<td style="text-align:left;">
-publisher
+2014
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-<a href="http://www.angle.org/doi/pdf/10.2319/021809-104.1" class="uri">http://www.angle.org/doi/pdf/10.2319/021809-104.1</a>
+NA
 </td>
 <td style="text-align:left;">
-<a href="http://www.angle.org/doi/pdf/10.2319/021809-104.1" class="uri">http://www.angle.org/doi/pdf/10.2319/021809-104.1</a>
+NA
 </td>
 <td style="text-align:left;">
-publishedVersion
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:right;">
-2010
+2014
 </td>
 <td style="text-align:left;">
-bronze
+closed
 </td>
 <td style="text-align:left;">
-NA
+green
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+cannot
 </td>
 <td style="text-align:left;">
 NA
@@ -2990,76 +2939,76 @@ NA
 13
 </td>
 <td style="text-align:left;">
-10.1590/s0004-27302007000200027
+10.1016/j.diabres.2014.03.020
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:left;">
-TRUE
+FALSE
 </td>
 <td style="text-align:left;">
 journal-article
 </td>
 <td style="text-align:left;">
-TRUE
+FALSE
 </td>
 <td style="text-align:left;">
 FALSE
 </td>
 <td style="text-align:left;">
-0004-2730
+0168-8227
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-Arquivos Brasileiros de Endocrinologia &amp; Metabologia
+Diabetes Research and Clinical Practice
 </td>
 <td style="text-align:left;">
-FapUNIFESP (SciELO)
+Elsevier BV
 </td>
 <td style="text-align:left;">
-Retinal vascular signs in diabetes and hypertension - review
+Cost-of-illness studies of diabetes mellitus: A systematic review
 </td>
 <td style="text-align:left;">
-2007
+2014
 </td>
 <td style="text-align:left;">
-open (via page says license)
+NA
 </td>
 <td style="text-align:left;">
-publisher
+NA
 </td>
 <td style="text-align:left;">
-cc-by-nc
+NA
 </td>
 <td style="text-align:left;">
-<a href="http://www.scielo.br/pdf/abem/v51n2/27.pdf" class="uri">http://www.scielo.br/pdf/abem/v51n2/27.pdf</a>
+NA
 </td>
 <td style="text-align:left;">
-<a href="http://www.scielo.br/pdf/abem/v51n2/27.pdf" class="uri">http://www.scielo.br/pdf/abem/v51n2/27.pdf</a>
+NA
 </td>
 <td style="text-align:left;">
-publishedVersion
+NA
 </td>
 <td style="text-align:right;">
-2007
+2014
 </td>
 <td style="text-align:left;">
-gold
+closed
 </td>
 <td style="text-align:left;">
-NA
+green
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+cannot
 </td>
 <td style="text-align:left;">
 NA
@@ -3079,7 +3028,7 @@ NA
 14
 </td>
 <td style="text-align:left;">
-10.1071/ph920451
+10.1371/journal.pone.0098529
 </td>
 <td style="text-align:right;">
 2
@@ -3091,64 +3040,64 @@ TRUE
 journal-article
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-0004-9506
+1932-6203
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-Australian Journal of Physics
+PLoS ONE
 </td>
 <td style="text-align:left;">
-CSIRO Publishing
+Public Library of Science (PLoS)
 </td>
 <td style="text-align:left;">
-The Gas-phase Chemical Evolution of Dark Clouds
+Augmenting the Post-Transplantation Growth and Survivorship of Juvenile Scleractinian Corals via Nutritional Enhancement
 </td>
 <td style="text-align:left;">
-1992
+2014
 </td>
 <td style="text-align:left;">
-open (via free pdf)
+open (via page says license)
 </td>
 <td style="text-align:left;">
 publisher
 </td>
 <td style="text-align:left;">
-NA
+cc-by
 </td>
 <td style="text-align:left;">
-<a href="http://www.publish.csiro.au/ph/pdf/ph920451" class="uri">http://www.publish.csiro.au/ph/pdf/ph920451</a>
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0098529&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0098529&amp;type=printable</a>
 </td>
 <td style="text-align:left;">
-<a href="http://www.publish.csiro.au/ph/pdf/ph920451" class="uri">http://www.publish.csiro.au/ph/pdf/ph920451</a>
+<a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0098529&amp;type=printable" class="uri">https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0098529&amp;type=printable</a>
 </td>
 <td style="text-align:left;">
 publishedVersion
 </td>
 <td style="text-align:right;">
-1992
+2014
 </td>
 <td style="text-align:left;">
-bronze
+gold
 </td>
 <td style="text-align:left;">
-NA
+green
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
 NA
@@ -3168,7 +3117,7 @@ NA
 15
 </td>
 <td style="text-align:left;">
-10.1637/9878-080511-case.1
+10.1080/17451000.2013.853124
 </td>
 <td style="text-align:right;">
 2
@@ -3186,22 +3135,22 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0005-2086
+1745-1000
 </td>
 <td style="text-align:left;">
-1938-4351
+1745-1019
 </td>
 <td style="text-align:left;">
-Avian Diseases
+Marine Biology Research
 </td>
 <td style="text-align:left;">
-American Association of Avian Pathologists (AAAP)
+Informa UK Limited
 </td>
 <td style="text-align:left;">
-Serologic Evidence of Avian Influenza H9N2 and Paramyxovirus Type 1 Infectionin Emus (Dromaius novaehollandiae) in India
+Rearing juvenile ‘corals of opportunity’ inin situnurseries – A reef rehabilitation approach for sediment-impacted environments
 </td>
 <td style="text-align:left;">
-2012
+2014
 </td>
 <td style="text-align:left;">
 NA
@@ -3222,22 +3171,22 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-2012
+2014
 </td>
 <td style="text-align:left;">
 closed
 </td>
 <td style="text-align:left;">
-NA
+green
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+cannot
 </td>
 <td style="text-align:left;">
 NA
@@ -3257,7 +3206,7 @@ NA
 16
 </td>
 <td style="text-align:left;">
-10.1136/hrt.2003.013631
+10.1093/nar/gkt668
 </td>
 <td style="text-align:right;">
 2
@@ -3269,64 +3218,64 @@ TRUE
 journal-article
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-0007-0769
+1362-4962
 </td>
 <td style="text-align:left;">
-NA
+0305-1048
 </td>
 <td style="text-align:left;">
-Heart
+Nucleic Acids Research
 </td>
 <td style="text-align:left;">
-BMJ
+Oxford University Press (OUP)
 </td>
 <td style="text-align:left;">
-Risk factors for non-fatal myocardial infarction in young South Asian adults
+A multidimensional platform for the purification of non-coding RNA species
 </td>
 <td style="text-align:left;">
-2004
+2013
 </td>
 <td style="text-align:left;">
-open (via free pdf)
+open (via page says Open Access)
 </td>
 <td style="text-align:left;">
 publisher
 </td>
 <td style="text-align:left;">
-NA
+implied-oa
 </td>
 <td style="text-align:left;">
-<a href="https://heart.bmj.com/content/90/3/259.full.pdf" class="uri">https://heart.bmj.com/content/90/3/259.full.pdf</a>
+<a href="https://academic.oup.com/nar/article-pdf/41/17/e168/25362576/gkt668.pdf" class="uri">https://academic.oup.com/nar/article-pdf/41/17/e168/25362576/gkt668.pdf</a>
 </td>
 <td style="text-align:left;">
-<a href="https://heart.bmj.com/content/90/3/259.full.pdf" class="uri">https://heart.bmj.com/content/90/3/259.full.pdf</a>
+<a href="https://academic.oup.com/nar/article-pdf/41/17/e168/25362576/gkt668.pdf" class="uri">https://academic.oup.com/nar/article-pdf/41/17/e168/25362576/gkt668.pdf</a>
 </td>
 <td style="text-align:left;">
 publishedVersion
 </td>
 <td style="text-align:right;">
-2004
+2013
 </td>
 <td style="text-align:left;">
-bronze
+gold
 </td>
 <td style="text-align:left;">
-NA
+green
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
 NA
@@ -3346,13 +3295,13 @@ NA
 17
 </td>
 <td style="text-align:left;">
-10.1348/000711200160363
+10.1016/j.aquaculture.2013.08.025
 </td>
 <td style="text-align:right;">
 2
 </td>
 <td style="text-align:left;">
-TRUE
+FALSE
 </td>
 <td style="text-align:left;">
 journal-article
@@ -3364,58 +3313,58 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0007-1129
+0044-8486
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-British Journal of Medical Psychology
+Aquaculture
 </td>
 <td style="text-align:left;">
-Wiley-Blackwell
+Elsevier BV
 </td>
 <td style="text-align:left;">
-Childhood trauma, dissociation and self-harming behaviour: A pilot study
+Grazers improve health of coral juveniles in ex situ mariculture
 </td>
 <td style="text-align:left;">
-2000
-</td>
-<td style="text-align:left;">
-oa repository (via OAI-PMH doi match)
-</td>
-<td style="text-align:left;">
-repository
+2013
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-<a href="http://www.brown.uk.com/selfinjury/low.pdf" class="uri">http://www.brown.uk.com/selfinjury/low.pdf</a>
+NA
 </td>
 <td style="text-align:left;">
-<a href="http://www.brown.uk.com/selfinjury/low.pdf" class="uri">http://www.brown.uk.com/selfinjury/low.pdf</a>
+NA
 </td>
 <td style="text-align:left;">
-submittedVersion
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:right;">
-2000
+2013
+</td>
+<td style="text-align:left;">
+closed
 </td>
 <td style="text-align:left;">
 green
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
+can
 </td>
 <td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
+cannot
 </td>
 <td style="text-align:left;">
 NA
@@ -3435,7 +3384,7 @@ NA
 18
 </td>
 <td style="text-align:left;">
-10.1538/expanim1978.41.2_247
+10.11622/smedj.2013122
 </td>
 <td style="text-align:right;">
 2
@@ -3453,22 +3402,22 @@ FALSE
 FALSE
 </td>
 <td style="text-align:left;">
-0007-5124
+0037-5675
 </td>
 <td style="text-align:left;">
-1881-7122
+NA
 </td>
 <td style="text-align:left;">
-Experimental Animals
+Singapore Medical Journal
 </td>
 <td style="text-align:left;">
-Japanese Association for Laboratory Animal Science
+Singapore Medical Journal
 </td>
 <td style="text-align:left;">
-Mortality in Swiss Albino Mice after i. p. Injection of Oxazepam in Dimethyl Sulphoxide
+Prescribing health: exercise
 </td>
 <td style="text-align:left;">
-1992
+2013
 </td>
 <td style="text-align:left;">
 open (via free pdf)
@@ -3480,105 +3429,16 @@ publisher
 NA
 </td>
 <td style="text-align:left;">
-<a href="https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf" class="uri">https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf</a>
+<a href="http://smj.org.sg/sites/default/files/5406/5406practice1.pdf" class="uri">http://smj.org.sg/sites/default/files/5406/5406practice1.pdf</a>
 </td>
 <td style="text-align:left;">
-<a href="https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf" class="uri">https://www.jstage.jst.go.jp/article/expanim1978/41/2/41_2_247/_pdf</a>
-</td>
-<td style="text-align:left;">
-publishedVersion
-</td>
-<td style="text-align:right;">
-1992
-</td>
-<td style="text-align:left;">
-bronze
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-19
-</td>
-<td style="text-align:left;">
-10.1007/bf03006075
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-journal-article
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-0008-2856
-</td>
-<td style="text-align:left;">
-1496-8975
-</td>
-<td style="text-align:left;">
-Canadian Anaesthetistsâ€™ Society Journal
-</td>
-<td style="text-align:left;">
-Springer Nature
-</td>
-<td style="text-align:left;">
-Cataract extractions without tracheal intubation
-</td>
-<td style="text-align:left;">
-1974
-</td>
-<td style="text-align:left;">
-open (via free pdf)
-</td>
-<td style="text-align:left;">
-publisher
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-<a href="https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf">https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf</a>
-</td>
-<td style="text-align:left;">
-<a href="https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf">https://link.springer.com/content/pdf/10.1007%2FBF03006075.pdf</a>
+<a href="http://smj.org.sg/sites/default/files/5406/5406practice1.pdf" class="uri">http://smj.org.sg/sites/default/files/5406/5406practice1.pdf</a>
 </td>
 <td style="text-align:left;">
 publishedVersion
 </td>
 <td style="text-align:right;">
-1974
+2013
 </td>
 <td style="text-align:left;">
 bronze
@@ -3635,23 +3495,7 @@ n
 final_restricted
 </td>
 <td style="text-align:right;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-fully_restricted
-</td>
-<td style="text-align:right;">
 1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-postprint_restricted
-</td>
-<td style="text-align:right;">
-2
 </td>
 </tr>
 <tr>
@@ -3659,7 +3503,7 @@ postprint_restricted
 NA
 </td>
 <td style="text-align:right;">
-14
+17
 </td>
 </tr>
 </tbody>
@@ -3812,610 +3656,578 @@ all_authors
 <tbody>
 <tr>
 <td style="text-align:left;">
-The role of IT in successful knowledge management initiatives
+First observation of &lt;I&gt;Drupella rugosa&lt;/I&gt; egg capsules on scleractinian coral &lt;I&gt;Pocillopora damicornis&lt;/I&gt;
 </td>
 <td style="text-align:left;">
-Communications of the ACM
+Bulletin of Marine Science
 </td>
 <td style="text-align:left;">
-10.1145/903893.903896
+10.5343/bms.2016.1062
 </td>
 <td style="text-align:left;">
-0001-0782
-</td>
-<td style="text-align:left;">
-9
-</td>
-<td style="text-align:left;">
-46
-</td>
-<td style="text-align:left;">
-69-73
-</td>
-<td style="text-align:left;">
-Association for Computing Machinery (ACM)
-</td>
-<td style="text-align:left;">
-2003-09-01
-</td>
-<td style="text-align:left;">
-Kankanhalli Atreyi ; Tanudidjaja Fransiska ; Sutanto Juliana ; Tan Bernard C. Y.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Nonlinear Aerodynamic and Aeroelastic Model Reduction Using a Discrete Empirical Interpolation Method
-</td>
-<td style="text-align:left;">
-AIAA Journal
-</td>
-<td style="text-align:left;">
-10.2514/1.j055143
-</td>
-<td style="text-align:left;">
-0001-1452,1533-385X
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-55
-</td>
-<td style="text-align:left;">
-624-637
-</td>
-<td style="text-align:left;">
-American Institute of Aeronautics and Astronautics (AIAA)
-</td>
-<td style="text-align:left;">
-2017-02
-</td>
-<td style="text-align:left;">
-Yao W. ; Marques S.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Acid-sensitive magnetic nanoparticles as potential drug depots
-</td>
-<td style="text-align:left;">
-AIChE Journal
-</td>
-<td style="text-align:left;">
-10.1002/aic.12373
-</td>
-<td style="text-align:left;">
-0001-1541
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-57
-</td>
-<td style="text-align:left;">
-1638-1645
-</td>
-<td style="text-align:left;">
-Wiley
-</td>
-<td style="text-align:left;">
-2011-06
-</td>
-<td style="text-align:left;">
-Wuang Shy Chyi ; Neoh Koon Gee ; Kang En-Tang ; Leckband Deborah E. ; Pack Daniel W.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Natural killer cell engineering for cellular therapy of cancer
-</td>
-<td style="text-align:left;">
-Tissue Antigens
-</td>
-<td style="text-align:left;">
-10.1111/j.1399-0039.2011.01796.x
-</td>
-<td style="text-align:left;">
-0001-2815
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-78
-</td>
-<td style="text-align:left;">
-409-415
-</td>
-<td style="text-align:left;">
-Wiley
-</td>
-<td style="text-align:left;">
-2011-12
-</td>
-<td style="text-align:left;">
-Shook D. R. ; Campana D.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-OWNERSHIP STRUCTURE, EXPROPRIATION, AND PERFORMANCE OF GROUP-AFFILIATED COMPANIES IN KOREA.
-</td>
-<td style="text-align:left;">
-Academy of Management Journal
-</td>
-<td style="text-align:left;">
-10.2307/30040617
-</td>
-<td style="text-align:left;">
-0001-4273,1948-0989
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-46
-</td>
-<td style="text-align:left;">
-238-253
-</td>
-<td style="text-align:left;">
-Academy of Management
-</td>
-<td style="text-align:left;">
-2003-04-01
-</td>
-<td style="text-align:left;">
-Chang S. J.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-â€œI Put in Effort, Therefore I Am Passionateâ€: Investigating the Path from Effort to Passion in Entrepreneurship
-</td>
-<td style="text-align:left;">
-Academy of Management Journal
-</td>
-<td style="text-align:left;">
-10.5465/amj.2011.0727
-</td>
-<td style="text-align:left;">
-0001-4273,1948-0989
-</td>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-58
-</td>
-<td style="text-align:left;">
-1012-1031
-</td>
-<td style="text-align:left;">
-Academy of Management
-</td>
-<td style="text-align:left;">
-2015-08
-</td>
-<td style="text-align:left;">
-Gielnik Michael M. ; Spitzmuller Matthias ; Schmitt Antje ; Klemann D. Katharina ; Frese Michael
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-A supercongruence motivated by the Legendre family of elliptic curves
-</td>
-<td style="text-align:left;">
-Mathematical Notes
-</td>
-<td style="text-align:left;">
-10.1134/s0001434610090324
-</td>
-<td style="text-align:left;">
-0001-4346,1573-8876
-</td>
-<td style="text-align:left;">
-3-4
-</td>
-<td style="text-align:left;">
-88
-</td>
-<td style="text-align:left;">
-599-602
-</td>
-<td style="text-align:left;">
-Pleiades Publishing Ltd
-</td>
-<td style="text-align:left;">
-2010-10
-</td>
-<td style="text-align:left;">
-Chan Heng Huat ; Long Ling ; Zudilin V. V.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Do Supplementary Sales Forecasts Increase the Credibility of Financial Analystsâ€™ Earnings Forecasts?
-</td>
-<td style="text-align:left;">
-The Accounting Review
-</td>
-<td style="text-align:left;">
-10.2308/accr.2010.85.6.2047
-</td>
-<td style="text-align:left;">
-0001-4826,1558-7967
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-85
-</td>
-<td style="text-align:left;">
-2047-2074
-</td>
-<td style="text-align:left;">
-American Accounting Association
-</td>
-<td style="text-align:left;">
-2010-11
-</td>
-<td style="text-align:left;">
-Keung Edmund C.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Detection and monitoring of progressive degeneration of osteoarthritic cartilage by MRI
-</td>
-<td style="text-align:left;">
-Acta Orthopaedica Scandinavica
-</td>
-<td style="text-align:left;">
-10.3109/17453679509157668
-</td>
-<td style="text-align:left;">
-0001-6470
-</td>
-<td style="text-align:left;">
-sup266
-</td>
-<td style="text-align:left;">
-66
-</td>
-<td style="text-align:left;">
-130-138
-</td>
-<td style="text-align:left;">
-Informa UK Limited
-</td>
-<td style="text-align:left;">
-1995-01
-</td>
-<td style="text-align:left;">
-Tyler Jenny A ; Watson Paul J ; Koh Hwee-Ling ; Herrod Nicholas J ; Robson Matthew ; Hall Laurance D
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Using a Human Patient Simulation Mannequin to Teach Interdisciplinary Team Skills to Pharmacy Students
-</td>
-<td style="text-align:left;">
-American Journal of Pharmaceutical Education
-</td>
-<td style="text-align:left;">
-10.5688/aj710351
-</td>
-<td style="text-align:left;">
-0002-9459,1553-6467
+0007-4977
 </td>
 <td style="text-align:left;">
 3
 </td>
 <td style="text-align:left;">
-71
+92
 </td>
 <td style="text-align:left;">
-51
+353-354
 </td>
 <td style="text-align:left;">
-American Journal of Pharmaceutical Education
+Bulletin of Marine Science
 </td>
 <td style="text-align:left;">
-2007-09
+2016-07-01
 </td>
 <td style="text-align:left;">
-Fernandez Rosemarie ; Parker Dennis ; Kalus James S. ; Miller Douglas ; Compton Scott
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Larval Diversity in the Bee GenusMegachile(Hymenoptera: Apoidea: Megachilidae)
-</td>
-<td style="text-align:left;">
-American Museum Novitates
-</td>
-<td style="text-align:left;">
-10.1206/3863.1
-</td>
-<td style="text-align:left;">
-0003-0082,1937-352X
-</td>
-<td style="text-align:left;">
-3863
-</td>
-<td style="text-align:left;">
-3863
-</td>
-<td style="text-align:left;">
-1-16
-</td>
-<td style="text-align:left;">
-American Museum of Natural History (BioOne sponsored)
-</td>
-<td style="text-align:left;">
-2016-09-23
-</td>
-<td style="text-align:left;">
-Rozen Jerome G. ; Ascher John S. ; Kamel Soliman M. ; Mohamed Kariman M.
+Sam SQ ; Kikuzawa YP ; Taira D ; Ng CSL ; Toh TC ; Chou LM
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Laterality of Asymmetry in Movements of the Corners of the Mouth during Voluntary Smile
+Spatial variability of epibiotic assemblages on marina pontoons in Singapore
 </td>
 <td style="text-align:left;">
-The Angle Orthodontist
+Urban Ecosystems
 </td>
 <td style="text-align:left;">
-10.2319/021809-104.1
+10.1007/s11252-016-0589-2
 </td>
 <td style="text-align:left;">
-0003-3219,1945-7103
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-80
-</td>
-<td style="text-align:left;">
-223-229
-</td>
-<td style="text-align:left;">
-The Angle Orthodontist (EH Angle Education &amp; Research Foundation)
-</td>
-<td style="text-align:left;">
-2010-03
-</td>
-<td style="text-align:left;">
-Okamoto Haruna ; Haraguchi Seiji ; Takada Kenji
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Retinal vascular signs in diabetes and hypertension - review
-</td>
-<td style="text-align:left;">
-Arquivos Brasileiros de Endocrinologia &amp; Metabologia
-</td>
-<td style="text-align:left;">
-10.1590/s0004-27302007000200027
-</td>
-<td style="text-align:left;">
-0004-2730
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-51
-</td>
-<td style="text-align:left;">
-352-362
-</td>
-<td style="text-align:left;">
-FapUNIFESP (SciELO)
-</td>
-<td style="text-align:left;">
-2007-03
-</td>
-<td style="text-align:left;">
-Liew Gerald ; Wang Jie Jin
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-The Gas-phase Chemical Evolution of Dark Clouds
-</td>
-<td style="text-align:left;">
-Australian Journal of Physics
-</td>
-<td style="text-align:left;">
-10.1071/ph920451
-</td>
-<td style="text-align:left;">
-0004-9506
-</td>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-45
-</td>
-<td style="text-align:left;">
-451
-</td>
-<td style="text-align:left;">
-CSIRO Publishing
-</td>
-<td style="text-align:left;">
-1992
-</td>
-<td style="text-align:left;">
-Bettens RPA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Serologic Evidence of Avian Influenza H9N2 and Paramyxovirus Type 1 Infectionin Emus (Dromaius novaehollandiae) in India
-</td>
-<td style="text-align:left;">
-Avian Diseases
-</td>
-<td style="text-align:left;">
-10.1637/9878-080511-case.1
-</td>
-<td style="text-align:left;">
-0005-2086,1938-4351
+1083-8155,1573-1642
 </td>
 <td style="text-align:left;">
 1
 </td>
 <td style="text-align:left;">
-56
+20
 </td>
 <td style="text-align:left;">
-257-260
+183-197
 </td>
 <td style="text-align:left;">
-American Association of Avian Pathologists (AAAP)
+Springer Nature
 </td>
 <td style="text-align:left;">
-2012-03
+2017-02
 </td>
 <td style="text-align:left;">
-Shinde Prashant V. ; Koratkar Santosh S. ; Pawar Shailesh D. ; Kale Sandeep D. ; Rawankar Amol S. ; Mishra Akhilesh C.
+Toh Kok Ben ; Ng Chin Soon Lionel ; Wu Bokai ; Toh Tai Chong ; Cheo Pei Rong ; Tun Karenne ; Chou Loke Ming
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Risk factors for non-fatal myocardial infarction in young South Asian adults
+Differential Response of Coral Assemblages to Thermal Stress Underscores the Complexity in Predicting Bleaching Susceptibility
 </td>
 <td style="text-align:left;">
-Heart
+PLOS ONE
 </td>
 <td style="text-align:left;">
-10.1136/hrt.2003.013631
+10.1371/journal.pone.0159755
 </td>
 <td style="text-align:left;">
-1355-6037,1468-201X
+1932-6203
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+e0159755
+</td>
+<td style="text-align:left;">
+Public Library of Science (PLoS)
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Chou Loke Ming ; Toh Tai Chong ; Toh Kok Ben ; Ng Chin Soon Lionel ; Cabaitan Patrick ; Tun Karenne ; Goh Eugene ; Afiq-Rosli Lutfi ; Taira Daisuke ; Du Rosa Celia Poquita ; Loke Hai Xin ; Khalis Aizat ; Li Jinghan ; Song Tiancheng
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Living with heart failure: Perspectives of patients from Singapore
+</td>
+<td style="text-align:left;">
+Proceedings of Singapore Healthcare
+</td>
+<td style="text-align:left;">
+10.1177/2010105815624121
+</td>
+<td style="text-align:left;">
+2010-1058,2059-2329
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+92-97
+</td>
+<td style="text-align:left;">
+SAGE Publications
+</td>
+<td style="text-align:left;">
+2016-06
+</td>
+<td style="text-align:left;">
+Malhotra Chetna ; Cheng Sim Wong Genevieve ; Tan Boon Cheng ; Ng Clarice Shu Hwa ; Lee Neo Chia ; Lau Cindy Suck Lan ; Sim David Kheng Leng ; Finkelstein Eric Andrew
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Impact of advance care planning on the care of patients with heart failure: study protocol for a randomized controlled trial
+</td>
+<td style="text-align:left;">
+Trials
+</td>
+<td style="text-align:left;">
+10.1186/s13063-016-1414-1
+</td>
+<td style="text-align:left;">
+1745-6215
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Springer Nature
+</td>
+<td style="text-align:left;">
+2016-12
+</td>
+<td style="text-align:left;">
+Malhotra Chetna ; Sim David Kheng Leng ; Jaufeerally Fazlur ; Vikas Nivedita Nadkarni ; Sim Genevieve Wong Cheng ; Tan Boon Cheng ; Ng Clarice Shu Hwa ; Tho Pei Leng ; Lim Jingfen ; Chuang Claire Ya-Ting ; Fong Florence Hui Mei ; Liu Joy ; Finkelstein Eric A.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Coral nurseries as habitats for juvenile corallivorous butterflyfish
+</td>
+<td style="text-align:left;">
+Marine Biodiversity
+</td>
+<td style="text-align:left;">
+10.1007/s12526-016-0513-2
+</td>
+<td style="text-align:left;">
+1867-1616,1867-1624
 </td>
 <td style="text-align:left;">
 3
 </td>
 <td style="text-align:left;">
-90
+47
 </td>
 <td style="text-align:left;">
-259-263
+787-788
 </td>
 <td style="text-align:left;">
-BMJ
+Springer Nature
 </td>
 <td style="text-align:left;">
-2004-03
+2017-09
 </td>
 <td style="text-align:left;">
-Ismail J ; Jafar T H ; Jafary F H ; White F ; Faruqui A M ; Chaturvedi N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Childhood trauma, dissociation and self-harming behaviour: A pilot study
-</td>
-<td style="text-align:left;">
-British Journal of Medical Psychology
-</td>
-<td style="text-align:left;">
-10.1348/000711200160363
-</td>
-<td style="text-align:left;">
-0007-1129
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-73
-</td>
-<td style="text-align:left;">
-269-278
-</td>
-<td style="text-align:left;">
-Wiley
-</td>
-<td style="text-align:left;">
-2000-06
-</td>
-<td style="text-align:left;">
-Low Gail ; Jones David ; MaCleod Andrew ; Power Mick ; Duggan Conor
+Taira D. ; Toh T. C. ; Sam S. Q. ; Ng C. S. L. ; Chou L. M.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Mortality in Swiss Albino Mice after i. p. Injection of Oxazepam in Dimethyl Sulphoxide
+Coral restoration in Singapore’s sediment-challenged sea
 </td>
 <td style="text-align:left;">
-Experimental Animals
+Regional Studies in Marine Science
 </td>
 <td style="text-align:left;">
-10.1538/expanim1978.41.2_247
+10.1016/j.rsma.2016.05.005
 </td>
 <td style="text-align:left;">
-0007-5124,1881-7122
+2352-4855
 </td>
 <td style="text-align:left;">
-2
+NA
 </td>
 <td style="text-align:left;">
-41
+8
 </td>
 <td style="text-align:left;">
-247-249
+422-429
 </td>
 <td style="text-align:left;">
-Japanese Association for Laboratory Animal Science
+Elsevier BV
 </td>
 <td style="text-align:left;">
-1992
+2016-11
 </td>
 <td style="text-align:left;">
-WONG P. T. H. ; TEO W. L.
+Ng Chin Soon Lionel ; Toh Tai Chong ; Chou Loke Ming
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Cataract extractions without tracheal intubation
+Tentacular autotomy and polyp regeneration in the scleractinian coral Euphyllia glabrescens
 </td>
 <td style="text-align:left;">
-Canadian Anaesthetistsâ€™ Society Journal
+Coral Reefs
 </td>
 <td style="text-align:left;">
-10.1007/bf03006075
+10.1007/s00338-016-1433-0
 </td>
 <td style="text-align:left;">
-0008-2856,1496-8975
+0722-4028,1432-0975
 </td>
 <td style="text-align:left;">
-4
+3
 </td>
 <td style="text-align:left;">
-21
+35
 </td>
 <td style="text-align:left;">
-407-416
+819-819
 </td>
 <td style="text-align:left;">
 Springer Science and Business Media LLC
 </td>
 <td style="text-align:left;">
-1974-07
+2016-09
 </td>
 <td style="text-align:left;">
-Delilkan A. E. ; Chandran S.
+Toh T. C. ; Ng C. S. L.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Direct Medical Cost of Type 2 Diabetes in Singapore
+</td>
+<td style="text-align:left;">
+PLOS ONE
+</td>
+<td style="text-align:left;">
+10.1371/journal.pone.0122795
+</td>
+<td style="text-align:left;">
+1932-6203
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+e0122795
+</td>
+<td style="text-align:left;">
+Public Library of Science (PLoS)
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Shuyu Ng Charmaine ; Toh Matthias Paul Han Sim ; Ko Yu ; Yu-Chia Lee Joyce
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Direct medical cost of stroke in Singapore
+</td>
+<td style="text-align:left;">
+International Journal of Stroke
+</td>
+<td style="text-align:left;">
+10.1111/ijs.12576
+</td>
+<td style="text-align:left;">
+1747-4930,1747-4949
+</td>
+<td style="text-align:left;">
+SA100
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+75-82
+</td>
+<td style="text-align:left;">
+SAGE Publications
+</td>
+<td style="text-align:left;">
+2015-10
+</td>
+<td style="text-align:left;">
+Ng Charmaine Shuyu ; Toh Matthias Paul Han Sim ; Ng Jiaying ; Ko Yu
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Enhancing the biodiversity of coastal defence structures: transplantation of nursery-reared reef biota onto intertidal seawalls
+</td>
+<td style="text-align:left;">
+Ecological Engineering
+</td>
+<td style="text-align:left;">
+10.1016/j.ecoleng.2015.05.016
+</td>
+<td style="text-align:left;">
+0925-8574
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+82
+</td>
+<td style="text-align:left;">
+480-486
+</td>
+<td style="text-align:left;">
+Elsevier BV
+</td>
+<td style="text-align:left;">
+2015-09
+</td>
+<td style="text-align:left;">
+Ng Chin Soon Lionel ; Lim Swee Cheng ; Ong Joo Yong ; Teo Lay Ming Serena ; Chou Loke Ming ; Chua Kok Eng ; Tan Koh Siang
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High density aggregations of cucumariids (Echinodermata: Holothuroidea) on a Singapore sedimented reef
+</td>
+<td style="text-align:left;">
+Marine Biodiversity
+</td>
+<td style="text-align:left;">
+10.1007/s12526-014-0228-1
+</td>
+<td style="text-align:left;">
+1867-1616,1867-1624
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+45
+</td>
+<td style="text-align:left;">
+5-6
+</td>
+<td style="text-align:left;">
+Springer Science and Business Media LLC
+</td>
+<td style="text-align:left;">
+2015-03
+</td>
+<td style="text-align:left;">
+Ng Chin Soon Lionel ; Toh Tai Chong ; Toh Kok Ben ; Tun Karenne ; Chou Loke Ming
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cost-of-illness studies of diabetes mellitus: A systematic review
+</td>
+<td style="text-align:left;">
+Diabetes Research and Clinical Practice
+</td>
+<td style="text-align:left;">
+10.1016/j.diabres.2014.03.020
+</td>
+<td style="text-align:left;">
+0168-8227
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+105
+</td>
+<td style="text-align:left;">
+151-163
+</td>
+<td style="text-align:left;">
+Elsevier BV
+</td>
+<td style="text-align:left;">
+2014-08
+</td>
+<td style="text-align:left;">
+Ng Charmaine S. ; Lee Joyce Y.C. ; Toh Matthias PHS ; Ko Yu
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Augmenting the Post-Transplantation Growth and Survivorship of Juvenile Scleractinian Corals via Nutritional Enhancement
+</td>
+<td style="text-align:left;">
+PLoS ONE
+</td>
+<td style="text-align:left;">
+10.1371/journal.pone.0098529
+</td>
+<td style="text-align:left;">
+1932-6203
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+e98529
+</td>
+<td style="text-align:left;">
+Public Library of Science (PLoS)
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Toh Tai Chong ; Ng Chin Soon Lionel ; Peh Jia Wei Kassler ; Toh Kok Ben ; Chou Loke Ming
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rearing juvenile ‘corals of opportunity’ inin situnurseries – A reef rehabilitation approach for sediment-impacted environments
+</td>
+<td style="text-align:left;">
+Marine Biology Research
+</td>
+<td style="text-align:left;">
+10.1080/17451000.2013.853124
+</td>
+<td style="text-align:left;">
+1745-1000,1745-1019
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+833-838
+</td>
+<td style="text-align:left;">
+Informa UK Limited
+</td>
+<td style="text-align:left;">
+2014-09-14
+</td>
+<td style="text-align:left;">
+Ng Chin Soon Lionel ; Chou Loke Ming
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A multidimensional platform for the purification of non-coding RNA species
+</td>
+<td style="text-align:left;">
+Nucleic Acids Research
+</td>
+<td style="text-align:left;">
+10.1093/nar/gkt668
+</td>
+<td style="text-align:left;">
+1362-4962,0305-1048
+</td>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:left;">
+41
+</td>
+<td style="text-align:left;">
+e168-e168
+</td>
+<td style="text-align:left;">
+Oxford University Press (OUP)
+</td>
+<td style="text-align:left;">
+2013-09
+</td>
+<td style="text-align:left;">
+Chionh Yok Hian ; Ho Chia-Hua ; Pruksakorn Dumnoensun ; Ramesh Babu I. ; Ng Chee Sheng ; Hia Fabian ; McBee Megan E. ; Su Dan ; Pang Yan Ling Joy ; Gu Chen ; Dong Hongping ; Prestwich Erin G. ; Shi Pei-Yong ; Preiser Peter Rainer ; Alonso Sylvie ; Dedon Peter C.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Grazers improve health of coral juveniles in ex situ mariculture
+</td>
+<td style="text-align:left;">
+Aquaculture
+</td>
+<td style="text-align:left;">
+10.1016/j.aquaculture.2013.08.025
+</td>
+<td style="text-align:left;">
+0044-8486
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+414-415
+</td>
+<td style="text-align:left;">
+288-293
+</td>
+<td style="text-align:left;">
+Elsevier BV
+</td>
+<td style="text-align:left;">
+2013-11
+</td>
+<td style="text-align:left;">
+Toh Tai Chong ; Ng Chin Soon Lionel ; Guest James ; Chou Loke Ming
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Prescribing health: exercise
+</td>
+<td style="text-align:left;">
+Singapore Medical Journal
+</td>
+<td style="text-align:left;">
+10.11622/smedj.2013122
+</td>
+<td style="text-align:left;">
+0037-5675
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+54
+</td>
+<td style="text-align:left;">
+303-308
+</td>
+<td style="text-align:left;">
+Singapore Medical Journal
+</td>
+<td style="text-align:left;">
+2013-06
+</td>
+<td style="text-align:left;">
+Law KH ; How CH ; Ng CS ; Ng CW
 </td>
 </tr>
 </tbody>
