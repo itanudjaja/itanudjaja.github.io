@@ -4,8 +4,10 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Explorations"
+    - text: "Populating IR"
       href: project.html
+    - text: "OA of funded publications "
+      href: funders.html
 output:
   html_document:
     theme: paper

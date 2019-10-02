@@ -1,0 +1,272 @@
+---
+title: "The OA status of publications funded by NMRC and MOE"
+output:
+  html_document:
+    theme: flatly
+    toc: yes
+    toc_float: yes
+---
+
+# Introduction
+
+Two funding agencies in Singapore, Ministry of Education (MOE) and National Medical Research Council (NMRC), have required researchers to make publications resulting from research funded by them to be made publicly available 12 months after publication.
+
+This report explores the OA status of publications funded by MOE and NMRC over the period of 2016 to 2018.
+
+The following OA classification will be used in determining the OA status:
+
+- Closed: No free copy
+
+- Bronze: Journal is closed, article is free on publisher page, with no license
+
+- Hybrid: Journal is closed, article is free on publisher page under some kind of open license
+
+- Gold: Journal is open 
+
+- Green: Free-to-read on repository
+
+# Data Sources
+
+**Crossref** through their Funder Registry (https://www.crossref.org/services/funder-registry/) provides identifiers similar to DOI for funding agencies. Based on this registry, publishers who are member of Crossref can tag funding agencies acknowledged in publications by researchers.
+
+**Unpaywall** (https://unpaywall.org/) maintains a database of links to full-text articles from open-access sources all over the world. Hence through this database, users can determine the OA status of a publication based on a DOI.
+
+```{r setup, echo=T, warning=FALSE,message=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+
+library(kableExtra)
+library(rcrossref)
+library(jsonlite)
+library(data.table)
+library(purrr)
+library(tidyverse)
+library(roadoi)
+```
+
+# Search for funded publications in Crossref
+
+The list of publications (or DOIs) associated with a specific funder can be accessed via Crossref API. First, find the funder identifier from Crossref Funder Registry. For example, NMRC's identifier is 10.13039/501100001349.
+
+```{r crossref, eval=FALSE, echo=T}
+#find the total number of publications
+nmrc_count <- cr_funders_(dois='10.13039/501100001349') %>% 
+  fromJSON(flatten=FALSE) %>% 
+  pluck("message", "descendant-work-count")
+
+#it will query 1000 works each time to retrieve all the works
+nmrc_works <- cr_funders(dois='10.13039/501100001349', works = TRUE,cursor = "*",
+                        cursor_max = nmrc_count, limit = 1000,
+                        filter = c(from_pub_date='2016-01-01')) %>%
+  pluck("data")
+
+
+nmrc_joined <- nmrc_works %>% 
+  select(c(container.title,published.print, doi, issn,publisher,type))
+
+#unnest the authors field to combine them
+
+nmrc_auth <- nmrc_works %>% 
+  filter(!map_lgl(author, is.null)) %>% 
+  unnest(author, .drop = TRUE) %>% 
+  unite(author, c(family, given), sep = " ", remove = FALSE) %>% 
+  group_by(doi) %>% 
+  filter(!is.na(given)) %>% 
+  summarise(all_authors=paste(author, collapse=" ; "))
+
+nmrc_comb <- left_join(x=nmrc_joined, y=nmrc_auth, by="doi")
+
+#unnest the funders field
+nmrc_fund <- nmrc_works %>% 
+  filter(!map_lgl(funder, is.null)) %>% 
+  unnest(funder, .drop = TRUE) %>% 
+  group_by(doi) %>% 
+  filter(!is.na(name)) %>% 
+  summarise(all_funders=paste(name, collapse=" ; "))
+
+nmrc_comb2 <- left_join(x=nmrc_comb, y=nmrc_fund, by="doi") %>% 
+  mutate(query="NMRC")
+
+```
+
+Sample of the output.
+```{r}
+sample <- readRDS("D:/R test/nmrc.rds") %>% 
+  head(5)
+
+kable(sample) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"))%>% 
+  scroll_box(height = "400px")
+  
+```
+
+Repeat the above steps for MOE, and subsequently, combined the data frame together.
+
+```{r, eval=FALSE, echo=T}
+
+combined <- bind_rows(nmrc_comb2,moe_comb2)
+```
+
+# Query Unpaywall to get the OA classification
+
+Please change the email to your own email address. 
+
+```{r unpaywall, echo=-1,eval=FALSE}
+your_own_email <- "clbti@nus.edu.sg"
+
+up_data <- map(combined$doi, .f = safely(function(x) oadoi_fetch(x, 
+                                                                   email =your_own_email)))
+up_data2 <- purrr::map_df(up_data, "result")
+
+##getting values from best_oa_location
+best_oa_evidence <- up_data2 %>%
+  mutate(evidences = map(best_oa_location, "evidence") %>% 
+           map_if(is_empty, ~ NA_character_) %>% 
+           flatten_chr())%>%
+  .$evidences 
+
+best_oa_host <- up_data2 %>%
+  mutate(hosts = map(best_oa_location, "host_type") %>% 
+           map_if(is_empty, ~ NA_character_) %>% 
+           flatten_chr())%>%
+  .$hosts 
+
+best_oa_license <- up_data2 %>%
+  mutate(licenses = map(best_oa_location, "license") %>% 
+           map_if(is_empty, ~ NA_character_) %>% 
+           flatten_chr())%>%
+  .$licenses
+
+best_oa_url <- up_data2 %>%
+  mutate(urls = map(best_oa_location, "url") %>% 
+           map_if(is_empty, ~ NA_character_) %>% 
+           flatten_chr())%>%
+  .$urls 
+
+best_oa_url_for_pdf <- up_data2 %>%
+  mutate(pdfs = map(best_oa_location, "url_for_pdf") %>% 
+           map_if(is_empty, ~ NA_character_) %>% 
+           flatten_chr())%>%
+  .$pdfs 
+
+best_oa_version <- up_data2 %>%
+  mutate(versions = map(best_oa_location, "version") %>% 
+           map_if(is_empty, ~ NA_character_) %>% 
+           flatten_chr())%>%
+  .$versions 
+
+#selecting specific columns from the results
+up_selection <- up_data2 %>% select(1, 4:13)
+
+##merging the columns together
+
+up_final <- add_column(up_selection, best_oa_evidence, best_oa_host, best_oa_license,best_oa_url,best_oa_url_for_pdf,best_oa_version)
+
+up_final$year1 <- as.numeric(as.character(up_final$year))
+
+#oa classifications
+
+up_final1 <- up_final  %>% 
+  mutate(oa = case_when((journal_is_oa == FALSE & is_oa == FALSE) ~ "closed",
+                        (best_oa_host == "publisher" & is.na(best_oa_license) == TRUE & is_oa == TRUE & 
+                           journal_is_oa == FALSE) ~ "bronze",
+                        (best_oa_host == "publisher" & is.na(best_oa_license) != TRUE & is_oa == TRUE & 
+                           journal_is_oa == FALSE) ~ "hybrid",
+                        (best_oa_host == "publisher" & is_oa == TRUE & journal_is_oa == TRUE) 
+                        ~ "gold",
+                        (best_oa_host == "repository" & is_oa == TRUE & journal_is_oa == FALSE) 
+                        ~ "green"))
+```
+
+# Combined data from Crossref and Unpaywall
+
+Let's now combine all the data from Crossref and Unpaywall.
+
+```{r combined, eval=FALSE,echo=T}
+up_final2 <- up_final1 %>% 
+  select(c(doi,oa,year1))
+
+comb_all <- left_join(combined, up_final2, by="doi") %>% 
+  filter(type == "journal-article") %>% 
+  drop_na()
+```
+
+```{r}
+comb_all <- readRDS("D:/R test/comb_all.rds")
+
+# Next, we will sort the factor for easier plotting and creating color coding 
+
+oa_ordered_levels <- c("closed", "bronze", "hybrid", "gold", "green")
+
+comb_three<- comb_all %>% 
+  filter(year1 != 2019) %>% 
+  mutate(oa=factor(oa, levels=oa_ordered_levels)) %>% 
+  mutate(oa=fct_recode(oa, "bronze"="bronze", "hybrid"="hybrid", "gold"="gold", 
+                       "green"="green"))
+
+oa_color_map <- scale_fill_manual(values=c("darkgrey", "#cd7f32", "deepskyblue", "#ffe135", "#4CAF50"))
+oa_color_line <- scale_color_manual(values = c("darkgrey", "#cd7f32", "deepskyblue", "#ffe135", "#4CAF50"))
+oa_color_excl <- scale_color_manual(values = c("#cd7f32", "deepskyblue", "#ffe135", "#4CAF50"))
+
+freq <- comb_three %>% 
+  group_by(query,year1, oa) %>% 
+  summarise(n=n()) %>% 
+  mutate(perc = n / sum(n)) 
+```
+
+# Publications funded by NMRC
+
+Following is the breakdown of OA status of publications funded by NMRC.
+```{r}
+overall_nmrc <- comb_all %>% 
+  filter(query == "NMRC") %>% 
+  count(oa) %>% 
+  mutate(percent=round(100*n/sum(n),1)) %>% 
+  arrange(desc(percent))
+
+kable(overall_nmrc) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+freq %>% 
+  filter(query == "NMRC") %>% 
+  ggplot(aes(x=year1, y=perc, fill=oa)) + 
+  geom_area() + 
+  labs(title = "The uptake of OA for publications funded by NMCR from 2016 to 2019", 
+       subtitle = "",
+       caption = "Source: Crossref & Unpaywall") + 
+  scale_x_continuous(name="Year of Publication", limits=c(2016, 2018), 
+                     breaks = c(seq(2016, 2018, by = 1))) +
+  scale_y_continuous(name="Percentage of articles",labels = scales::percent)+
+  oa_color_map
+```
+
+# Publications funded by MOE
+
+Following is the breakdown of OA status of publications funded by MOE.
+
+```{r}
+overall_moe <- comb_all %>% 
+  filter(query == "MOE") %>% 
+  count(oa) %>% 
+  mutate(percent=round(100*n/sum(n),1)) %>% 
+  arrange(desc(percent))
+
+kable(overall_moe) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+freq %>% 
+  filter(query == "MOE") %>% 
+  ggplot(aes(x=year1, y=perc, fill=oa)) + 
+  geom_area() + 
+  labs(title = "The uptake of OA for publications funded by MOE from 2016 to 2019", 
+       subtitle = "",
+       caption = "Source: Crossref & Unpaywall") + 
+  scale_x_continuous(name="Year of Publication", limits=c(2016, 2018), 
+                    breaks = c(seq(2016, 2018, by = 1))) +
+  scale_y_continuous(name="Percentage of articles",labels = scales::percent)+
+  oa_color_map
+```
+
+
+
