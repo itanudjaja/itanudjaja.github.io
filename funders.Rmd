@@ -232,7 +232,7 @@ freq %>%
   filter(query == "NMRC") %>% 
   ggplot(aes(x=year1, y=perc, fill=oa)) + 
   geom_area() + 
-  labs(title = "The uptake of OA for publications funded by NMCR from 2016 to 2019", 
+  labs(title = "The uptake of OA for publications funded by NMCR from 2016 to 2018", 
        subtitle = "",
        caption = "Source: Crossref & Unpaywall") + 
   scale_x_continuous(name="Year of Publication", limits=c(2016, 2018), 
@@ -259,7 +259,7 @@ freq %>%
   filter(query == "MOE") %>% 
   ggplot(aes(x=year1, y=perc, fill=oa)) + 
   geom_area() + 
-  labs(title = "The uptake of OA for publications funded by MOE from 2016 to 2019", 
+  labs(title = "The uptake of OA for publications funded by MOE from 2016 to 2018", 
        subtitle = "",
        caption = "Source: Crossref & Unpaywall") + 
   scale_x_continuous(name="Year of Publication", limits=c(2016, 2018), 
