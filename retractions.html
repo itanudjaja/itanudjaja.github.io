@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Retraction index VS journal metrics</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="site_libs/proj4js-2.3.15/proj4.js"></script>
+<link href="site_libs/highcharts-7.0.1/css/motion.css" rel="stylesheet" />
+<link href="site_libs/highcharts-7.0.1/css/htmlwdgtgrid.css" rel="stylesheet" />
+<script src="site_libs/highcharts-7.0.1/highcharts.js"></script>
+<script src="site_libs/highcharts-7.0.1/highcharts-3d.js"></script>
+<script src="site_libs/highcharts-7.0.1/highcharts-more.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/stock.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/map.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/annotations.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/boost.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/data.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/drag-panes.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/drilldown.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/item-series.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/offline-exporting.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/overlapping-datalabels.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/exporting.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/export-data.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/funnel.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/heatmap.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/treemap.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/sankey.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/solid-gauge.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/streamgraph.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/sunburst.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/vector.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/wordcloud.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/xrange.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/tilemap.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/venn.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/gantt.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/timeline.js"></script>
+<script src="site_libs/highcharts-7.0.1/modules/parallel-coordinates.js"></script>
+<script src="site_libs/highcharts-7.0.1/plugins/grouped-categories.js"></script>
+<script src="site_libs/highcharts-7.0.1/plugins/motion.js"></script>
+<script src="site_libs/highcharts-7.0.1/plugins/multicolor_series.js"></script>
+<script src="site_libs/highcharts-7.0.1/custom/reset.js"></script>
+<script src="site_libs/highcharts-7.0.1/custom/symbols-extra.js"></script>
+<script src="site_libs/highcharts-7.0.1/custom/text-symbols.js"></script>
+<script src="site_libs/highchart-binding-0.7.0/highchart.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Irine Tanudjaja</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="project.html">Populating IR</a>
+</li>
+<li>
+  <a href="funders.html">OA of funded publications</a>
+</li>
+<li>
+  <a href="retraction.html">Retractions VS SJR</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Retraction index VS journal metrics</h1>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Fang and Casadevall (2011) defined <strong>retracted article</strong> as an article that is no longer considered trustworthy due to intentional misconduct or unintentional human error. In their study, they found <strong>positive correlation</strong> between the journal’s retraction index with the Journal Impact Factor (JIF). Steen (2011) also did similar study and concluded that retracted articles are more likely to be published in journals with a high JIF.</p>
+<p>In this exploration, I would like to check whether correlation can also be found between retraction index to another journal metric called Scimago Journal Ranking (SJR). The main benefit of using SJR over JIF is that SJR score has been normalized to enable comparison between different subject areas.</p>
+<p><strong>Retraction index</strong> here is calculated by multiplying the number of retraction notices for each journal during a given time (2009 to 2018) by 1,000, and dividing it by the number of articles published by the journal during the same time period. This definition is adapted from Fang and Casadevall (2011).</p>
+</div>
+<div id="data-sources" class="section level1">
+<h1>Data sources</h1>
+<p>PubMed indexes retraction notices and these can be retrieved freely via their API. The dataset used for this exploration was retrieved on October 2019.</p>
+<p>SJR score is available publicly at <a href="https://www.scimagojr.com/" class="uri">https://www.scimagojr.com/</a>, and for this exploration the 2018 edition is used.</p>
+<pre class="r"><code>library(tidyverse)
+library(tidyverse)
+library(highcharter)
+library(xml2)
+library(XML)
+library(purrr)
+library(plyr)
+library(stringr)
+library(ggpubr)
+library(ggsignif)</code></pre>
+</div>
+<div id="data-import-and-clean-up" class="section level1">
+<h1>Data import and clean up</h1>
+<div id="pubmed" class="section level2">
+<h2>PubMed</h2>
+<p>The retraction notices (in XML format) are retrieved from PubMed database using the following search term <strong>“retraction of publication”[PTYP]</strong>.</p>
+<pre class="r"><code>getXML &lt;- function(ptyp) {
+  require(rentrez)
+  es &lt;- entrez_search(&quot;pubmed&quot;, paste(ptyp, &quot;[PTYP]&quot;, sep = &quot;&quot;), use_history = TRUE)
+  ef &lt;- entrez_fetch(&quot;pubmed&quot;, web_history = es$web_history, retmax = es$count, rettype = &quot;xml&quot;)
+  return(ef)
+}
+
+ret_of &lt;- getXML(&quot;\&quot;Retraction of Publication\&quot;&quot;)
+
+writeLines(ret_of,useBytes = TRUE,&quot;D:/R test/retraction/retractionOf.xml&quot;)</code></pre>
+<pre class="r"><code>ret_of &lt;- read_xml(&quot;D:/R test/retraction/retractionOf.xml&quot;)</code></pre>
+<p>The following information will be extracted from the XML file:</p>
+<ul>
+<li><p>Journal title</p></li>
+<li><p>ISSN</p></li>
+<li><p>Publication year</p></li>
+</ul>
+<p>Subsequently, the number of retraction notices from each journal for the period specified above (2009 to 2018) is calculated.</p>
+<pre class="r"><code>#journals
+journalsToCSV &lt;- function(xmlfile) {
+  require(rentrez)
+  require(xml2)
+  require(dplyr)
+  require(tibble)
+  require(readr)
+  
+  extract_info &lt;- function(x){
+    title &lt;- x %&gt;% xml_find_first(&quot;./ISOAbbreviation&quot;) %&gt;% xml_text
+    issn &lt;- x %&gt;% xml_find_first(&quot;./ISSN&quot;) %&gt;% xml_text
+    py &lt;- x %&gt;% xml_find_first(&quot;./JournalIssue/PubDate/Year&quot;) %&gt;%
+      xml_text %&gt;% as.numeric()
+    
+    df &lt;- data.frame(title, issn, py)
+    
+    return(df)
+  }
+  
+  journals_cnt &lt;- read_xml(xmlfile) %&gt;% 
+    xml_find_all(&quot;//MedlineCitation/Article/Journal&quot;) %&gt;% 
+    extract_info %&gt;% 
+    group_by(title,issn,py) %&gt;% 
+    count(title) %&gt;% 
+    filter(n &gt;= 5 ) %&gt;% 
+    rename(count = n)
+  
+  return(journals_cnt)
+  
+}
+
+ret_journals &lt;- journalsToCSV(&quot;D:/R test/retraction/retractionOf.xml&quot;)
+
+subset &lt;- ret_journals %&gt;% 
+  filter(py &gt; 2008 | py != 2019)
+
+subset2 &lt;- subset %&gt;% 
+ group_by(title,issn) %&gt;% 
+  summarise(total_count=sum(count))
+
+write.csv(subset2, &quot;D:/R test/retraction/subset.csv&quot;)</code></pre>
+<p>The following code will search for the <strong>total number of publications</strong> published by the above journals from the same time period, 2009 to 2018.</p>
+<pre class="r"><code>subset2 &lt;- read.csv(&quot;D:/R test/retraction/subset.csv&quot;)
+
+tot_journals &lt;- tibble()
+
+for(j in 1:length(subset$title)) 
+  {
+  for(y in 2009:2018) {
+    
+    journal &lt;- paste(&quot;\&quot;&quot;, subset$title[j],&quot;\&quot;&quot;,&quot;[JOUR]&quot;, sep = &quot;&quot;)
+    year &lt;- paste(y,&quot;[EDAT]&quot;, sep = &quot;&quot;)
+    
+    total &lt;- entrez_search(&quot;pubmed&quot;, paste(journal, &quot;AND &quot;, year, sep = &quot; &quot;))
+    
+    Sys.sleep(3)
+    
+    x &lt;- data.frame(&quot;title&quot; =as.character(subset$title[j]), 
+                    &quot;issn&quot; = as.character(subset$issn[j]),
+                    &quot;year&quot; =  y,
+                    &quot;total&quot; = as.numeric(subset$count))
+    tot_journals &lt;- bind_rows(tot_journals,x)
+    
+      }
+  
+}
+
+write.csv(tot_journals,&quot;D:/R test/retraction/total_journal.csv&quot; )
+
+tot_journals2 &lt;- tot_journals %&gt;% 
+  dplyr::group_by(issn) %&gt;% 
+  dplyr::summarize(total_pub=sum(total))
+
+dat &lt;- left_join(subset2, tot_journals2, by=&quot;issn&quot;) 
+  
+write.csv(dat,&quot;D:/R test/retraction/subset_retract_of.csv&quot; )</code></pre>
+<p>Subsequently, the retraction index can be calculated.</p>
+<pre class="r"><code>dat &lt;- read.csv(&quot;D:/R test/retraction/subset_retract_of.csv&quot;)
+
+dat &lt;- dat %&gt;%
+  mutate(rate = round(((1000 * total_count)/total_pub), 3)) %&gt;%
+    arrange(desc(rate))</code></pre>
+</div>
+<div id="sjr" class="section level2">
+<h2>SJR</h2>
+<p>The SJR metrics downloaded from <a href="https://www.scimagojr.com/" class="uri">https://www.scimagojr.com/</a> requires some wrangling.</p>
+<pre class="r"><code>sjr &lt;- read.csv(&quot;D:/R test/retraction/sjr.csv&quot;) %&gt;% 
+  filter(Type == &quot;journal&quot;) %&gt;% 
+  select(c(Title,Issn,SJR.Best.Quartile, SJR)) 
+
+sjr_edit &lt;- sjr %&gt;% 
+  separate(Issn, c(&quot;issn1&quot;,&quot;issn2&quot;), sep = &quot;\\,&quot;, remove = TRUE) %&gt;%
+  mutate(issn1 = str_pad(issn1, 8, side = c(&quot;left&quot;), pad = &quot;0&quot;),
+         issn2 = str_pad(issn2, 8, side = c(&quot;left&quot;), pad = &quot;0&quot;)) %&gt;% 
+  mutate(issn2 = str_trim(issn2, side = c(&quot;left&quot;))) %&gt;% 
+  mutate(issn1 = sub(&quot;(.{4})(.*)&quot;, &quot;\\1-\\2&quot;, issn1), 
+         issn2 = sub(&quot;(.{4})(.*)&quot;, &quot;\\1-\\2&quot;, issn2))</code></pre>
+</div>
+<div id="combined-the-2-datasets" class="section level2">
+<h2>Combined the 2 datasets</h2>
+<pre class="r"><code>#match the data using title
+
+combined &lt;- left_join(dat, sjr_edit, by = c(&quot;issn&quot; = &quot;issn1&quot;)) 
+
+combined2 &lt;- left_join(combined, sjr_edit, by = c(&quot;issn&quot; = &quot;issn2&quot;))
+
+combined3 &lt;- combined2 %&gt;% 
+  mutate(quartile = coalesce(SJR.Best.Quartile.x,SJR.Best.Quartile.y),
+         sjr=coalesce(SJR.x,SJR.y)) %&gt;%
+  select(title,issn,total_count,total_pub,rate,quartile,sjr) %&gt;% 
+  mutate(sjr=gsub(&quot;\\,&quot;,&quot;\\.&quot;,sjr))%&gt;% 
+  mutate(sjr=as.double(sjr))
+
+#remove duplicate due to eissn and pissn
+
+combined4 &lt;- combined3[!duplicated(combined3$title), ] %&gt;% drop_na()</code></pre>
+</div>
+</div>
+<div id="top-20-journals-based-on-the-retraction-index" class="section level1">
+<h1>Top 20 journals based on the retraction index</h1>
+<pre class="r"><code>dat1 &lt;- dat %&gt;% top_n(20, wt = rate)
+
+highchart() %&gt;% 
+  hc_add_series(dat1, &quot;bar&quot;, hcaes(x = title, y = rate)) %&gt;%
+  hc_title(text = &quot;Journals with the highest retraction index&quot;) %&gt;%
+  hc_legend(enabled = FALSE) %&gt;%
+  hc_yAxis(title = list(text = &quot;retraction index&quot;)) %&gt;%
+  hc_xAxis(categories = dat$title,
+           labels = list(formatter = JS(&quot;function() { return &#39;&lt;a href=\&quot;http://www.pubmed.gov/?term=%22retraction%20of%20publication%22[PTYP] AND %22&#39; + escape(this.value) + &#39;%22[JOUR]\&quot; target=\&quot;_blank\&quot;&gt;&#39; + this.value + &#39;&lt;/a&gt;&#39;; }&quot;), 
+                         useHTML = &quot;true&quot;,
+                         style = list(fontSize = &quot;10px&quot;))) %&gt;%
+  hc_tooltip(pointFormat = &quot;{point.y} retraction index&quot;) %&gt;%
+  hc_plotOptions(series = list(color = &quot;#FFA500&quot;))</code></pre>
+<div id="htmlwidget-8de527c9304e4da0fac5" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8de527c9304e4da0fac5">{"x":{"hc_opts":{"title":{"text":"Journals with the highest retraction index"},"yAxis":{"title":{"text":"retraction index"}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"color":"#FFA500"},"treemap":{"layoutAlgorithm":"squarified"}},"series":[{"group":"group","data":[{"X":71,"title":"Open Biomed Eng J","issn":"1874-1207","total_count":11,"total_pub":198,"rate":55.556,"y":55.556,"name":"Open Biomed Eng J"},{"X":30,"title":"Eur. J. Med. Res.","issn":"2047-783X","total_count":16,"total_pub":805,"rate":19.876,"y":19.876,"name":"Eur. J. Med. Res."},{"X":42,"title":"J Child Adolesc Psychiatr Nurs","issn":"1744-6171","total_count":5,"total_pub":334,"rate":14.97,"y":14.97,"name":"J Child Adolesc Psychiatr Nurs"},{"X":22,"title":"Comput Med Imaging Graph","issn":"1879-0771","total_count":8,"total_pub":708,"rate":11.299,"y":11.299,"name":"Comput Med Imaging Graph"},{"X":36,"title":"Int Sch Res Notices","issn":"2356-7872","total_count":5,"total_pub":553,"rate":9.042,"y":9.042,"name":"Int Sch Res Notices"},{"X":80,"title":"Toxicol Ind Health","issn":"1477-0393","total_count":10,"total_pub":1171,"rate":8.54,"y":8.54,"name":"Toxicol Ind Health"},{"X":26,"title":"Diagn Pathol","issn":"1746-1596","total_count":35,"total_pub":4392,"rate":7.969,"y":7.969,"name":"Diagn Pathol"},{"X":20,"title":"Clin Oral Implants Res","issn":"1600-0501","total_count":15,"total_pub":2094,"rate":7.163,"y":7.163,"name":"Clin Oral Implants Res"},{"X":28,"title":"Eur J Anaesthesiol","issn":"1365-2346","total_count":24,"total_pub":3750,"rate":6.4,"y":6.4,"name":"Eur J Anaesthesiol"},{"X":15,"title":"Can J Anaesth","issn":"1496-8975","total_count":39,"total_pub":6207,"rate":6.283,"y":6.283,"name":"Can J Anaesth"},{"X":44,"title":"J Orthop Surg Res","issn":"1749-799X","total_count":8,"total_pub":1305,"rate":6.13,"y":6.13,"name":"J Orthop Surg Res"},{"X":59,"title":"Mol. Biol. Rep.","issn":"1573-4978","total_count":29,"total_pub":4983,"rate":5.82,"y":5.82,"name":"Mol. Biol. Rep."},{"X":45,"title":"J Pers Soc Psychol","issn":"1939-1315","total_count":15,"total_pub":2716,"rate":5.523,"y":5.523,"name":"J Pers Soc Psychol"},{"X":64,"title":"Mol. Neurobiol.","issn":"1559-1182","total_count":15,"total_pub":3343,"rate":4.487,"y":4.487,"name":"Mol. Neurobiol."},{"X":63,"title":"Mol. Cells","issn":"0219-1032","total_count":6,"total_pub":1374,"rate":4.367,"y":4.367,"name":"Mol. Cells"},{"X":81,"title":"Toxicology","issn":"1879-3185","total_count":7,"total_pub":1878,"rate":3.727,"y":3.727,"name":"Toxicology"},{"X":60,"title":"Mol. Cancer Ther.","issn":"1538-8514","total_count":9,"total_pub":2871,"rate":3.135,"y":3.135,"name":"Mol. Cancer Ther."},{"X":82,"title":"Tumour Biol.","issn":"1423-0380","total_count":37,"total_pub":12290,"rate":3.011,"y":3.011,"name":"Tumour Biol."},{"X":19,"title":"Circ. Res.","issn":"1524-4571","total_count":10,"total_pub":3867,"rate":2.586,"y":2.586,"name":"Circ. Res."},{"X":17,"title":"Cancer Res.","issn":"1538-7445","total_count":36,"total_pub":15516,"rate":2.32,"y":2.32,"name":"Cancer Res."}],"type":"bar"}],"legend":{"enabled":false},"xAxis":{"categories":["Open Biomed Eng J","Eur. J. Med. Res.","J Child Adolesc Psychiatr Nurs","Comput Med Imaging Graph","Int Sch Res Notices","Toxicol Ind Health","Diagn Pathol","Clin Oral Implants Res","Eur J Anaesthesiol","Can J Anaesth","J Orthop Surg Res","Mol. Biol. Rep.","J Pers Soc Psychol","Mol. Neurobiol.","Mol. Cells","Toxicology","Mol. Cancer Ther.","Tumour Biol.","Circ. Res.","Cancer Res.","Cancer Lett.","Microb. Pathog.","Am J Cancer Res","J Clin Anesth","Acta Anaesthesiol Scand","Onco Targets Ther","Phytother Res","EMBO J.","Br J Anaesth","Med. Sci. Monit.","J. Pharmacol. Exp. Ther.","Mol. Cell. Biol.","Diabetes Res. Clin. Pract.","Mol. Cell","Cureus","Leuk. Lymphoma","Neurol. Sci.","Cell Death Dis","Anesth. Analg.","Infect. Immun.","Diabetes","J. Cell. Sci.","Genet. Mol. Res.","Intensive Care Med","Int J Clin Exp Med","Obstet Gynecol","ScientificWorldJournal","Eur Rev Med Pharmacol Sci","Biochem. Pharmacol.","J. Cell. Biochem.","Int. J. Cancer","FEBS Lett.","J. Biol. Chem.","J. Hazard. Mater.","Anaesthesia","Clin. Cancer Res.","Int. J. Syst. Evol. Microbiol.","Int. J. Syst. Evol. Microbiol.","Gene","Brain Res.","Anesthesiology","Talanta","Acta Biomater","J. Immunol.","Biosens Bioelectron","J. Neurosci.","Medicine (Baltimore)","Blood","Nature","Int. J. Cardiol.","Nature","Biomed Res Int","Science","Nat Commun","Phys Chem Chem Phys","Biochem. Biophys. Res. Commun.","J. Am. Chem. Soc.","Proc. Natl. Acad. Sci. U.S.A.","J. Biol. Chem.","Sci Rep","ACS Appl Mater Interfaces","PLoS ONE"],"labels":{"formatter":"function() { return '<a href=\"http://www.pubmed.gov/?term=%22retraction%20of%20publication%22[PTYP] AND %22' + escape(this.value) + '%22[JOUR]\" target=\"_blank\">' + this.value + '<\/a>'; }","useHTML":"true","style":{"fontSize":"10px"}}},"tooltip":{"pointFormat":"{point.y} retraction index"}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":["hc_opts.xAxis.labels.formatter"],"jsHooks":[]}</script>
+</div>
+<div id="relationship-between-sjr-score-and-retraction-index" class="section level1">
+<h1>Relationship between SJR score and retraction index</h1>
+<p>In this exploration, the relationship between SJR score and retraction index can be concluded as significantly correlated (p &lt; 0.05), with correlation coefficient of -0.45.</p>
+<pre class="r"><code># visualize the correlation plot
+
+ggscatter(combined4, x = &quot;rate&quot;, y = &quot;sjr&quot;, 
+          add = &quot;reg.line&quot;, conf.int = TRUE, color = &quot;deepskyblue&quot;,
+          title = &quot;Correlation plot using Spearman method&quot;, 
+          subtitle = &quot;SJR score and retraction index are negatively correlated&quot;,
+          ylab = &quot;SJR score&quot;, xlab = &quot;Retraction Index&quot;) +
+  stat_cor(method = &quot;spearman&quot;)</code></pre>
+<p><img src="retractions_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>res &lt;- cor.test(combined4$rate, combined4$sjr, 
+                method = &quot;spearman&quot;)
+
+res</code></pre>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  combined4$rate and combined4$sjr
+## S = 35852, p-value = 0.0008317
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##        rho 
+## -0.4453986</code></pre>
+</div>
+<div id="how-about-the-sjr-quartile" class="section level1">
+<h1>How about the SJR quartile?</h1>
+<p>Based on the plot below, the median values of journal’s retraction index between different SJR quartile are not statistically significant. With inconclusive findings between the influence of SJR score and quartile with journal’s retraction index, more studies should be conducted to further analyze their relationship.</p>
+<pre class="r"><code>q1_q2 &lt;- combined4 %&gt;% 
+  filter(quartile == &quot;Q1&quot; | quartile == &quot;Q2&quot;) 
+
+q1_q3 &lt;- combined4 %&gt;% 
+  filter(quartile == &quot;Q1&quot; | quartile == &quot;Q3&quot;) 
+
+q2_q3 &lt;- combined4 %&gt;% 
+  filter(quartile == &quot;Q2&quot; | quartile == &quot;Q3&quot;) 
+
+a &lt;- q1_q2 %&gt;% 
+  ggplot(aes(x=quartile, y=rate, fill=quartile)) + 
+  geom_boxplot(varwidth=T, notch=T)+
+  geom_signif(comparisons=list(c(&quot;Q1&quot;, &quot;Q2&quot;)),map_signif_level = TRUE,
+              test = &quot;pairwise.wilcox.test&quot;,
+              y_position = 8, tip_length = 0, vjust=0.2)+
+  labs(x= &quot;&quot;,
+     y= &quot;Retraction index&quot;)+
+  scale_fill_manual(values = c(&quot;Q1&quot; = &quot;deepskyblue&quot;,&quot;Q2&quot; = &quot;tomato&quot;)) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+       panel.background = element_blank(), axis.line = element_line(colour = &quot;black&quot;))
+  
+b &lt;- q1_q3 %&gt;% 
+  ggplot(aes(x=quartile, y=rate, fill=quartile)) + 
+  geom_boxplot(varwidth=T, notch=T)+
+  geom_signif(comparisons=list(c(&quot;Q1&quot;, &quot;Q3&quot;)),map_signif_level = TRUE,
+              test = &quot;pairwise.wilcox.test&quot;,
+              y_position = 35, tip_length = 0, vjust=0.2)+
+  labs(x= &quot;&quot;,
+     y= &quot;Retraction index&quot;)+ 
+  scale_fill_manual(values = c(&quot;Q1&quot; = &quot;deepskyblue&quot;, &quot;Q3&quot; = &quot;lightseagreen&quot;)) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+       panel.background = element_blank(), axis.line = element_line(colour = &quot;black&quot;))
+  
+c &lt;- q2_q3 %&gt;% 
+  ggplot(aes(x=quartile, y=rate, fill=quartile)) + 
+  geom_boxplot(varwidth=T, notch=T)+
+  geom_signif(comparisons=list(c(&quot;Q2&quot;, &quot;Q3&quot;)),map_signif_level = TRUE,
+              test = &quot;pairwise.wilcox.test&quot;,
+              y_position = 35, tip_length = 0, vjust=0.2)+
+  labs(x= &quot;&quot;,
+     y= &quot;Retraction index&quot;)+ 
+  scale_fill_manual(values = c(&quot;Q2&quot; = &quot;tomato&quot;, &quot;Q3&quot; = &quot;lightseagreen&quot;)) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+       panel.background = element_blank(), axis.line = element_line(colour = &quot;black&quot;))
+  
+gridExtra::grid.arrange(a, b ,c , ncol = 3, 
+                        top = &quot;The retraction index between different SJR quartile are not statistically significant&quot;)</code></pre>
+<p><img src="retractions_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<ul>
+<li><p>Fang, F. C. &amp; Casadevall, A. (2011). Retracted Science and the Retraction Index. <em>Infection and Immunity, 79</em>(10), 3855-3859. doi: 10.1128/IAI.05661-11</p></li>
+<li><p>Saunders, N. (n.d.). PubMed retractions. Retrieved from <a href="https://github.com/neilfws/PubMed/tree/master/retractions/code/R" class="uri">https://github.com/neilfws/PubMed/tree/master/retractions/code/R</a></p></li>
+<li><p>Steen, R. G. (2011). Retractions in the scientific literature: do authors deliberately commit research fraud? <em>Journal of Medical Ethics, 37</em>(2), 113-117. doi: 10.1136/jme.2010.038125</p></li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
