@@ -9,7 +9,7 @@ navbar:
     - text: "OA of funded publications"
       href: funders.html
     - text: "Retractions VS SJR"
-      href: retraction.html
+      href: retractions.html
 output:
   html_document:
     theme: paper
