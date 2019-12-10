@@ -18,6 +18,7 @@ The following packages are required, please install them beforehand.
 
 ```{r setup, include=FALSE, cache = FALSE}
 knitr::opts_knit$set(root.dir = "D:/doi")
+
 ```
 
 
@@ -41,8 +42,8 @@ library(dplyr)
 First thing, get a list of the DOIs of your institution's works that you would like to deposit. This list might be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following.
 ![](C:/Users/clbti/Documents/itanudjaja.github.io/images/2019-09-06_100004.png)
 
-```{r Data loading}
 
+```{r}
 list.filenames<-list.files(pattern=".csv$") 
 ```
 
@@ -52,7 +53,7 @@ Unpaywall (https://unpaywall.org/) is a non profit organization that aims to mak
 
 Unpaywall requests users to keep the API requests to below 100k per day and to include their email to the URL of requests. Please include your own email below.
 
-```{r unpaywall, echo=-1}
+```{r unpaywall, echo = -1}
 your_own_email <- "clbti@nus.edu.sg"
 
 unpaywall<- tibble()
@@ -69,49 +70,50 @@ for (i in 1:length(list.filenames))
   ##querying unpaywall API & to 
   #catch error when the API does not return valid JSON or is not available
   
-  df_data <- purrr::map(vec_doi, .f = safely(function(x) oadoi_fetch(x, 
-                                                                     email =your_own_email)))
+  df_data <- purrr::map(vec_doi, .f = safely(function(x) oadoi_fetch(x, email="clbti@nus.edu.sg")))
   df <- purrr::map_df(df_data, "result")
+  
   
   ##getting values from best_oa_location
   best_oa_evidence <- df %>%
-    mutate(evidences = map(best_oa_location, "evidence") %>% 
-             map_if(is_empty, ~ NA_character_) %>% 
-             flatten_chr())%>%
+    dplyr::mutate(evidences = purrr::map(best_oa_location, "evidence") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
     .$evidences 
   
-  best_oa_host <- df %>%
-    mutate(hosts = map(best_oa_location, "host_type") %>% 
-             map_if(is_empty, ~ NA_character_) %>% 
-             flatten_chr())%>%
+   best_oa_host <- df %>%
+    dplyr::mutate(hosts = purrr::map(best_oa_location, "host_type") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
     .$hosts 
   
   best_oa_license <- df %>%
-    mutate(licenses = map(best_oa_location, "license") %>% 
-             map_if(is_empty, ~ NA_character_) %>% 
-             flatten_chr())%>%
+    dplyr::mutate(licenses = purrr::map(best_oa_location, "license") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
     .$licenses
   
   best_oa_url <- df %>%
-    mutate(urls = map(best_oa_location, "url") %>% 
-             map_if(is_empty, ~ NA_character_) %>% 
-             flatten_chr())%>%
+    dplyr::mutate(urls = purrr::map(best_oa_location, "url") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
     .$urls 
   
   best_oa_url_for_pdf <- df %>%
-    mutate(pdfs = map(best_oa_location, "url_for_pdf") %>% 
-             map_if(is_empty, ~ NA_character_) %>% 
-             flatten_chr())%>%
+    dplyr::mutate(pdfs = purrr::map(best_oa_location, "url_for_pdf") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
     .$pdfs 
   
   best_oa_version <- df %>%
-    mutate(versions = map(best_oa_location, "version") %>% 
-             map_if(is_empty, ~ NA_character_) %>% 
-             flatten_chr())%>%
+    dplyr::mutate(versions = purrr::map(best_oa_location, "version") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
     .$versions 
-  
+ 
   #selecting specific columns from the results
-  df_selection <- df %>% select(1, 4:13)
+  df_selection <- df %>% 
+   select(-c(oa_locations,updated,authors)) 
   
   ##merging the columns together
   df_final <- add_column(df_selection, best_oa_evidence, best_oa_host, best_oa_license,best_oa_url,best_oa_url_for_pdf,best_oa_version)
@@ -123,46 +125,18 @@ for (i in 1:length(list.filenames))
   
 }
 
-# changing year from factor to numeric
-unpaywall$year1 <- as.numeric(as.character(unpaywall$year))
-
-#limit to only journal article only
+# changing year from factor to numeric, and limit to journal article only
 
 unpaywall <- unpaywall %>% 
-  filter(genre == "journal-article")
+  filter(genre == "journal-article") %>% 
+  select(-c(best_oa_location,journal_issn_l))
 
-```
-
-Unpaywall does not provide OA classification; however, they provide other fields (for e.g. best OA evidence) that can be used as a guide in determining the classification:
-
-- Closed: No free copy
-
-- Bronze: Journal is closed, article is free on publisher page, with no license.
-
-- Hybrid: Journal is closed, article is free on publisher page under some kind of open license.
-
-- Gold: Journal is open 
-
-- Green: Free-to-read on repository
-
-Based on the above, we will categorize the publication's OA level.
-
-```{r oa classification}
-unpaywall1 <- unpaywall %>% 
-  mutate(oa = case_when((journal_is_oa == FALSE & is_oa == FALSE) ~ "closed",
-                        (best_oa_host == "publisher" & is.na(best_oa_license) == TRUE & is_oa ==
-                           TRUE & journal_is_oa == FALSE) ~ "bronze",
-                        (best_oa_host == "publisher" & is.na(best_oa_license) != TRUE & is_oa ==
-                           TRUE & journal_is_oa == FALSE) ~ "hybrid",
-                        (best_oa_host == "publisher" & is_oa == TRUE & journal_is_oa == TRUE) 
-                        ~ "gold",
-                        (best_oa_host == "repository" & is_oa == TRUE & journal_is_oa == FALSE) 
-                        ~ "green"))
-
-kable(unpaywall1) %>% 
+kable(unpaywall) %>% 
   kable_styling(bootstrap_options = c("striped", "hover")) %>% 
   scroll_box(width = "100%", height = "400px")
+
 ```
+
 
 # Step 3: Compliment with Sherpa/Romeo information
 
@@ -173,7 +147,7 @@ To apply for API key, please refer to this page - http://www.sherpa.ac.uk/romeo/
 ```{r sherpa, echo=-1, warning=FALSE}
 your_own_key <- "P7yK4gSxZzA"
 #separate the 2 ISSNs
-unpaywall2 <- unpaywall1 %>% 
+unpaywall2 <- unpaywall %>% 
   separate(journal_issns, c("issn1","issn2"), sep = "\\,", remove = TRUE)
 
 #querying romeo API using the issn1
