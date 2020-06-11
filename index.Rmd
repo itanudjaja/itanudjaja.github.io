@@ -2,8 +2,6 @@
 title: "Irine's website"
 
 ---
-<<<<<<< HEAD
+
 A budding data scientist, who enjoy playing with R. But, happiest when outdoor in the nature :)
-=======
-A librarian who is just starting to play nice with R. 
->>>>>>> f031b43e38d98207a3ca883aebac68cdeea7ec37
+

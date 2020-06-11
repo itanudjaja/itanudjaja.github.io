@@ -106,7 +106,7 @@ library(dplyr)
 # Step 1: Data Loading 
 
 First thing, get a list of the DOIs of your institution's works that you would like to deposit. This list might be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following.
-![](C:/Users/clbti/Documents/itanudjaja.github.io/images/2019-09-06_100004.png)
+![](/Users/eneri/itanudjaja.github.io/images/2019-09-06_100004.png)
 
 
 
@@ -886,6 +886,8 @@ Create a summary table.
 # create new column to give information about publisher permissions
 unpaywall_romeo2 <- read.csv("~/Documents/nBox/R/full_text/sherpa.csv")
 
+# create new column to give information about publisher permissions
+
 `%notin%` <- negate(`%in%`)
 
 unpaywall_romeo_final <- unpaywall_romeo2 %>%
@@ -903,7 +905,11 @@ unpaywall_romeo_final <- unpaywall_romeo2 %>%
                               pdf %notin% c("can", "restricted") ~ "preprint_restricted",
                             preprint == "cannot" & postprint == "cannot" & pdf == "cannot" ~
                               "fully_restricted"))
+```
 
+
+```r
+# create a summary table
 
 unpaywall_romeo_summary <- unpaywall_romeo_final %>%
   group_by(status) %>%
@@ -994,7 +1000,7 @@ for(j in 1:length(doi1)){
 ```
 
 There will be warnings or errors displayed if the full text is not downloaded.
-![](C:/Users/clbti/Documents/itanudjaja.github.io/images/error.png)
+![](/Users/eneri/itanudjaja.github.io/images/error.png)
 
 ## 5.2. Using direct url
 

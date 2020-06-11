@@ -2,14 +2,10 @@
 title: "Retraction index VS journal metrics"
 output:
   html_document:
-<<<<<<< HEAD
     highlight: pygments
     keep_md: yes
     theme: cerulean
     number_sections: yes
-=======
-    theme: flatly
->>>>>>> f031b43e38d98207a3ca883aebac68cdeea7ec37
     toc: yes
     toc_float: yes
 ---
@@ -165,11 +161,7 @@ write.csv(dat,"D:/R test/retraction/subset_retract_of.csv" )
 Subsequently, the retraction index can be calculated. 
 
 ```{r retraction rate}
-<<<<<<< HEAD
 dat <- read.csv("~/Documents/nBox/R/retraction/subset_retract_of.csv")
-=======
-dat <- read.csv("D:/R test/retraction/subset_retract_of.csv")
->>>>>>> f031b43e38d98207a3ca883aebac68cdeea7ec37
 
 dat <- dat %>%
   mutate(rate = round(((1000 * total_count)/total_pub), 3)) %>%
@@ -181,11 +173,7 @@ dat <- dat %>%
 The SJR metrics downloaded from https://www.scimagojr.com/ requires some wrangling.
 
 ```{r sjr}
-<<<<<<< HEAD
 sjr <- read.csv("~/Documents/nBox/R/retraction/sjr.csv") %>% 
-=======
-sjr <- read.csv("D:/R test/retraction/sjr.csv") %>% 
->>>>>>> f031b43e38d98207a3ca883aebac68cdeea7ec37
   filter(Type == "journal") %>% 
   select(c(Title,Issn,SJR.Best.Quartile, SJR)) 
 

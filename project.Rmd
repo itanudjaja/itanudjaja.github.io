@@ -2,14 +2,10 @@
 title: "Using R packages to populate IR"
 output:
   html_document:
-<<<<<<< HEAD
     highlight: pygments
     keep_md: yes
     theme: cerulean
     number_sections: yes
-=======
-    theme: flatly
->>>>>>> f031b43e38d98207a3ca883aebac68cdeea7ec37
     toc: yes
     toc_float: yes
 ---
@@ -24,11 +20,7 @@ Therefore, some institutions had taken the pro-active initiative to complete the
 The following packages are required, please install them beforehand.
 
 ```{r setup, include=FALSE, cache = FALSE}
-<<<<<<< HEAD
 knitr::opts_knit$set(root.dir = "~/Documents/nBox/R/full_text/doi")
-=======
-knitr::opts_knit$set(root.dir = "D:/doi")
->>>>>>> f031b43e38d98207a3ca883aebac68cdeea7ec37
 
 ```
 
@@ -51,7 +43,7 @@ library(dplyr)
 # Step 1: Data Loading 
 
 First thing, get a list of the DOIs of your institution's works that you would like to deposit. This list might be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following.
-![](C:/Users/clbti/Documents/itanudjaja.github.io/images/2019-09-06_100004.png)
+![](/Users/eneri/itanudjaja.github.io/images/2019-09-06_100004.png)
 
 
 ```{r}
@@ -155,13 +147,8 @@ SHERPA RoMEO is an online resource that aggregates and analyses publisher open a
 
 To apply for API key, please refer to this page - http://www.sherpa.ac.uk/romeo/api.html
 
-<<<<<<< HEAD
 ```{r sherpa, eval=FALSE}
 
-=======
-```{r sherpa, echo=-1, warning=FALSE}
-your_own_key <- "P7yK4gSxZzA"
->>>>>>> f031b43e38d98207a3ca883aebac68cdeea7ec37
 #separate the 2 ISSNs
 unpaywall2 <- unpaywall %>% 
   separate(journal_issns, c("issn1","issn2"), sep = "\\,", remove = TRUE)
@@ -214,8 +201,6 @@ unpaywall_romeo2 <- unpaywall_romeo1 %>%
   mutate(rowname = as.integer(rowname)) %>%
   arrange(rowname)
 
-<<<<<<< HEAD
-
 ```
 
 Create a summary table.
@@ -224,9 +209,8 @@ Create a summary table.
 # create new column to give information about publisher permissions
 unpaywall_romeo2 <- read.csv("~/Documents/nBox/R/full_text/sherpa.csv")
 
-=======
 # create new column to give information about publisher permissions
->>>>>>> f031b43e38d98207a3ca883aebac68cdeea7ec37
+
 `%notin%` <- negate(`%in%`)
 
 unpaywall_romeo_final <- unpaywall_romeo2 %>%
@@ -245,18 +229,13 @@ unpaywall_romeo_final <- unpaywall_romeo2 %>%
                             preprint == "cannot" & postprint == "cannot" & pdf == "cannot" ~
                               "fully_restricted"))
 
-<<<<<<< HEAD
 
-=======
-kable(unpaywall_romeo_final) %>% 
-  kable_styling(bootstrap_options = c("striped", "hover")) %>% 
-  scroll_box(width = "100%", height = "400px")
 
 ```
 
 ```{r}
 # create a summary table
->>>>>>> f031b43e38d98207a3ca883aebac68cdeea7ec37
+
 unpaywall_romeo_summary <- unpaywall_romeo_final %>%
   group_by(status) %>%
   tally()
@@ -319,7 +298,7 @@ for(j in 1:length(doi1)){
 ```
 
 There will be warnings or errors displayed if the full text is not downloaded.
-![](C:/Users/clbti/Documents/itanudjaja.github.io/images/error.png)
+![](/Users/eneri/itanudjaja.github.io/images/error.png)
 
 ## 5.2. Using direct url
 

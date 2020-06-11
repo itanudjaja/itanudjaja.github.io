@@ -1,5 +1,0 @@
----
-title: "Irine's website"
-
----
-A budding data scientist, who enjoy playing with R. But, happiest when outdoor in the nature :)
