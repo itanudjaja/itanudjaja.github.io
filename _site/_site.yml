@@ -1,0 +1,17 @@
+name: "my-website"
+navbar:
+  title: "Irine Tanudjaja"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "HDB resale analysis"
+      href: hdb_v2.html
+    - text: "Populating IR"
+      href: project.html
+    - text: "Retractions VS Journal ranking"
+      href: retractions.html
+output:
+  html_document:
+    css: 'styles.css'
+    theme: cerulean
+    

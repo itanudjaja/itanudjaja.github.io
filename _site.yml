@@ -4,6 +4,7 @@ navbar:
   left:
     - text: "Home"
       href: index.html
+<<<<<<< HEAD
     - text: "HDB resale analysis"
       href: hdb_v2.html
     - text: "Populating IR"
@@ -15,3 +16,15 @@ output:
     css: 'styles.css'
     theme: cerulean
     
+=======
+    - text: "Populating IR"
+      href: project.html
+    - text: "OA of funded publications"
+      href: funders.html
+    - text: "Retractions VS SJR"
+      href: retractions.html
+output:
+  html_document:
+    theme: paper
+    css: 'styles.css'
+>>>>>>> f031b43e38d98207a3ca883aebac68cdeea7ec37

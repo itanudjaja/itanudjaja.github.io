@@ -1,0 +1,372 @@
+---
+title: "Using R packages to populate IR"
+output:
+  html_document:
+    highlight: pygments
+    keep_md: yes
+    theme: cerulean
+    number_sections: yes
+    toc: yes
+    toc_float: yes
+---
+# Using R packages to populate IR
+
+Many institutions have reported that **participation rates of article deposit in their IR are low** regardless of their various efforts in outreach and engagement. Even when the deposit is mandated, the participation rate can still be quite low. 
+
+Once this hurdle was overcome, there is another challenge faced by the IR administrators, ensuring that the version submitted by the researcher is the appropriate version. If it is not, IR administrators would need to take additional steps to correspond with the researcher to obtain the appropriate version. Thus, **increasing their administrative work load**.
+
+Therefore, some institutions had taken the pro-active initiative to complete the deposit on behalf of their researchers. This certainly is not a small undertaking. However, there are openly available R packages (https://ropensci.org/) that can be used to automate some of the processes. In this page, I will summarize the steps to do that.  
+
+The following packages are required, please install them beforehand.
+
+```{r setup, include=FALSE, cache = FALSE}
+knitr::opts_knit$set(root.dir = "~/Documents/nBox/R/full_text/doi")
+
+```
+
+
+```{r load packages}
+# install.packages("fulltext")
+
+library(kableExtra)
+library(fulltext)
+library(tidyverse)
+library(plyr)
+library(roadoi)
+library(purrr)
+library(rromeo)
+library(rcrossref)
+library(tidyr)
+library(dplyr)
+```
+
+# Step 1: Data Loading 
+
+First thing, get a list of the DOIs of your institution's works that you would like to deposit. This list might be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following.
+![](C:/Users/clbti/Documents/itanudjaja.github.io/images/2019-09-06_100004.png)
+
+
+```{r}
+list.filenames<-list.files(pattern=".csv$") 
+```
+
+# Step 2: Query Unpaywall API
+
+Unpaywall (https://unpaywall.org/) is a non profit organization that aims to make scholarly works more open. They maintain a database of links to full-text articles from open-access sources all over the world. The content is harvested from legal sources including repositories run by universities, governments, and scholarly societies, as well as open content hosted by publishers themselves. 
+
+Unpaywall requests users to keep the API requests to below 100k per day and to include their email to the URL of requests. Please include your own email below.
+
+```{r unpaywall, echo = -1}
+your_own_email <- "clbti@nus.edu.sg"
+
+unpaywall<- tibble()
+
+# Creating loop so that we can query Unpaywall API based on dois in several CSV files
+
+for (i in 1:length(list.filenames))
+{
+  #reading dois from csv file
+  
+  dois <- read.csv(list.filenames[i], header=TRUE)
+  vec_doi <- as_tibble(dois)
+  
+  ##querying unpaywall API & to 
+  #catch error when the API does not return valid JSON or is not available
+  
+  df_data <- purrr::map(vec_doi, .f = safely(function(x) oadoi_fetch(x, email="clbti@nus.edu.sg")))
+  df <- purrr::map_df(df_data, "result")
+  
+  
+  ##getting values from best_oa_location
+  best_oa_evidence <- df %>%
+    dplyr::mutate(evidences = purrr::map(best_oa_location, "evidence") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
+    .$evidences 
+  
+   best_oa_host <- df %>%
+    dplyr::mutate(hosts = purrr::map(best_oa_location, "host_type") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
+    .$hosts 
+  
+  best_oa_license <- df %>%
+    dplyr::mutate(licenses = purrr::map(best_oa_location, "license") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
+    .$licenses
+  
+  best_oa_url <- df %>%
+    dplyr::mutate(urls = purrr::map(best_oa_location, "url") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
+    .$urls 
+  
+  best_oa_url_for_pdf <- df %>%
+    dplyr::mutate(pdfs = purrr::map(best_oa_location, "url_for_pdf") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
+    .$pdfs 
+  
+  best_oa_version <- df %>%
+    dplyr::mutate(versions = purrr::map(best_oa_location, "version") %>% 
+             purrr::map_if(purrr::is_empty, ~ NA_character_) %>% 
+             purrr::flatten_chr())%>%
+    .$versions 
+ 
+  #selecting specific columns from the results
+  df_selection <- df %>% 
+   select(-c(oa_locations,updated,authors)) 
+  
+  ##merging the columns together
+  df_final <- add_column(df_selection, best_oa_evidence, best_oa_host, best_oa_license,best_oa_url,best_oa_url_for_pdf,best_oa_version)
+  
+  #to combine all the entries
+  unpaywall <- bind_rows(unpaywall, df_final)
+  
+  Sys.sleep(60)  
+  
+}
+
+# changing year from factor to numeric, and limit to journal article only
+
+unpaywall <- unpaywall %>% 
+  filter(genre == "journal-article") %>% 
+  select(-c(best_oa_location,journal_issn_l))
+
+kable(unpaywall) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover")) %>% 
+  scroll_box(width = "100%", height = "400px")
+
+```
+
+
+# Step 3: Compliment with Sherpa/Romeo information
+
+SHERPA RoMEO is an online resource that aggregates and analyses publisher open access policies from around the world and provides summaries of self-archiving permissions and conditions of rights given to authors on a journal-by-journal basis.
+
+To apply for API key, please refer to this page - http://www.sherpa.ac.uk/romeo/api.html
+
+```{r sherpa, eval=FALSE}
+
+#separate the 2 ISSNs
+unpaywall2 <- unpaywall %>% 
+  separate(journal_issns, c("issn1","issn2"), sep = "\\,", remove = TRUE)
+
+#querying romeo API using the issn1
+#your_own_key : please use your own API key
+
+romeo <- map(unpaywall2$issn1, .f = safely(function(x) rr_journal_issn(x, your_own_key)))
+
+# pluck the data, get rid of duplicate ISSNs and the extra title column
+romeo_df <- map_df(romeo, "result") %>% 
+  filter(!duplicated(issn)) %>%
+  select(-title)
+
+# join by ISSN
+unpaywall_romeo1 <- unpaywall2 %>%
+  left_join(romeo_df, by = c("issn1" = "issn"))
+
+# Using issn2 for those resulted in NA using issn
+
+# add rownames as identifiers so we can bind together
+unpaywall_romeo1 <- unpaywall_romeo1 %>%
+  rownames_to_column()
+
+# create table of items not found by issn1 (where romeocolour is NA)
+unp.na <- unpaywall_romeo1 %>%
+  filter(is.na(romeocolour))
+
+# create vector of NA rownames
+na_rownames <- as.integer(unp.na$rowname)
+
+# query sherpa-romeo with issn2
+romeo2 <- map(unp.na$issn2, .f = safely(function(x) rr_journal_issn(x, key=your_own_key)))
+
+# pluck data, remove duplicates and extra title column
+romeo2_df <-  map_df(romeo2, "result") %>%
+  filter(!duplicated(issn)) %>%
+  select(-title)
+
+# delete columsn with NA create new table with the values we just retrieved
+unp.na2 <- unp.na %>%
+  select(-romeocolour, -preprint, -postprint, -pdf, -pre_embargo, -post_embargo, -pdf_embargo) %>%
+  left_join(romeo2_df, by = c("issn2" = "issn"))
+
+# join NA data back
+# remove NA data from unpaywall_romeo1 and replace with new data, rearrange by rowname
+unpaywall_romeo2 <- unpaywall_romeo1 %>%
+  slice(-na_rownames) %>%
+  bind_rows(unp.na2) %>%
+  mutate(rowname = as.integer(rowname)) %>%
+  arrange(rowname)
+
+
+```
+
+Create a summary table.
+```{r}
+
+# create new column to give information about publisher permissions
+unpaywall_romeo2 <- read.xlsx("~/Documents/nBox/R/full_text/output_unique.xlsx")
+`%notin%` <- negate(`%in%`)
+
+unpaywall_romeo_final <- unpaywall_romeo2 %>%
+  mutate(status = case_when(pdf == "can" & pdf_embargo == "NA" ~ "final_immediate",
+                            pdf == "restricted" ~ "final_restricted",
+                            postprint == "can" & post_embargo == "NA" &
+                              pdf %notin% c("can", "restricted") ~                          
+                              "postprint_immediate",
+                            postprint == "restricted" & pdf %notin% c("can", "restricted") ~
+                              "postprint_restricted",
+                            preprint == "can"  & pre_embargo == "NA" &
+                              postprint %notin% c("can", "restricted") & 
+                              pdf %notin% c("can", "restricted") ~ "preprint_immediate",
+                            preprint == "restricted" & postprint %notin% c("can", "restricted") &
+                              pdf %notin% c("can", "restricted") ~ "preprint_restricted",
+                            preprint == "cannot" & postprint == "cannot" & pdf == "cannot" ~
+                              "fully_restricted"))
+
+kable(unpaywall_romeo_final) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover")) %>% 
+  scroll_box(width = "100%", height = "400px")
+
+unpaywall_romeo_summary <- unpaywall_romeo_final %>%
+  group_by(status) %>%
+  tally()
+
+kable(unpaywall_romeo_summary) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover")) 
+```
+
+# Step 4: Identify the works that can be deposited
+
+For example, let's say we only want to deposit full text that the publisher allows PDF version to be deposited immediately.
+
+```{r, eval=F, echo=T}
+to_dl <- sample %>% 
+  filter(status == "final_immediate" & best_oa_license == "cc-by")
+
+```
+
+# Step 5: Download the full text
+
+There are 2 methods to download the full text :
+
+- Using another R package called fulltext 
+
+- Using direct URL download
+
+## 5.1. Using fulltext package
+
+The fulltext package made it easy to download the full text of a publication based on a DOI. They have several data sources, for e.g. PLOS, arXiv. 
+
+```{r fulltext, eval=F, echo=T}
+#change the class of DOI from factor to character
+df <- to_dl %>% 
+  mutate(doi = as.character(doi))
+
+#splitting the data into a smaller dataframe for example 100 dois per dataframe
+
+#get the number of dataframes to be created, in this case, it is variable s 
+s <- (nrow(df)-1) %/% 100
+
+dt <- split(df, (seq(nrow(df))-1) %/% 100)
+
+#so we will create s dataframe that is named as doi1, doi2, ... till doi(s)
+for(i in 1:s){
+  nam <- paste("doi", i, sep = "")
+  assign(nam, dt [[i]])
+}
+
+#creating loop to download full text 
+#note: once you are done with the first dataframe, doi, change it to doi2 and so on
+
+for(j in 1:length(doi1)){
+  cat(".")
+  res <- purrr::map(doi1, .f = safely(function(x) ft_get(x,type="pdf")))
+}
+
+#note:
+#the location of the full text downloaded can be found at /Users/xxx/Library/Caches/R/fulltext
+
+```
+
+There will be warnings or errors displayed if the full text is not downloaded.
+![](C:/Users/clbti/Documents/itanudjaja.github.io/images/error.png)
+
+## 5.2. Using direct url
+
+For full text that cannot be downloaded using the fulltext package, we can use the direct URL approach as Unpaywall has provided the direct URL to get the full text of the publication. Similarly, there will be a warning if the full text cannot be downloaded from the URL.
+
+```{r direct, eval=F, echo=T}
+# convert the url as charcter, as by default it is assigned as factor
+urls <- to_dl %>% 
+  select(doi,best_oa_url_for_pdf) %>% 
+  mutate(doi=as.character(doi), url=as.character(best_oa_url_for_pdf))
+
+#set location to download the files
+setwd("~/Desktop/ft/files/")
+
+#create empty error file (error1.txt) if the url is not working
+for(s in 1:nrow(urls)){
+  name=paste("doi",s,".pdf",sep="") #create a name for the file to be downloaded
+  url_n=urls$url[[s]]
+  tryCatch(download.file(url_n,
+                         destfile=name, method='auto'),
+           error = function(e) {
+             file.create(paste("error", s, ".txt",sep="")) 
+             
+           }) #if the url error, create an empty error file and skip to next url
+}
+```
+
+# Step 6 (Optional): Create the metadata file
+
+Use Crossref as a source to create the metadata file.
+
+```{r crossref, warning=FALSE}
+#get the metadata based on a list of doi from dataframe called doi1
+works_list <- purrr::map(unpaywall_romeo_final$doi,
+                         function(x) {
+                           my_works <- cr_works(doi = x) %>%
+                             purrr::pluck("data")
+                         })
+
+#unnest the list
+works_df <- works_list %>%
+  purrr::map_dfr(., function(x) {
+    x[, ] 
+  })
+
+#unnest the authors field to combine them
+authors <- works_df %>% 
+  filter(!map_lgl(author, is.null)) %>% 
+  unnest(author, .drop = TRUE) %>% 
+  unite(author, c(family, given), sep = " ", remove = FALSE) %>% 
+  dplyr::group_by(doi) %>% 
+  filter(!is.na(author)) %>% 
+  dplyr::summarise(all_authors=paste(author, collapse=" ; "))
+
+#combine back with metadata
+
+works_df1 <- works_df %>% 
+  select(c(title,container.title, doi,issn,issue,volume,page,publisher, published.print))
+
+combined <- left_join(x=works_df1, y=authors, by="doi")
+
+cls <- sapply(combined, class)
+
+newCombined <- combined %>% select(which(cls=="character"))
+
+kable(newCombined) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover")) %>% 
+  scroll_box(width = "100%", height = "400px")
+```
+
+#Note
+Various resources and lots of Googling were involved in developing the above script, please feel free to contact me if you have suggestions to further improve it.
+
+- https://ropensci.org/
+
+- https://ciakovx.github.io/rcrossref.html

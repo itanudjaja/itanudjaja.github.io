@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 base
 kableExtra
 fulltext
@@ -14,3 +15,21 @@ plyr
 roadoi
 rromeo
 rcrossref
+=======
+base
+kableExtra
+fulltext
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+plyr
+roadoi
+rromeo
+rcrossref
+>>>>>>> f031b43e38d98207a3ca883aebac68cdeea7ec37
