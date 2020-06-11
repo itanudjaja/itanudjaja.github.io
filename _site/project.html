@@ -473,11 +473,11 @@ div.tocify {
 ##     collect</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">library</span>(plyr)</a></code></pre></div>
-<pre><code>## ------------------------------------------------------------------</code></pre>
+<pre><code>## -------------------------------------------------------------------</code></pre>
 <pre><code>## You have loaded plyr after dplyr - this is likely to cause problems.
 ## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
 ## library(plyr); library(dplyr)</code></pre>
-<pre><code>## ------------------------------------------------------------------</code></pre>
+<pre><code>## -------------------------------------------------------------------</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;plyr&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:plotly&#39;:
@@ -497,13 +497,13 @@ div.tocify {
 <a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw">library</span>(tidyr)</a>
 <a class="sourceLine" id="cb14-6" data-line-number="6"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 </div>
-<div id="step-1-data-loading" class="section level1">
-<h1><span class="header-section-number">2</span> Step 1: Data Loading</h1>
+<div id="data-loading" class="section level1">
+<h1><span class="header-section-number">2</span> Data Loading</h1>
 <p>First thing, get a list of the DOIs of your institution’s works that you would like to deposit. This list might be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following. <img src="images/2019-09-06_100004.png" /></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">list.filenames&lt;-<span class="kw">list.files</span>(<span class="dt">pattern=</span><span class="st">&quot;.csv$&quot;</span>) </a></code></pre></div>
 </div>
-<div id="step-2-query-unpaywall-api" class="section level1">
-<h1><span class="header-section-number">3</span> Step 2: Query Unpaywall API</h1>
+<div id="query-unpaywall-api" class="section level1">
+<h1><span class="header-section-number">3</span> Query Unpaywall API</h1>
 <p>Unpaywall (<a href="https://unpaywall.org/" class="uri">https://unpaywall.org/</a>) is a non profit organization that aims to make scholarly works more open. They maintain a database of links to full-text articles from open-access sources all over the world. The content is harvested from legal sources including repositories run by universities, governments, and scholarly societies, as well as open content hosted by publishers themselves.</p>
 <p>Unpaywall requests users to keep the API requests to below 100k per day and to include their email to the URL of requests. Please include your own email below.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">unpaywall&lt;-<span class="st"> </span><span class="kw">tibble</span>()</a>
@@ -2304,8 +2304,8 @@ submittedVersion
 </table>
 </div>
 </div>
-<div id="step-3-compliment-with-sherparomeo-information" class="section level1">
-<h1><span class="header-section-number">4</span> Step 3: Compliment with Sherpa/Romeo information</h1>
+<div id="compliment-with-sherparomeo-information" class="section level1">
+<h1><span class="header-section-number">4</span> Compliment with Sherpa/Romeo information</h1>
 <p>SHERPA RoMEO is an online resource that aggregates and analyses publisher open access policies from around the world and provides summaries of self-archiving permissions and conditions of rights given to authors on a journal-by-journal basis.</p>
 <p>To apply for API key, please refer to this page - <a href="http://www.sherpa.ac.uk/romeo/api.html" class="uri">http://www.sherpa.ac.uk/romeo/api.html</a></p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co">#separate the 2 ISSNs</span></a>
@@ -2437,21 +2437,21 @@ NA
 </tbody>
 </table>
 </div>
-<div id="step-4-identify-the-works-that-can-be-deposited" class="section level1">
-<h1><span class="header-section-number">5</span> Step 4: Identify the works that can be deposited</h1>
+<div id="identify-the-works-that-can-be-deposited" class="section level1">
+<h1><span class="header-section-number">5</span> Identify the works that can be deposited</h1>
 <p>For example, let’s say we only want to deposit full text that the publisher allows PDF version to be deposited immediately.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">to_dl &lt;-<span class="st"> </span>sample <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(status <span class="op">==</span><span class="st"> &quot;final_immediate&quot;</span> <span class="op">&amp;</span><span class="st"> </span>best_oa_license <span class="op">==</span><span class="st"> &quot;cc-by&quot;</span>)</a></code></pre></div>
 </div>
-<div id="step-5-download-the-full-text" class="section level1">
-<h1><span class="header-section-number">6</span> Step 5: Download the full text</h1>
+<div id="download-the-full-text" class="section level1">
+<h1><span class="header-section-number">6</span> Download the full text</h1>
 <p>There are 2 methods to download the full text :</p>
 <ul>
 <li><p>Using another R package called fulltext</p></li>
 <li><p>Using direct URL download</p></li>
 </ul>
 <div id="using-fulltext-package" class="section level2">
-<h2><span class="header-section-number">6.1</span> 5.1. Using fulltext package</h2>
+<h2><span class="header-section-number">6.1</span> Using fulltext package</h2>
 <p>The fulltext package made it easy to download the full text of a publication based on a DOI. They have several data sources, for e.g. PLOS, arXiv.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co">#change the class of DOI from factor to character</span></a>
 <a class="sourceLine" id="cb21-2" data-line-number="2">df &lt;-<span class="st"> </span>to_dl <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -2483,7 +2483,7 @@ NA
 <p>There will be warnings or errors displayed if the full text is not downloaded. <img src="images/error.png" /></p>
 </div>
 <div id="using-direct-url" class="section level2">
-<h2><span class="header-section-number">6.2</span> 5.2. Using direct url</h2>
+<h2><span class="header-section-number">6.2</span> Using direct url</h2>
 <p>For full text that cannot be downloaded using the fulltext package, we can use the direct URL approach as Unpaywall has provided the direct URL to get the full text of the publication. Similarly, there will be a warning if the full text cannot be downloaded from the URL.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># convert the url as charcter, as by default it is assigned as factor</span></a>
 <a class="sourceLine" id="cb22-2" data-line-number="2">urls &lt;-<span class="st"> </span>to_dl <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -2506,8 +2506,8 @@ NA
 <a class="sourceLine" id="cb22-19" data-line-number="19">}</a></code></pre></div>
 </div>
 </div>
-<div id="step-6-optional-create-the-metadata-file" class="section level1">
-<h1><span class="header-section-number">7</span> Step 6 (Optional): Create the metadata file</h1>
+<div id="optional-create-the-metadata-file" class="section level1">
+<h1><span class="header-section-number">7</span> (Optional) Create the metadata file</h1>
 <p>Use Crossref as a source to create the metadata file.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co">#get the metadata based on a list of doi from dataframe called doi1</span></a>
 <a class="sourceLine" id="cb23-2" data-line-number="2">works_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(unpaywall_romeo_final<span class="op">$</span>doi,</a>
@@ -3545,7 +3545,10 @@ Tanikawa Chihiro ; Takada Kenji
 </tbody>
 </table>
 </div>
-<p>#Note Various resources and lots of Googling were involved in developing the above script, please feel free to contact me if you have suggestions to further improve it.</p>
+</div>
+<div id="note" class="section level1">
+<h1><span class="header-section-number">8</span> Note</h1>
+<p>Various resources and lots of Googling were involved in developing the above script, please feel free to contact me if you have suggestions to further improve it.</p>
 <ul>
 <li><p><a href="https://ropensci.org/" class="uri">https://ropensci.org/</a></p></li>
 <li><p><a href="https://ciakovx.github.io/rcrossref.html" class="uri">https://ciakovx.github.io/rcrossref.html</a></p></li>

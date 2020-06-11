@@ -57,7 +57,7 @@ library(plyr)
 ```
 
 ```
-## ------------------------------------------------------------------
+## -------------------------------------------------------------------
 ```
 
 ```
@@ -67,7 +67,7 @@ library(plyr)
 ```
 
 ```
-## ------------------------------------------------------------------
+## -------------------------------------------------------------------
 ```
 
 ```
@@ -103,7 +103,7 @@ library(tidyr)
 library(dplyr)
 ```
 
-# Step 1: Data Loading 
+# Data Loading 
 
 First thing, get a list of the DOIs of your institution's works that you would like to deposit. This list might be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following.
 ![](/Users/eneri/itanudjaja.github.io/images/2019-09-06_100004.png)
@@ -114,7 +114,7 @@ First thing, get a list of the DOIs of your institution's works that you would l
 list.filenames<-list.files(pattern=".csv$") 
 ```
 
-# Step 2: Query Unpaywall API
+# Query Unpaywall API
 
 Unpaywall (https://unpaywall.org/) is a non profit organization that aims to make scholarly works more open. They maintain a database of links to full-text articles from open-access sources all over the world. The content is harvested from legal sources including repositories run by universities, governments, and scholarly societies, as well as open content hosted by publishers themselves. 
 
@@ -819,7 +819,7 @@ kable(unpaywall) %>%
 </table></div>
 
 
-# Step 3: Compliment with Sherpa/Romeo information
+# Compliment with Sherpa/Romeo information
 
 SHERPA RoMEO is an online resource that aggregates and analyses publisher open access policies from around the world and provides summaries of self-archiving permissions and conditions of rights given to authors on a journal-by-journal basis.
 
@@ -946,7 +946,7 @@ kable(unpaywall_romeo_summary) %>%
 </tbody>
 </table>
 
-# Step 4: Identify the works that can be deposited
+# Identify the works that can be deposited
 
 For example, let's say we only want to deposit full text that the publisher allows PDF version to be deposited immediately.
 
@@ -956,7 +956,7 @@ to_dl <- sample %>%
   filter(status == "final_immediate" & best_oa_license == "cc-by")
 ```
 
-# Step 5: Download the full text
+# Download the full text
 
 There are 2 methods to download the full text :
 
@@ -964,7 +964,7 @@ There are 2 methods to download the full text :
 
 - Using direct URL download
 
-## 5.1. Using fulltext package
+## Using fulltext package
 
 The fulltext package made it easy to download the full text of a publication based on a DOI. They have several data sources, for e.g. PLOS, arXiv. 
 
@@ -1002,7 +1002,7 @@ for(j in 1:length(doi1)){
 There will be warnings or errors displayed if the full text is not downloaded.
 ![](/Users/eneri/itanudjaja.github.io/images/error.png)
 
-## 5.2. Using direct url
+## Using direct url
 
 For full text that cannot be downloaded using the fulltext package, we can use the direct URL approach as Unpaywall has provided the direct URL to get the full text of the publication. Similarly, there will be a warning if the full text cannot be downloaded from the URL.
 
@@ -1029,7 +1029,7 @@ for(s in 1:nrow(urls)){
 }
 ```
 
-# Step 6 (Optional): Create the metadata file
+# (Optional) Create the metadata file
 
 Use Crossref as a source to create the metadata file.
 
@@ -1452,7 +1452,7 @@ kable(newCombined) %>%
 </tbody>
 </table></div>
 
-#Note
+# Note
 Various resources and lots of Googling were involved in developing the above script, please feel free to contact me if you have suggestions to further improve it.
 
 - https://ropensci.org/
