@@ -1,0 +1,3632 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Using R packages to populate IR</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Irine Tanudjaja</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="hdb_v2.html">HDB resale analysis</a>
+</li>
+<li>
+  <a href="project.html">Populating IR</a>
+</li>
+<li>
+  <a href="retractions.html">Retractions VS Journal ranking</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Using R packages to populate IR</h1>
+
+</div>
+
+
+<div id="using-r-packages-to-populate-ir" class="section level1">
+<h1><span class="header-section-number">1</span> Using R packages to populate IR</h1>
+<p>Many institutions have reported that <strong>participation rates of article deposit in their IR are low</strong> regardless of their various efforts in outreach and engagement. Even when the deposit is mandated, the participation rate can still be quite low.</p>
+<p>Once this hurdle was overcome, there is another challenge faced by the IR administrators, ensuring that the version submitted by the researcher is the appropriate version. If it is not, IR administrators would need to take additional steps to correspond with the researcher to obtain the appropriate version. Thus, <strong>increasing their administrative work load</strong>.</p>
+<p>Therefore, some institutions had taken the pro-active initiative to complete the deposit on behalf of their researchers. This certainly is not a small undertaking. However, there are openly available R packages (<a href="https://ropensci.org/" class="uri">https://ropensci.org/</a>) that can be used to automate some of the processes. In this page, I will summarize the steps to do that.</p>
+<p>The following packages are required, please install them beforehand.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages(&quot;fulltext&quot;)</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(kableExtra)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(fulltext)</a></code></pre></div>
+<pre><code>## Warning: package &#39;fulltext&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;hoardr&#39;:
+##   method           from
+##   print.cache_info httr</code></pre>
+<pre><code>## 
+## Attaching package: &#39;fulltext&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     collect</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">library</span>(plyr)</a></code></pre></div>
+<pre><code>## -------------------------------------------------------------------</code></pre>
+<pre><code>## You have loaded plyr after dplyr - this is likely to cause problems.
+## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+## library(plyr); library(dplyr)</code></pre>
+<pre><code>## -------------------------------------------------------------------</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:plotly&#39;:
+## 
+##     arrange, mutate, rename, summarise</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     arrange, count, desc, failwith, id, mutate, rename,
+##     summarise, summarize</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     compact</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">library</span>(roadoi)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">library</span>(purrr)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">library</span>(rromeo)</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="kw">library</span>(rcrossref)</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+</div>
+<div id="data-loading" class="section level1">
+<h1><span class="header-section-number">2</span> Data Loading</h1>
+<p>First thing, get a list of the DOIs of your institution’s works that you would like to deposit. This list might be very long, so it can be split into several CSV files. This is so that we do not hit the limit when querying Unpaywall API. The CSV file looks like the following. <img src="images/2019-09-06_100004.png" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">list.filenames&lt;-<span class="kw">list.files</span>(<span class="dt">pattern=</span><span class="st">&quot;.csv$&quot;</span>) </a></code></pre></div>
+</div>
+<div id="query-unpaywall-api" class="section level1">
+<h1><span class="header-section-number">3</span> Query Unpaywall API</h1>
+<p>Unpaywall (<a href="https://unpaywall.org/" class="uri">https://unpaywall.org/</a>) is a non profit organization that aims to make scholarly works more open. They maintain a database of links to full-text articles from open-access sources all over the world. The content is harvested from legal sources including repositories run by universities, governments, and scholarly societies, as well as open content hosted by publishers themselves.</p>
+<p>Unpaywall requests users to keep the API requests to below 100k per day and to include their email to the URL of requests. Please include your own email below.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">unpaywall&lt;-<span class="st"> </span><span class="kw">tibble</span>()</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="co"># Creating loop so that we can query Unpaywall API based on dois in several CSV files</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(list.filenames))</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">  <span class="co">#reading dois from csv file</span></a>
+<a class="sourceLine" id="cb16-8" data-line-number="8">  </a>
+<a class="sourceLine" id="cb16-9" data-line-number="9">  dois &lt;-<span class="st"> </span><span class="kw">read.csv</span>(list.filenames[i], <span class="dt">header=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb16-10" data-line-number="10">  vec_doi &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(dois)</a>
+<a class="sourceLine" id="cb16-11" data-line-number="11">  </a>
+<a class="sourceLine" id="cb16-12" data-line-number="12">  <span class="co">##querying unpaywall API &amp; to </span></a>
+<a class="sourceLine" id="cb16-13" data-line-number="13">  <span class="co">#catch error when the API does not return valid JSON or is not available</span></a>
+<a class="sourceLine" id="cb16-14" data-line-number="14">  </a>
+<a class="sourceLine" id="cb16-15" data-line-number="15">  df_data &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(vec_doi, <span class="dt">.f =</span> <span class="kw">safely</span>(<span class="cf">function</span>(x) <span class="kw">oadoi_fetch</span>(x, <span class="dt">email=</span><span class="st">&quot;clbti@nus.edu.sg&quot;</span>)))</a>
+<a class="sourceLine" id="cb16-16" data-line-number="16">  df &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_df</span>(df_data, <span class="st">&quot;result&quot;</span>)</a>
+<a class="sourceLine" id="cb16-17" data-line-number="17">  </a>
+<a class="sourceLine" id="cb16-18" data-line-number="18">  </a>
+<a class="sourceLine" id="cb16-19" data-line-number="19">  <span class="co">##getting values from best_oa_location</span></a>
+<a class="sourceLine" id="cb16-20" data-line-number="20">  best_oa_evidence &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-21" data-line-number="21"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">evidences =</span> purrr<span class="op">::</span><span class="kw">map</span>(best_oa_location, <span class="st">&quot;evidence&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-22" data-line-number="22"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">map_if</span>(purrr<span class="op">::</span>is_empty, <span class="op">~</span><span class="st"> </span><span class="ot">NA_character_</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-23" data-line-number="23"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">flatten_chr</span>())<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-24" data-line-number="24"><span class="st">    </span>.<span class="op">$</span>evidences </a>
+<a class="sourceLine" id="cb16-25" data-line-number="25">  </a>
+<a class="sourceLine" id="cb16-26" data-line-number="26">   best_oa_host &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-27" data-line-number="27"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">hosts =</span> purrr<span class="op">::</span><span class="kw">map</span>(best_oa_location, <span class="st">&quot;host_type&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-28" data-line-number="28"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">map_if</span>(purrr<span class="op">::</span>is_empty, <span class="op">~</span><span class="st"> </span><span class="ot">NA_character_</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-29" data-line-number="29"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">flatten_chr</span>())<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-30" data-line-number="30"><span class="st">    </span>.<span class="op">$</span>hosts </a>
+<a class="sourceLine" id="cb16-31" data-line-number="31">  </a>
+<a class="sourceLine" id="cb16-32" data-line-number="32">  best_oa_license &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-33" data-line-number="33"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">licenses =</span> purrr<span class="op">::</span><span class="kw">map</span>(best_oa_location, <span class="st">&quot;license&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-34" data-line-number="34"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">map_if</span>(purrr<span class="op">::</span>is_empty, <span class="op">~</span><span class="st"> </span><span class="ot">NA_character_</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-35" data-line-number="35"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">flatten_chr</span>())<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-36" data-line-number="36"><span class="st">    </span>.<span class="op">$</span>licenses</a>
+<a class="sourceLine" id="cb16-37" data-line-number="37">  </a>
+<a class="sourceLine" id="cb16-38" data-line-number="38">  best_oa_url &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-39" data-line-number="39"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">urls =</span> purrr<span class="op">::</span><span class="kw">map</span>(best_oa_location, <span class="st">&quot;url&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-40" data-line-number="40"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">map_if</span>(purrr<span class="op">::</span>is_empty, <span class="op">~</span><span class="st"> </span><span class="ot">NA_character_</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-41" data-line-number="41"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">flatten_chr</span>())<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-42" data-line-number="42"><span class="st">    </span>.<span class="op">$</span>urls </a>
+<a class="sourceLine" id="cb16-43" data-line-number="43">  </a>
+<a class="sourceLine" id="cb16-44" data-line-number="44">  best_oa_url_for_pdf &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-45" data-line-number="45"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">pdfs =</span> purrr<span class="op">::</span><span class="kw">map</span>(best_oa_location, <span class="st">&quot;url_for_pdf&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-46" data-line-number="46"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">map_if</span>(purrr<span class="op">::</span>is_empty, <span class="op">~</span><span class="st"> </span><span class="ot">NA_character_</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-47" data-line-number="47"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">flatten_chr</span>())<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-48" data-line-number="48"><span class="st">    </span>.<span class="op">$</span>pdfs </a>
+<a class="sourceLine" id="cb16-49" data-line-number="49">  </a>
+<a class="sourceLine" id="cb16-50" data-line-number="50">  best_oa_version &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-51" data-line-number="51"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">versions =</span> purrr<span class="op">::</span><span class="kw">map</span>(best_oa_location, <span class="st">&quot;version&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-52" data-line-number="52"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">map_if</span>(purrr<span class="op">::</span>is_empty, <span class="op">~</span><span class="st"> </span><span class="ot">NA_character_</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-53" data-line-number="53"><span class="st">             </span>purrr<span class="op">::</span><span class="kw">flatten_chr</span>())<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-54" data-line-number="54"><span class="st">    </span>.<span class="op">$</span>versions </a>
+<a class="sourceLine" id="cb16-55" data-line-number="55"> </a>
+<a class="sourceLine" id="cb16-56" data-line-number="56">  <span class="co">#selecting specific columns from the results</span></a>
+<a class="sourceLine" id="cb16-57" data-line-number="57">  df_selection &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-58" data-line-number="58"><span class="st">   </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(oa_locations,updated,authors)) </a>
+<a class="sourceLine" id="cb16-59" data-line-number="59">  </a>
+<a class="sourceLine" id="cb16-60" data-line-number="60">  <span class="co">##merging the columns together</span></a>
+<a class="sourceLine" id="cb16-61" data-line-number="61">  df_final &lt;-<span class="st"> </span><span class="kw">add_column</span>(df_selection, best_oa_evidence, best_oa_host, best_oa_license,best_oa_url,best_oa_url_for_pdf,best_oa_version)</a>
+<a class="sourceLine" id="cb16-62" data-line-number="62">  </a>
+<a class="sourceLine" id="cb16-63" data-line-number="63">  <span class="co">#to combine all the entries</span></a>
+<a class="sourceLine" id="cb16-64" data-line-number="64">  unpaywall &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(unpaywall, df_final)</a>
+<a class="sourceLine" id="cb16-65" data-line-number="65">  </a>
+<a class="sourceLine" id="cb16-66" data-line-number="66">  <span class="kw">Sys.sleep</span>(<span class="dv">60</span>)  </a>
+<a class="sourceLine" id="cb16-67" data-line-number="67">  </a>
+<a class="sourceLine" id="cb16-68" data-line-number="68">}</a>
+<a class="sourceLine" id="cb16-69" data-line-number="69"></a>
+<a class="sourceLine" id="cb16-70" data-line-number="70"><span class="co"># changing year from factor to numeric, and limit to journal article only</span></a>
+<a class="sourceLine" id="cb16-71" data-line-number="71"></a>
+<a class="sourceLine" id="cb16-72" data-line-number="72">unpaywall &lt;-<span class="st"> </span>unpaywall <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-73" data-line-number="73"><span class="st">  </span><span class="kw">filter</span>(genre <span class="op">==</span><span class="st"> &quot;journal-article&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-74" data-line-number="74"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(best_oa_location,journal_issn_l))</a>
+<a class="sourceLine" id="cb16-75" data-line-number="75"></a>
+<a class="sourceLine" id="cb16-76" data-line-number="76"><span class="kw">kable</span>(unpaywall) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-77" data-line-number="77"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-78" data-line-number="78"><span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;400px&quot;</span>)</a></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+doi
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+data_standard
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+is_oa
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+genre
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+oa_status
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+has_repository_copy
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+journal_is_oa
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+journal_is_in_doaj
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+journal_issns
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+journal_name
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+publisher
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+title
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+year
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_evidence
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_host
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_license
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_url
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_url_for_pdf
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+best_oa_version
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+10.1145/903893.903896
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+closed
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-0782
+</td>
+<td style="text-align:left;">
+Communications of the ACM
+</td>
+<td style="text-align:left;">
+Association for Computing Machinery (ACM)
+</td>
+<td style="text-align:left;">
+The role of IT in successful knowledge management initiatives
+</td>
+<td style="text-align:left;">
+2003
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1145/1314215.1314231
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-0782,1557-7317
+</td>
+<td style="text-align:left;">
+Communications of the ACM
+</td>
+<td style="text-align:left;">
+Association for Computing Machinery (ACM)
+</td>
+<td style="text-align:left;">
+Record matching in digital library metadata
+</td>
+<td style="text-align:left;">
+2008
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.comp.nus.edu.sg/~kanmy/papers/2008-cacm.pdf" class="uri">http://www.comp.nus.edu.sg/~kanmy/papers/2008-cacm.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://www.comp.nus.edu.sg/~kanmy/papers/2008-cacm.pdf" class="uri">http://www.comp.nus.edu.sg/~kanmy/papers/2008-cacm.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1145/3166068
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+closed
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-0782,1557-7317
+</td>
+<td style="text-align:left;">
+Communications of the ACM
+</td>
+<td style="text-align:left;">
+Association for Computing Machinery (ACM)
+</td>
+<td style="text-align:left;">
+Which is the fairest (rent division) of them all?
+</td>
+<td style="text-align:left;">
+2018
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2514/1.j055575
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+Establishment Times of Hypersonic Shock-Wave/Boundary-Layer Interactions in Intermittent Facilities
+</td>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH title and first author match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://eprints.soton.ac.uk/406505/1/Establishment_Times_of_Hypersonic_Shock_Wave.pdf" class="uri">https://eprints.soton.ac.uk/406505/1/Establishment_Times_of_Hypersonic_Shock_Wave.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://eprints.soton.ac.uk/406505/1/Establishment_Times_of_Hypersonic_Shock_Wave.pdf" class="uri">https://eprints.soton.ac.uk/406505/1/Establishment_Times_of_Hypersonic_Shock_Wave.pdf</a>
+</td>
+<td style="text-align:left;">
+acceptedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2514/3.12162
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+Interlaminar stresses in composite laminates under out-of-plane shear/bending
+</td>
+<td style="text-align:left;">
+1994
+</td>
+<td style="text-align:left;">
+oa repository (semantic scholar lookup)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/d33a/c33e4eff6fd5ece6c203e42d14a09f2e99bc.pdf" class="uri">http://pdfs.semanticscholar.org/d33a/c33e4eff6fd5ece6c203e42d14a09f2e99bc.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/d33a/c33e4eff6fd5ece6c203e42d14a09f2e99bc.pdf" class="uri">http://pdfs.semanticscholar.org/d33a/c33e4eff6fd5ece6c203e42d14a09f2e99bc.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2514/1.14873
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+Experimental Study of Linear Closed-Loop Control of Subsonic Cavity Flow
+</td>
+<td style="text-align:left;">
+2006
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://repository.bilkent.edu.tr/bitstream/11693/23809/1/Experimental%20study%20of%20linear%20closed-loop%20control%20of%20subsonic%20cavity%20flow.pdf" class="uri">http://repository.bilkent.edu.tr/bitstream/11693/23809/1/Experimental%20study%20of%20linear%20closed-loop%20control%20of%20subsonic%20cavity%20flow.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://repository.bilkent.edu.tr/bitstream/11693/23809/1/Experimental%20study%20of%20linear%20closed-loop%20control%20of%20subsonic%20cavity%20flow.pdf" class="uri">http://repository.bilkent.edu.tr/bitstream/11693/23809/1/Experimental%20study%20of%20linear%20closed-loop%20control%20of%20subsonic%20cavity%20flow.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2514/2.445
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+Residual Strength of Aging Aircraft with Multiple Site Damage/Multiple Element Damage
+</td>
+<td style="text-align:left;">
+1998
+</td>
+<td style="text-align:left;">
+oa repository (semantic scholar lookup)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/0707/c925d99c6275d0b722784ff8e1489fb8c512.pdf" class="uri">http://pdfs.semanticscholar.org/0707/c925d99c6275d0b722784ff8e1489fb8c512.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/0707/c925d99c6275d0b722784ff8e1489fb8c512.pdf" class="uri">http://pdfs.semanticscholar.org/0707/c925d99c6275d0b722784ff8e1489fb8c512.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2514/1.j053565
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+Prediction of Transonic Limit-Cycle Oscillations Using an Aeroelastic Harmonic Balance Method
+</td>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://pureadmin.qub.ac.uk/ws/files/15386385/aiaa_a_hb.pdf" class="uri">https://pureadmin.qub.ac.uk/ws/files/15386385/aiaa_a_hb.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://pureadmin.qub.ac.uk/ws/files/15386385/aiaa_a_hb.pdf" class="uri">https://pureadmin.qub.ac.uk/ws/files/15386385/aiaa_a_hb.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2514/1.2159
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+Aerodynamic Data Reconstruction and Inverse Design Using Proper Orthogonal Decomposition
+</td>
+<td style="text-align:left;">
+2004
+</td>
+<td style="text-align:left;">
+oa repository (semantic scholar lookup)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/2e93/a6d420b050d948c269fed2be8cbac5bc882d.pdf" class="uri">http://pdfs.semanticscholar.org/2e93/a6d420b050d948c269fed2be8cbac5bc882d.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/2e93/a6d420b050d948c269fed2be8cbac5bc882d.pdf" class="uri">http://pdfs.semanticscholar.org/2e93/a6d420b050d948c269fed2be8cbac5bc882d.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2514/1.4799
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+Logic-Based Active Control of Subsonic Cavity Flow Resonance
+</td>
+<td style="text-align:left;">
+2004
+</td>
+<td style="text-align:left;">
+oa repository (semantic scholar lookup)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/bfdd/8ad6d04229eef6d012828589bbfd6e91adb1.pdf" class="uri">http://pdfs.semanticscholar.org/bfdd/8ad6d04229eef6d012828589bbfd6e91adb1.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/bfdd/8ad6d04229eef6d012828589bbfd6e91adb1.pdf" class="uri">http://pdfs.semanticscholar.org/bfdd/8ad6d04229eef6d012828589bbfd6e91adb1.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2514/1.j055143
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+Nonlinear Aerodynamic and Aeroelastic Model Reduction Using a Discrete Empirical Interpolation Method
+</td>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://pureadmin.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf" class="uri">https://pureadmin.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://pureadmin.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf" class="uri">https://pureadmin.qub.ac.uk/ws/files/123540593/aiaa_journal_DEIM_submission.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1002/aic.12373
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-1541
+</td>
+<td style="text-align:left;">
+AIChE Journal
+</td>
+<td style="text-align:left;">
+Wiley
+</td>
+<td style="text-align:left;">
+Acid-sensitive magnetic nanoparticles as potential drug depots
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3134249?pdf=render" class="uri">http://europepmc.org/articles/pmc3134249?pdf=render</a>
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3134249?pdf=render" class="uri">http://europepmc.org/articles/pmc3134249?pdf=render</a>
+</td>
+<td style="text-align:left;">
+acceptedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1111/j.1399-0039.2011.01796.x
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-2815
+</td>
+<td style="text-align:left;">
+Tissue Antigens
+</td>
+<td style="text-align:left;">
+Wiley
+</td>
+<td style="text-align:left;">
+Natural killer cell engineering for cellular therapy of cancer
+</td>
+<td style="text-align:left;">
+2011
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3218564?pdf=render" class="uri">http://europepmc.org/articles/pmc3218564?pdf=render</a>
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc3218564?pdf=render" class="uri">http://europepmc.org/articles/pmc3218564?pdf=render</a>
+</td>
+<td style="text-align:left;">
+acceptedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1111/abac.12091
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-3072
+</td>
+<td style="text-align:left;">
+Abacus
+</td>
+<td style="text-align:left;">
+Wiley
+</td>
+<td style="text-align:left;">
+Comments on Shan and Walter: ‘Towards a Set of Design Principles for Executive Compensation Contracts’
+</td>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://strathprints.strath.ac.uk/55436/8/Hillier_etal_Abacus_2015_CEO_compensation_that_benefits.pdf" class="uri">https://strathprints.strath.ac.uk/55436/8/Hillier_etal_Abacus_2015_CEO_compensation_that_benefits.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://strathprints.strath.ac.uk/55436/8/Hillier_etal_Abacus_2015_CEO_compensation_that_benefits.pdf" class="uri">https://strathprints.strath.ac.uk/55436/8/Hillier_etal_Abacus_2015_CEO_compensation_that_benefits.pdf</a>
+</td>
+<td style="text-align:left;">
+acceptedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.2307/30040617
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+Academy of Management
+</td>
+<td style="text-align:left;">
+OWNERSHIP STRUCTURE, EXPROPRIATION, AND PERFORMANCE OF GROUP-AFFILIATED COMPANIES IN KOREA.
+</td>
+<td style="text-align:left;">
+2003
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH title match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+cc-by-nc-nd
+</td>
+<td style="text-align:left;">
+<a href="https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf" class="uri">https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf" class="uri">https://www.krm.or.kr/krmts/sdata/frbr/bizmap/2001/2001_041.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.5465/amj.2011.0727
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+Academy of Management
+</td>
+<td style="text-align:left;">
+“I Put in Effort, Therefore I Am Passionate”: Investigating the Path from Effort to Passion in Entrepreneurship
+</td>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf" class="uri">http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf" class="uri">http://fox.leuphana.de/portal/files/7377532/Gielnik_et_al._2015_Entrepreneurial_passion.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.5465/amj.2009.47084665
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+Academy of Management
+</td>
+<td style="text-align:left;">
+Does Patent Strategy Shape the Long-Run Supply of Public Knowledge? Evidence from Human Genetics
+</td>
+<td style="text-align:left;">
+2009
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://fmurray.scripts.mit.edu/docs/Huang.Murray_AMJ_09.16.2008_FINAL.pdf" class="uri">http://fmurray.scripts.mit.edu/docs/Huang.Murray_AMJ_09.16.2008_FINAL.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://fmurray.scripts.mit.edu/docs/Huang.Murray_AMJ_09.16.2008_FINAL.pdf" class="uri">http://fmurray.scripts.mit.edu/docs/Huang.Murray_AMJ_09.16.2008_FINAL.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.5465/amj.2013.1082
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+Academy of Management
+</td>
+<td style="text-align:left;">
+Why and When Leaders’ Affective States Influence Employee Upward Voice
+</td>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH title and first author match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://ira.lib.polyu.edu.hk/bitstream/10397/67339/2/Liu_et_al._2017_AMJ.pdf" class="uri">http://ira.lib.polyu.edu.hk/bitstream/10397/67339/2/Liu_et_al._2017_AMJ.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://ira.lib.polyu.edu.hk/bitstream/10397/67339/2/Liu_et_al._2017_AMJ.pdf" class="uri">http://ira.lib.polyu.edu.hk/bitstream/10397/67339/2/Liu_et_al._2017_AMJ.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1134/s0001434610090324
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4346,1573-8876
+</td>
+<td style="text-align:left;">
+Mathematical Notes
+</td>
+<td style="text-align:left;">
+Pleiades Publishing Ltd
+</td>
+<td style="text-align:left;">
+A supercongruence motivated by the Legendre family of elliptic curves
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://wain.mi.ras.ru/PS/supercong-MN2010.pdf" class="uri">http://wain.mi.ras.ru/PS/supercong-MN2010.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://wain.mi.ras.ru/PS/supercong-MN2010.pdf" class="uri">http://wain.mi.ras.ru/PS/supercong-MN2010.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1021/ar900178k
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4842,1520-4898
+</td>
+<td style="text-align:left;">
+Accounts of Chemical Research
+</td>
+<td style="text-align:left;">
+American Chemical Society (ACS)
+</td>
+<td style="text-align:left;">
+Cofabrication: A Strategy for Building Multicomponent Microsystems
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc2857577?pdf=render" class="uri">http://europepmc.org/articles/pmc2857577?pdf=render</a>
+</td>
+<td style="text-align:left;">
+<a href="http://europepmc.org/articles/pmc2857577?pdf=render" class="uri">http://europepmc.org/articles/pmc2857577?pdf=render</a>
+</td>
+<td style="text-align:left;">
+acceptedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1021/ar500303m
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4842,1520-4898
+</td>
+<td style="text-align:left;">
+Accounts of Chemical Research
+</td>
+<td style="text-align:left;">
+American Chemical Society (ACS)
+</td>
+<td style="text-align:left;">
+Electronic Structure and Optical Signatures of Semiconducting Transition Metal Dichalcogenide Nanosheets
+</td>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://repositorium.sdum.uminho.pt/bitstream/1822/39757/1/Optical%20signagures%20of%20SC%20TMD%20NSs.pdf" class="uri">http://repositorium.sdum.uminho.pt/bitstream/1822/39757/1/Optical%20signagures%20of%20SC%20TMD%20NSs.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://repositorium.sdum.uminho.pt/bitstream/1822/39757/1/Optical%20signagures%20of%20SC%20TMD%20NSs.pdf" class="uri">http://repositorium.sdum.uminho.pt/bitstream/1822/39757/1/Optical%20signagures%20of%20SC%20TMD%20NSs.pdf</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1021/ar900183k
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+bronze
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4842,1520-4898
+</td>
+<td style="text-align:left;">
+Accounts of Chemical Research
+</td>
+<td style="text-align:left;">
+American Chemical Society (ACS)
+</td>
+<td style="text-align:left;">
+Attachment Chemistry of Organic Molecules on Si(111)-7 × 7
+</td>
+<td style="text-align:left;">
+2009
+</td>
+<td style="text-align:left;">
+open (via free pdf)
+</td>
+<td style="text-align:left;">
+publisher
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://pubs.acs.org/doi/pdf/10.1021/ar900183k" class="uri">https://pubs.acs.org/doi/pdf/10.1021/ar900183k</a>
+</td>
+<td style="text-align:left;">
+<a href="https://pubs.acs.org/doi/pdf/10.1021/ar900183k" class="uri">https://pubs.acs.org/doi/pdf/10.1021/ar900183k</a>
+</td>
+<td style="text-align:left;">
+publishedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1121/1.4996860
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4966
+</td>
+<td style="text-align:left;">
+The Journal of the Acoustical Society of America
+</td>
+<td style="text-align:left;">
+Acoustical Society of America (ASA)
+</td>
+<td style="text-align:left;">
+Space-time domain solutions of the wave equation by a non-singular boundary integral method and Fourier transform
+</td>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:left;">
+oa repository (via OAI-PMH doi match)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://arxiv.org/pdf/1706.07919" class="uri">http://arxiv.org/pdf/1706.07919</a>
+</td>
+<td style="text-align:left;">
+<a href="http://arxiv.org/pdf/1706.07919" class="uri">http://arxiv.org/pdf/1706.07919</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1121/1.3625257
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4966
+</td>
+<td style="text-align:left;">
+The Journal of the Acoustical Society of America
+</td>
+<td style="text-align:left;">
+Acoustical Society of America (ASA)
+</td>
+<td style="text-align:left;">
+Passive acoustic survey of Yangtze finless porpoises using a cargo ship as a moving platform
+</td>
+<td style="text-align:left;">
+2011
+</td>
+<td style="text-align:left;">
+oa repository (semantic scholar lookup)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/d504/f8ad0fd51d7f0cecd85fc6d2c07c77038fe9.pdf" class="uri">http://pdfs.semanticscholar.org/d504/f8ad0fd51d7f0cecd85fc6d2c07c77038fe9.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/d504/f8ad0fd51d7f0cecd85fc6d2c07c77038fe9.pdf" class="uri">http://pdfs.semanticscholar.org/d504/f8ad0fd51d7f0cecd85fc6d2c07c77038fe9.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1121/1.2721658
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+closed
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4966
+</td>
+<td style="text-align:left;">
+The Journal of the Acoustical Society of America
+</td>
+<td style="text-align:left;">
+Acoustical Society of America (ASA)
+</td>
+<td style="text-align:left;">
+Echolocation click sounds from wild inshore finless porpoise (Neophocaena phocaenoides sunameri) with comparisons to the sonar of riverine N. p. asiaeorientalis
+</td>
+<td style="text-align:left;">
+2007
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1121/1.4929492
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4966
+</td>
+<td style="text-align:left;">
+The Journal of the Acoustical Society of America
+</td>
+<td style="text-align:left;">
+Acoustical Society of America (ASA)
+</td>
+<td style="text-align:left;">
+Echolocation signals of free-ranging Indo-Pacific humpback dolphins (Sousa chinensis) in Sanniang Bay, China
+</td>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:left;">
+oa repository (semantic scholar lookup)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/447a/9f5e8997ca658e6499c5130c57e8c8bb72d9.pdf" class="uri">http://pdfs.semanticscholar.org/447a/9f5e8997ca658e6499c5130c57e8c8bb72d9.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/447a/9f5e8997ca658e6499c5130c57e8c8bb72d9.pdf" class="uri">http://pdfs.semanticscholar.org/447a/9f5e8997ca658e6499c5130c57e8c8bb72d9.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1121/1.3021302
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+closed
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4966
+</td>
+<td style="text-align:left;">
+The Journal of the Acoustical Society of America
+</td>
+<td style="text-align:left;">
+Acoustical Society of America (ASA)
+</td>
+<td style="text-align:left;">
+Comparison of stationary acoustic monitoring and visual observation of finless porpoises
+</td>
+<td style="text-align:left;">
+2009
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10.1121/1.3442574
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+journal-article
+</td>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0001-4966
+</td>
+<td style="text-align:left;">
+The Journal of the Acoustical Society of America
+</td>
+<td style="text-align:left;">
+Acoustical Society of America (ASA)
+</td>
+<td style="text-align:left;">
+Density estimation of Yangtze finless porpoises using passive acoustic sensors and automated click train detection
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
+oa repository (semantic scholar lookup)
+</td>
+<td style="text-align:left;">
+repository
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/f06e/dc9e6ae7464ae20408f4b925d7eb184f63b3.pdf" class="uri">http://pdfs.semanticscholar.org/f06e/dc9e6ae7464ae20408f4b925d7eb184f63b3.pdf</a>
+</td>
+<td style="text-align:left;">
+<a href="http://pdfs.semanticscholar.org/f06e/dc9e6ae7464ae20408f4b925d7eb184f63b3.pdf" class="uri">http://pdfs.semanticscholar.org/f06e/dc9e6ae7464ae20408f4b925d7eb184f63b3.pdf</a>
+</td>
+<td style="text-align:left;">
+submittedVersion
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="compliment-with-sherparomeo-information" class="section level1">
+<h1><span class="header-section-number">4</span> Compliment with Sherpa/Romeo information</h1>
+<p>SHERPA RoMEO is an online resource that aggregates and analyses publisher open access policies from around the world and provides summaries of self-archiving permissions and conditions of rights given to authors on a journal-by-journal basis.</p>
+<p>To apply for API key, please refer to this page - <a href="http://www.sherpa.ac.uk/romeo/api.html" class="uri">http://www.sherpa.ac.uk/romeo/api.html</a></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co">#separate the 2 ISSNs</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">unpaywall2 &lt;-<span class="st"> </span>unpaywall <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw">separate</span>(journal_issns, <span class="kw">c</span>(<span class="st">&quot;issn1&quot;</span>,<span class="st">&quot;issn2&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">,&quot;</span>, <span class="dt">remove =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="co">#querying romeo API using the issn1</span></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">#your_own_key : please use your own API key</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8">romeo &lt;-<span class="st"> </span><span class="kw">map</span>(unpaywall2<span class="op">$</span>issn1, <span class="dt">.f =</span> <span class="kw">safely</span>(<span class="cf">function</span>(x) <span class="kw">rr_journal_issn</span>(x, your_own_key)))</a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co"># pluck the data, get rid of duplicate ISSNs and the extra title column</span></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11">romeo_df &lt;-<span class="st"> </span><span class="kw">map_df</span>(romeo, <span class="st">&quot;result&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">duplicated</span>(issn)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>title)</a>
+<a class="sourceLine" id="cb17-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb17-15" data-line-number="15"><span class="co"># join by ISSN</span></a>
+<a class="sourceLine" id="cb17-16" data-line-number="16">unpaywall_romeo1 &lt;-<span class="st"> </span>unpaywall2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-17" data-line-number="17"><span class="st">  </span><span class="kw">left_join</span>(romeo_df, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;issn1&quot;</span> =<span class="st"> &quot;issn&quot;</span>))</a>
+<a class="sourceLine" id="cb17-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb17-19" data-line-number="19"><span class="co"># Using issn2 for those resulted in NA using issn</span></a>
+<a class="sourceLine" id="cb17-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb17-21" data-line-number="21"><span class="co"># add rownames as identifiers so we can bind together</span></a>
+<a class="sourceLine" id="cb17-22" data-line-number="22">unpaywall_romeo1 &lt;-<span class="st"> </span>unpaywall_romeo1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-23" data-line-number="23"><span class="st">  </span><span class="kw">rownames_to_column</span>()</a>
+<a class="sourceLine" id="cb17-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb17-25" data-line-number="25"><span class="co"># create table of items not found by issn1 (where romeocolour is NA)</span></a>
+<a class="sourceLine" id="cb17-26" data-line-number="26">unp.na &lt;-<span class="st"> </span>unpaywall_romeo1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-27" data-line-number="27"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(romeocolour))</a>
+<a class="sourceLine" id="cb17-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb17-29" data-line-number="29"><span class="co"># create vector of NA rownames</span></a>
+<a class="sourceLine" id="cb17-30" data-line-number="30">na_rownames &lt;-<span class="st"> </span><span class="kw">as.integer</span>(unp.na<span class="op">$</span>rowname)</a>
+<a class="sourceLine" id="cb17-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb17-32" data-line-number="32"><span class="co"># query sherpa-romeo with issn2</span></a>
+<a class="sourceLine" id="cb17-33" data-line-number="33">romeo2 &lt;-<span class="st"> </span><span class="kw">map</span>(unp.na<span class="op">$</span>issn2, <span class="dt">.f =</span> <span class="kw">safely</span>(<span class="cf">function</span>(x) <span class="kw">rr_journal_issn</span>(x, <span class="dt">key=</span>your_own_key)))</a>
+<a class="sourceLine" id="cb17-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb17-35" data-line-number="35"><span class="co"># pluck data, remove duplicates and extra title column</span></a>
+<a class="sourceLine" id="cb17-36" data-line-number="36">romeo2_df &lt;-<span class="st">  </span><span class="kw">map_df</span>(romeo2, <span class="st">&quot;result&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-37" data-line-number="37"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">duplicated</span>(issn)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-38" data-line-number="38"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>title)</a>
+<a class="sourceLine" id="cb17-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb17-40" data-line-number="40"><span class="co"># delete columsn with NA create new table with the values we just retrieved</span></a>
+<a class="sourceLine" id="cb17-41" data-line-number="41">unp.na2 &lt;-<span class="st"> </span>unp.na <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-42" data-line-number="42"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>romeocolour, <span class="op">-</span>preprint, <span class="op">-</span>postprint, <span class="op">-</span>pdf, <span class="op">-</span>pre_embargo, <span class="op">-</span>post_embargo, <span class="op">-</span>pdf_embargo) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-43" data-line-number="43"><span class="st">  </span><span class="kw">left_join</span>(romeo2_df, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;issn2&quot;</span> =<span class="st"> &quot;issn&quot;</span>))</a>
+<a class="sourceLine" id="cb17-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb17-45" data-line-number="45"><span class="co"># join NA data back</span></a>
+<a class="sourceLine" id="cb17-46" data-line-number="46"><span class="co"># remove NA data from unpaywall_romeo1 and replace with new data, rearrange by rowname</span></a>
+<a class="sourceLine" id="cb17-47" data-line-number="47">unpaywall_romeo2 &lt;-<span class="st"> </span>unpaywall_romeo1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-48" data-line-number="48"><span class="st">  </span><span class="kw">slice</span>(<span class="op">-</span>na_rownames) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-49" data-line-number="49"><span class="st">  </span><span class="kw">bind_rows</span>(unp.na2) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-50" data-line-number="50"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rowname =</span> <span class="kw">as.integer</span>(rowname)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-51" data-line-number="51"><span class="st">  </span><span class="kw">arrange</span>(rowname)</a></code></pre></div>
+<p>Create a summary table.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># create new column to give information about publisher permissions</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">unpaywall_romeo2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;~/Documents/nBox/R/full_text/sherpa.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co"># create new column to give information about publisher permissions</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="st">`</span><span class="dt">%notin%</span><span class="st">`</span> &lt;-<span class="st"> </span><span class="kw">negate</span>(<span class="st">`</span><span class="dt">%in%</span><span class="st">`</span>)</a>
+<a class="sourceLine" id="cb18-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb18-8" data-line-number="8">unpaywall_romeo_final &lt;-<span class="st"> </span>unpaywall_romeo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">status =</span> <span class="kw">case_when</span>(pdf <span class="op">==</span><span class="st"> &quot;can&quot;</span> <span class="op">&amp;</span><span class="st"> </span>pdf_embargo <span class="op">==</span><span class="st"> &quot;NA&quot;</span> <span class="op">~</span><span class="st"> &quot;final_immediate&quot;</span>,</a>
+<a class="sourceLine" id="cb18-10" data-line-number="10">                            pdf <span class="op">==</span><span class="st"> &quot;restricted&quot;</span> <span class="op">~</span><span class="st"> &quot;final_restricted&quot;</span>,</a>
+<a class="sourceLine" id="cb18-11" data-line-number="11">                            postprint <span class="op">==</span><span class="st"> &quot;can&quot;</span> <span class="op">&amp;</span><span class="st"> </span>post_embargo <span class="op">==</span><span class="st"> &quot;NA&quot;</span> <span class="op">&amp;</span></a>
+<a class="sourceLine" id="cb18-12" data-line-number="12"><span class="st">                              </span>pdf <span class="op">%notin%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;can&quot;</span>, <span class="st">&quot;restricted&quot;</span>) <span class="op">~</span><span class="st">                          </span></a>
+<a class="sourceLine" id="cb18-13" data-line-number="13"><span class="st">                              &quot;postprint_immediate&quot;</span>,</a>
+<a class="sourceLine" id="cb18-14" data-line-number="14">                            postprint <span class="op">==</span><span class="st"> &quot;restricted&quot;</span> <span class="op">&amp;</span><span class="st"> </span>pdf <span class="op">%notin%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;can&quot;</span>, <span class="st">&quot;restricted&quot;</span>) <span class="op">~</span></a>
+<a class="sourceLine" id="cb18-15" data-line-number="15"><span class="st">                              &quot;postprint_restricted&quot;</span>,</a>
+<a class="sourceLine" id="cb18-16" data-line-number="16">                            preprint <span class="op">==</span><span class="st"> &quot;can&quot;</span>  <span class="op">&amp;</span><span class="st"> </span>pre_embargo <span class="op">==</span><span class="st"> &quot;NA&quot;</span> <span class="op">&amp;</span></a>
+<a class="sourceLine" id="cb18-17" data-line-number="17"><span class="st">                              </span>postprint <span class="op">%notin%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;can&quot;</span>, <span class="st">&quot;restricted&quot;</span>) <span class="op">&amp;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-18" data-line-number="18"><span class="st">                              </span>pdf <span class="op">%notin%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;can&quot;</span>, <span class="st">&quot;restricted&quot;</span>) <span class="op">~</span><span class="st"> &quot;preprint_immediate&quot;</span>,</a>
+<a class="sourceLine" id="cb18-19" data-line-number="19">                            preprint <span class="op">==</span><span class="st"> &quot;restricted&quot;</span> <span class="op">&amp;</span><span class="st"> </span>postprint <span class="op">%notin%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;can&quot;</span>, <span class="st">&quot;restricted&quot;</span>) <span class="op">&amp;</span></a>
+<a class="sourceLine" id="cb18-20" data-line-number="20"><span class="st">                              </span>pdf <span class="op">%notin%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;can&quot;</span>, <span class="st">&quot;restricted&quot;</span>) <span class="op">~</span><span class="st"> &quot;preprint_restricted&quot;</span>,</a>
+<a class="sourceLine" id="cb18-21" data-line-number="21">                            preprint <span class="op">==</span><span class="st"> &quot;cannot&quot;</span> <span class="op">&amp;</span><span class="st"> </span>postprint <span class="op">==</span><span class="st"> &quot;cannot&quot;</span> <span class="op">&amp;</span><span class="st"> </span>pdf <span class="op">==</span><span class="st"> &quot;cannot&quot;</span> <span class="op">~</span></a>
+<a class="sourceLine" id="cb18-22" data-line-number="22"><span class="st">                              &quot;fully_restricted&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># create a summary table</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">unpaywall_romeo_summary &lt;-<span class="st"> </span>unpaywall_romeo_final <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(status) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>()</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="kw">kable</span>(unpaywall_romeo_summary) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>)) </a></code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+status
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+final_restricted
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fully_restricted
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+postprint_restricted
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="identify-the-works-that-can-be-deposited" class="section level1">
+<h1><span class="header-section-number">5</span> Identify the works that can be deposited</h1>
+<p>For example, let’s say we only want to deposit full text that the publisher allows PDF version to be deposited immediately.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">to_dl &lt;-<span class="st"> </span>sample <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(status <span class="op">==</span><span class="st"> &quot;final_immediate&quot;</span> <span class="op">&amp;</span><span class="st"> </span>best_oa_license <span class="op">==</span><span class="st"> &quot;cc-by&quot;</span>)</a></code></pre></div>
+</div>
+<div id="download-the-full-text" class="section level1">
+<h1><span class="header-section-number">6</span> Download the full text</h1>
+<p>There are 2 methods to download the full text :</p>
+<ul>
+<li><p>Using another R package called fulltext</p></li>
+<li><p>Using direct URL download</p></li>
+</ul>
+<div id="using-fulltext-package" class="section level2">
+<h2><span class="header-section-number">6.1</span> Using fulltext package</h2>
+<p>The fulltext package made it easy to download the full text of a publication based on a DOI. They have several data sources, for e.g. PLOS, arXiv.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co">#change the class of DOI from factor to character</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">df &lt;-<span class="st"> </span>to_dl <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">doi =</span> <span class="kw">as.character</span>(doi))</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="co">#splitting the data into a smaller dataframe for example 100 dois per dataframe</span></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="co">#get the number of dataframes to be created, in this case, it is variable s </span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8">s &lt;-<span class="st"> </span>(<span class="kw">nrow</span>(df)<span class="op">-</span><span class="dv">1</span>) <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb21-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10">dt &lt;-<span class="st"> </span><span class="kw">split</span>(df, (<span class="kw">seq</span>(<span class="kw">nrow</span>(df))<span class="op">-</span><span class="dv">1</span>) <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb21-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb21-12" data-line-number="12"><span class="co">#so we will create s dataframe that is named as doi1, doi2, ... till doi(s)</span></a>
+<a class="sourceLine" id="cb21-13" data-line-number="13"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>s){</a>
+<a class="sourceLine" id="cb21-14" data-line-number="14">  nam &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;doi&quot;</span>, i, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb21-15" data-line-number="15">  <span class="kw">assign</span>(nam, dt [[i]])</a>
+<a class="sourceLine" id="cb21-16" data-line-number="16">}</a>
+<a class="sourceLine" id="cb21-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb21-18" data-line-number="18"><span class="co">#creating loop to download full text </span></a>
+<a class="sourceLine" id="cb21-19" data-line-number="19"><span class="co">#note: once you are done with the first dataframe, doi, change it to doi2 and so on</span></a>
+<a class="sourceLine" id="cb21-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb21-21" data-line-number="21"><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(doi1)){</a>
+<a class="sourceLine" id="cb21-22" data-line-number="22">  <span class="kw">cat</span>(<span class="st">&quot;.&quot;</span>)</a>
+<a class="sourceLine" id="cb21-23" data-line-number="23">  res &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(doi1, <span class="dt">.f =</span> <span class="kw">safely</span>(<span class="cf">function</span>(x) <span class="kw">ft_get</span>(x,<span class="dt">type=</span><span class="st">&quot;pdf&quot;</span>)))</a>
+<a class="sourceLine" id="cb21-24" data-line-number="24">}</a>
+<a class="sourceLine" id="cb21-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb21-26" data-line-number="26"><span class="co">#note:</span></a>
+<a class="sourceLine" id="cb21-27" data-line-number="27"><span class="co">#the location of the full text downloaded can be found at /Users/xxx/Library/Caches/R/fulltext</span></a></code></pre></div>
+<p>There will be warnings or errors displayed if the full text is not downloaded. <img src="images/error.png" /></p>
+</div>
+<div id="using-direct-url" class="section level2">
+<h2><span class="header-section-number">6.2</span> Using direct url</h2>
+<p>For full text that cannot be downloaded using the fulltext package, we can use the direct URL approach as Unpaywall has provided the direct URL to get the full text of the publication. Similarly, there will be a warning if the full text cannot be downloaded from the URL.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># convert the url as charcter, as by default it is assigned as factor</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">urls &lt;-<span class="st"> </span>to_dl <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(doi,best_oa_url_for_pdf) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">doi=</span><span class="kw">as.character</span>(doi), <span class="dt">url=</span><span class="kw">as.character</span>(best_oa_url_for_pdf))</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="co">#set location to download the files</span></a>
+<a class="sourceLine" id="cb22-7" data-line-number="7"><span class="kw">setwd</span>(<span class="st">&quot;~/Desktop/ft/files/&quot;</span>)</a>
+<a class="sourceLine" id="cb22-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb22-9" data-line-number="9"><span class="co">#create empty error file (error1.txt) if the url is not working</span></a>
+<a class="sourceLine" id="cb22-10" data-line-number="10"><span class="cf">for</span>(s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(urls)){</a>
+<a class="sourceLine" id="cb22-11" data-line-number="11">  name=<span class="kw">paste</span>(<span class="st">&quot;doi&quot;</span>,s,<span class="st">&quot;.pdf&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>) <span class="co">#create a name for the file to be downloaded</span></a>
+<a class="sourceLine" id="cb22-12" data-line-number="12">  url_n=urls<span class="op">$</span>url[[s]]</a>
+<a class="sourceLine" id="cb22-13" data-line-number="13">  <span class="kw">tryCatch</span>(<span class="kw">download.file</span>(url_n,</a>
+<a class="sourceLine" id="cb22-14" data-line-number="14">                         <span class="dt">destfile=</span>name, <span class="dt">method=</span><span class="st">&#39;auto&#39;</span>),</a>
+<a class="sourceLine" id="cb22-15" data-line-number="15">           <span class="dt">error =</span> <span class="cf">function</span>(e) {</a>
+<a class="sourceLine" id="cb22-16" data-line-number="16">             <span class="kw">file.create</span>(<span class="kw">paste</span>(<span class="st">&quot;error&quot;</span>, s, <span class="st">&quot;.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)) </a>
+<a class="sourceLine" id="cb22-17" data-line-number="17">             </a>
+<a class="sourceLine" id="cb22-18" data-line-number="18">           }) <span class="co">#if the url error, create an empty error file and skip to next url</span></a>
+<a class="sourceLine" id="cb22-19" data-line-number="19">}</a></code></pre></div>
+</div>
+</div>
+<div id="optional-create-the-metadata-file" class="section level1">
+<h1><span class="header-section-number">7</span> (Optional) Create the metadata file</h1>
+<p>Use Crossref as a source to create the metadata file.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co">#get the metadata based on a list of doi from dataframe called doi1</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">works_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(unpaywall_romeo_final<span class="op">$</span>doi,</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">                         <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">                           my_works &lt;-<span class="st"> </span><span class="kw">cr_works</span>(<span class="dt">doi =</span> x) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="st">                             </span>purrr<span class="op">::</span><span class="kw">pluck</span>(<span class="st">&quot;data&quot;</span>)</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6">                         })</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb23-8" data-line-number="8"><span class="co">#unnest the list</span></a>
+<a class="sourceLine" id="cb23-9" data-line-number="9">works_df &lt;-<span class="st"> </span>works_list <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-10" data-line-number="10"><span class="st">  </span>purrr<span class="op">::</span><span class="kw">map_dfr</span>(., <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb23-11" data-line-number="11">    x[, ] </a>
+<a class="sourceLine" id="cb23-12" data-line-number="12">  })</a>
+<a class="sourceLine" id="cb23-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb23-14" data-line-number="14"><span class="co">#unnest the authors field to combine them</span></a>
+<a class="sourceLine" id="cb23-15" data-line-number="15">authors &lt;-<span class="st"> </span>works_df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-16" data-line-number="16"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">map_lgl</span>(author, is.null)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-17" data-line-number="17"><span class="st">  </span><span class="kw">unnest</span>(author, <span class="dt">.drop =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-18" data-line-number="18"><span class="st">  </span><span class="kw">unite</span>(author, <span class="kw">c</span>(family, given), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-19" data-line-number="19"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(doi) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-20" data-line-number="20"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(author)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-21" data-line-number="21"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">all_authors=</span><span class="kw">paste</span>(author, <span class="dt">collapse=</span><span class="st">&quot; ; &quot;</span>))</a>
+<a class="sourceLine" id="cb23-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb23-23" data-line-number="23"><span class="co">#combine back with metadata</span></a>
+<a class="sourceLine" id="cb23-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb23-25" data-line-number="25">works_df1 &lt;-<span class="st"> </span>works_df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-26" data-line-number="26"><span class="st">  </span><span class="kw">select</span>(<span class="kw">c</span>(title,container.title, doi,issn,issue,volume,page,publisher, published.print))</a>
+<a class="sourceLine" id="cb23-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb23-28" data-line-number="28">combined &lt;-<span class="st"> </span><span class="kw">left_join</span>(<span class="dt">x=</span>works_df1, <span class="dt">y=</span>authors, <span class="dt">by=</span><span class="st">&quot;doi&quot;</span>)</a>
+<a class="sourceLine" id="cb23-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb23-30" data-line-number="30">cls &lt;-<span class="st"> </span><span class="kw">sapply</span>(combined, class)</a>
+<a class="sourceLine" id="cb23-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb23-32" data-line-number="32">newCombined &lt;-<span class="st"> </span>combined <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">which</span>(cls<span class="op">==</span><span class="st">&quot;character&quot;</span>))</a>
+<a class="sourceLine" id="cb23-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb23-34" data-line-number="34"><span class="kw">kable</span>(newCombined) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-35" data-line-number="35"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-36" data-line-number="36"><span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;400px&quot;</span>)</a></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+title
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+container.title
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+doi
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+issn
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+issue
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+volume
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+page
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+publisher
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+published.print
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+all_authors
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+The role of IT in successful knowledge management initiatives
+</td>
+<td style="text-align:left;">
+Communications of the ACM
+</td>
+<td style="text-align:left;">
+10.1145/903893.903896
+</td>
+<td style="text-align:left;">
+0001-0782
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+46
+</td>
+<td style="text-align:left;">
+69-73
+</td>
+<td style="text-align:left;">
+Association for Computing Machinery (ACM)
+</td>
+<td style="text-align:left;">
+2003-09-01
+</td>
+<td style="text-align:left;">
+Kankanhalli Atreyi ; Tanudidjaja Fransiska ; Sutanto Juliana ; Tan Bernard C. Y.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Record matching in digital library metadata
+</td>
+<td style="text-align:left;">
+Communications of the ACM
+</td>
+<td style="text-align:left;">
+10.1145/1314215.1314231
+</td>
+<td style="text-align:left;">
+0001-0782,1557-7317
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+51
+</td>
+<td style="text-align:left;">
+91-94
+</td>
+<td style="text-align:left;">
+Association for Computing Machinery (ACM)
+</td>
+<td style="text-align:left;">
+2008-02
+</td>
+<td style="text-align:left;">
+Kan Min-Yen ; Tan Yee Fan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Which is the fairest (rent division) of them all?
+</td>
+<td style="text-align:left;">
+Communications of the ACM
+</td>
+<td style="text-align:left;">
+10.1145/3166068
+</td>
+<td style="text-align:left;">
+0001-0782,1557-7317
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+61
+</td>
+<td style="text-align:left;">
+93-100
+</td>
+<td style="text-align:left;">
+Association for Computing Machinery (ACM)
+</td>
+<td style="text-align:left;">
+2018-01-23
+</td>
+<td style="text-align:left;">
+Gal Kobi ; Procaccia Ariel D. ; Mash Moshe ; Zick Yair
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Establishment Times of Hypersonic Shock-Wave/Boundary-Layer Interactions in Intermittent Facilities
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+10.2514/1.j055575
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+55
+</td>
+<td style="text-align:left;">
+2875-2887
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+2017-09
+</td>
+<td style="text-align:left;">
+Vanstone Leon ; Estruch-Samper David ; Ganapathisubramani Bharathram
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Interlaminar stresses in composite laminates under out-of-plane shear/bending
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+10.2514/3.12162
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+32
+</td>
+<td style="text-align:left;">
+1700-1708
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+1994-08
+</td>
+<td style="text-align:left;">
+Kim Taehyoun ; Atluri Satya N.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Experimental Study of Linear Closed-Loop Control of Subsonic Cavity Flow
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+10.2514/1.14873
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+44
+</td>
+<td style="text-align:left;">
+929-938
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+2006-05
+</td>
+<td style="text-align:left;">
+Yan P. ; Debiasi M. ; Yuan X. ; Little J. ; Ozbay H. ; Samimy M.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Residual Strength of Aging Aircraft with Multiple Site Damage/Multiple Element Damage
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+10.2514/2.445
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+36
+</td>
+<td style="text-align:left;">
+840-847
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+1998-05
+</td>
+<td style="text-align:left;">
+Wang L. ; Chow W. T. ; Kawai H. ; Atluri S. N.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Prediction of Transonic Limit-Cycle Oscillations Using an Aeroelastic Harmonic Balance Method
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+10.2514/1.j053565
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+53
+</td>
+<td style="text-align:left;">
+2040-2051
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+2015-07
+</td>
+<td style="text-align:left;">
+Yao W. ; Marques S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aerodynamic Data Reconstruction and Inverse Design Using Proper Orthogonal Decomposition
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+10.2514/1.2159
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+42
+</td>
+<td style="text-align:left;">
+1505-1516
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+2004-08
+</td>
+<td style="text-align:left;">
+Bui-Thanh T. ; Damodaran M. ; Willcox K.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Logic-Based Active Control of Subsonic Cavity Flow Resonance
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+10.2514/1.4799
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+42
+</td>
+<td style="text-align:left;">
+1901-1909
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+2004-09
+</td>
+<td style="text-align:left;">
+Debiasi M. ; Samimy M.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Nonlinear Aerodynamic and Aeroelastic Model Reduction Using a Discrete Empirical Interpolation Method
+</td>
+<td style="text-align:left;">
+AIAA Journal
+</td>
+<td style="text-align:left;">
+10.2514/1.j055143
+</td>
+<td style="text-align:left;">
+0001-1452,1533-385X
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+55
+</td>
+<td style="text-align:left;">
+624-637
+</td>
+<td style="text-align:left;">
+American Institute of Aeronautics and Astronautics (AIAA)
+</td>
+<td style="text-align:left;">
+2017-02
+</td>
+<td style="text-align:left;">
+Yao W. ; Marques S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acid-sensitive magnetic nanoparticles as potential drug depots
+</td>
+<td style="text-align:left;">
+AIChE Journal
+</td>
+<td style="text-align:left;">
+10.1002/aic.12373
+</td>
+<td style="text-align:left;">
+0001-1541
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+57
+</td>
+<td style="text-align:left;">
+1638-1645
+</td>
+<td style="text-align:left;">
+Wiley
+</td>
+<td style="text-align:left;">
+2011-06
+</td>
+<td style="text-align:left;">
+Wuang Shy Chyi ; Neoh Koon Gee ; Kang En-Tang ; Leckband Deborah E. ; Pack Daniel W.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Natural killer cell engineering for cellular therapy of cancer
+</td>
+<td style="text-align:left;">
+Tissue Antigens
+</td>
+<td style="text-align:left;">
+10.1111/j.1399-0039.2011.01796.x
+</td>
+<td style="text-align:left;">
+0001-2815
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+78
+</td>
+<td style="text-align:left;">
+409-415
+</td>
+<td style="text-align:left;">
+Wiley
+</td>
+<td style="text-align:left;">
+2011-12
+</td>
+<td style="text-align:left;">
+Shook D. R. ; Campana D.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Comments on Shan and Walter: ‘Towards a Set of Design Principles for Executive Compensation Contracts’
+</td>
+<td style="text-align:left;">
+Abacus
+</td>
+<td style="text-align:left;">
+10.1111/abac.12091
+</td>
+<td style="text-align:left;">
+0001-3072
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+52
+</td>
+<td style="text-align:left;">
+685-771
+</td>
+<td style="text-align:left;">
+Wiley
+</td>
+<td style="text-align:left;">
+2016-12
+</td>
+<td style="text-align:left;">
+Beaumont Stacey ; Ratiu Raluca ; Reeb David ; Boyle Glenn ; Brown Philip ; Szimayer Alexander ; da Silva Rosa Raymond ; Hillier David ; McColgan Patrick ; Tsekeris Athanasios ; Howieson Bryan ; Matolcsy Zoltan ; Spiropoulos Helen ; Roberts John ; Smith Tom ; Zhou Qing ; Swan Peter L. ; Taylor Stephen ; Wright Sue ; Yermack David
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OWNERSHIP STRUCTURE, EXPROPRIATION, AND PERFORMANCE OF GROUP-AFFILIATED COMPANIES IN KOREA.
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+10.2307/30040617
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+46
+</td>
+<td style="text-align:left;">
+238-253
+</td>
+<td style="text-align:left;">
+Academy of Management
+</td>
+<td style="text-align:left;">
+2003-04-01
+</td>
+<td style="text-align:left;">
+Chang S. J.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“I Put in Effort, Therefore I Am Passionate”: Investigating the Path from Effort to Passion in Entrepreneurship
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+10.5465/amj.2011.0727
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+58
+</td>
+<td style="text-align:left;">
+1012-1031
+</td>
+<td style="text-align:left;">
+Academy of Management
+</td>
+<td style="text-align:left;">
+2015-08
+</td>
+<td style="text-align:left;">
+Gielnik Michael M. ; Spitzmuller Matthias ; Schmitt Antje ; Klemann D. Katharina ; Frese Michael
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Does Patent Strategy Shape the Long-Run Supply of Public Knowledge? Evidence from Human Genetics
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+10.5465/amj.2009.47084665
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+52
+</td>
+<td style="text-align:left;">
+1193-1221
+</td>
+<td style="text-align:left;">
+Academy of Management
+</td>
+<td style="text-align:left;">
+2009-12
+</td>
+<td style="text-align:left;">
+Huang Kenneth G. ; Murray Fiona E.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Why and When Leaders’ Affective States Influence Employee Upward Voice
+</td>
+<td style="text-align:left;">
+Academy of Management Journal
+</td>
+<td style="text-align:left;">
+10.5465/amj.2013.1082
+</td>
+<td style="text-align:left;">
+0001-4273,1948-0989
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+60
+</td>
+<td style="text-align:left;">
+238-263
+</td>
+<td style="text-align:left;">
+Academy of Management
+</td>
+<td style="text-align:left;">
+2017-02
+</td>
+<td style="text-align:left;">
+Liu Wu ; Song Zhaoli ; Li Xian ; Liao Zhenyu
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A supercongruence motivated by the Legendre family of elliptic curves
+</td>
+<td style="text-align:left;">
+Mathematical Notes
+</td>
+<td style="text-align:left;">
+10.1134/s0001434610090324
+</td>
+<td style="text-align:left;">
+0001-4346,1573-8876
+</td>
+<td style="text-align:left;">
+3-4
+</td>
+<td style="text-align:left;">
+88
+</td>
+<td style="text-align:left;">
+599-602
+</td>
+<td style="text-align:left;">
+Pleiades Publishing Ltd
+</td>
+<td style="text-align:left;">
+2010-10
+</td>
+<td style="text-align:left;">
+Chan Heng Huat ; Long Ling ; Zudilin V. V.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Do Supplementary Sales Forecasts Increase the Credibility of Financial Analysts’ Earnings Forecasts?
+</td>
+<td style="text-align:left;">
+The Accounting Review
+</td>
+<td style="text-align:left;">
+10.2308/accr.2010.85.6.2047
+</td>
+<td style="text-align:left;">
+0001-4826,1558-7967
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+85
+</td>
+<td style="text-align:left;">
+2047-2074
+</td>
+<td style="text-align:left;">
+American Accounting Association
+</td>
+<td style="text-align:left;">
+2010-11-01
+</td>
+<td style="text-align:left;">
+Keung Edmund C.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+811 Charnley hips followed for 3–17 years
+</td>
+<td style="text-align:left;">
+Acta Orthopaedica Scandinavica
+</td>
+<td style="text-align:left;">
+10.3109/17453679308993619
+</td>
+<td style="text-align:left;">
+0001-6470
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+64
+</td>
+<td style="text-align:left;">
+252-256
+</td>
+<td style="text-align:left;">
+Informa UK Limited
+</td>
+<td style="text-align:left;">
+1993-01
+</td>
+<td style="text-align:left;">
+Dall Desmond M ; Learmonth Ian D ; Solomon Michael ; Davenport J Michael
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Detection and monitoring of progressive degeneration of osteoarthritic cartilage by MRI
+</td>
+<td style="text-align:left;">
+Acta Orthopaedica Scandinavica
+</td>
+<td style="text-align:left;">
+10.3109/17453679509157668
+</td>
+<td style="text-align:left;">
+0001-6470
+</td>
+<td style="text-align:left;">
+sup266
+</td>
+<td style="text-align:left;">
+66
+</td>
+<td style="text-align:left;">
+130-138
+</td>
+<td style="text-align:left;">
+Informa UK Limited
+</td>
+<td style="text-align:left;">
+1995-01
+</td>
+<td style="text-align:left;">
+Tyler Jenny A ; Watson Paul J ; Koh Hwee-Ling ; Herrod Nicholas J ; Robson Matthew ; Hall Laurance D
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A Comparison of In-Room and Video Ratings of Team Behaviors of Students in Interprofesional Teams
+</td>
+<td style="text-align:left;">
+American Journal of Pharmaceutical Education
+</td>
+<td style="text-align:left;">
+10.5688/ajpe6487
+</td>
+<td style="text-align:left;">
+0002-9459,1553-6467
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ajpe6487
+</td>
+<td style="text-align:left;">
+American Journal of Pharmaceutical Education
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Lie Désirée ; Richter-Lagha Regina ; (Sarah) Ma Sae Byul
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Comparison of Attitudes, Beliefs, and Resource-seeking Behavior for CAM Among First- and Third-Year Czech Pharmacy Students
+</td>
+<td style="text-align:left;">
+American Journal of Pharmaceutical Education
+</td>
+<td style="text-align:left;">
+10.5688/aj720224
+</td>
+<td style="text-align:left;">
+0002-9459,1553-6467
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+72
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+American Journal of Pharmaceutical Education
+</td>
+<td style="text-align:left;">
+2008-09
+</td>
+<td style="text-align:left;">
+Pokladnikova Jitka ; Lie Desiree
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Using a Human Patient Simulation Mannequin to Teach Interdisciplinary Team Skills to Pharmacy Students
+</td>
+<td style="text-align:left;">
+American Journal of Pharmaceutical Education
+</td>
+<td style="text-align:left;">
+10.5688/aj710351
+</td>
+<td style="text-align:left;">
+0002-9459,1553-6467
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+71
+</td>
+<td style="text-align:left;">
+51
+</td>
+<td style="text-align:left;">
+American Journal of Pharmaceutical Education
+</td>
+<td style="text-align:left;">
+2007-09
+</td>
+<td style="text-align:left;">
+Fernandez Rosemarie ; Parker Dennis ; Kalus James S. ; Miller Douglas ; Compton Scott
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Biology of the Bee Hoplitis (Hoplitis) monstrabilis Tkalců and Descriptions of Its Egg and Larva (Megachilidae: Megachilinae: Osmiini)
+</td>
+<td style="text-align:left;">
+American Museum Novitates
+</td>
+<td style="text-align:left;">
+10.1206/646.1
+</td>
+<td style="text-align:left;">
+0003-0082,1937-352X
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3645
+</td>
+<td style="text-align:left;">
+1-12
+</td>
+<td style="text-align:left;">
+American Museum of Natural History (BioOne sponsored)
+</td>
+<td style="text-align:left;">
+2009-07-25
+</td>
+<td style="text-align:left;">
+Rozen Jerome G. ; Özbek Hikmet ; Ascher John S. ; Rightmyer Molly G.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Nests, Petal Usage, Floral Preferences, and Immatures of Osmia (Ozbekosmia) avosetta (Megachilidae: Megachilinae: Osmiini), Including Biological Comparisons with Other Osmiine Bees
+</td>
+<td style="text-align:left;">
+American Museum Novitates
+</td>
+<td style="text-align:left;">
+10.1206/701.1
+</td>
+<td style="text-align:left;">
+0003-0082
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3680
+</td>
+<td style="text-align:left;">
+1-22
+</td>
+<td style="text-align:left;">
+American Museum of Natural History (BioOne sponsored)
+</td>
+<td style="text-align:left;">
+2010-03-04
+</td>
+<td style="text-align:left;">
+Rozen Jerome G. ; Özbek Hikmet ; Ascher John S. ; Sedivy Claudio ; Praz Christophe ; Monfared Alireza ; Müller Andreas
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Larval Diversity in the Bee GenusMegachile(Hymenoptera: Apoidea: Megachilidae)
+</td>
+<td style="text-align:left;">
+American Museum Novitates
+</td>
+<td style="text-align:left;">
+10.1206/3863.1
+</td>
+<td style="text-align:left;">
+0003-0082,1937-352X
+</td>
+<td style="text-align:left;">
+3863
+</td>
+<td style="text-align:left;">
+3863
+</td>
+<td style="text-align:left;">
+1-16
+</td>
+<td style="text-align:left;">
+American Museum of Natural History (BioOne sponsored)
+</td>
+<td style="text-align:left;">
+2016-09-23
+</td>
+<td style="text-align:left;">
+Rozen Jerome G. ; Ascher John S. ; Kamel Soliman M. ; Mohamed Kariman M.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Influence of orthodontic adhesives and clean-up procedures on the stain susceptibility of enamel after debonding
+</td>
+<td style="text-align:left;">
+The Angle Orthodontist
+</td>
+<td style="text-align:left;">
+10.2319/062610-350.1
+</td>
+<td style="text-align:left;">
+0003-3219,1945-7103
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+81
+</td>
+<td style="text-align:left;">
+334-340
+</td>
+<td style="text-align:left;">
+The Angle Orthodontist (EH Angle Education &amp; Research Foundation)
+</td>
+<td style="text-align:left;">
+2011-03
+</td>
+<td style="text-align:left;">
+Joo Hyun-Jin ; Lee Yong-Keun ; Lee Dong-Yul ; Kim Yae-Jin ; Lim Yong-Kyu
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Test-retest reliability of smile tasks using three-dimensional facial topography
+</td>
+<td style="text-align:left;">
+The Angle Orthodontist
+</td>
+<td style="text-align:left;">
+10.2319/062617-425.1
+</td>
+<td style="text-align:left;">
+0003-3219,1945-7103
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+88
+</td>
+<td style="text-align:left;">
+319-328
+</td>
+<td style="text-align:left;">
+The Angle Orthodontist (EH Angle Education &amp; Research Foundation)
+</td>
+<td style="text-align:left;">
+2018-05-01
+</td>
+<td style="text-align:left;">
+Tanikawa Chihiro ; Takada Kenji
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="note" class="section level1">
+<h1><span class="header-section-number">8</span> Note</h1>
+<p>Various resources and lots of Googling were involved in developing the above script, please feel free to contact me if you have suggestions to further improve it.</p>
+<ul>
+<li><p><a href="https://ropensci.org/" class="uri">https://ropensci.org/</a></p></li>
+<li><p><a href="https://ciakovx.github.io/rcrossref.html" class="uri">https://ciakovx.github.io/rcrossref.html</a></p></li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
