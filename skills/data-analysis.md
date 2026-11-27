@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Data analysis
+title: Data analytics
 ---
 
-# Data analysis
+# Data analytics
 
 Conducting using R.
 

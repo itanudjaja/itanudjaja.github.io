@@ -5,7 +5,9 @@ title: Irine Tanudjaja
 
 # Irine Tanudjaja
 
-## Senior Principal Analyst, Energy Market Authority
+## About me
+
+### Senior Principal Analyst, Energy Market Authority
 
 Prior to my postgraduate studies, I was involved in developing my organisation's cloud-based data analytics platform. This gave me exposure to how data infrastructure and analytics capabilities are built to support better data-driven decision-making across an organisation.
 
@@ -23,27 +25,36 @@ GPA: 4.0 / 4.0
 
 Dean's List
 
-## Skills
+## Technical skills
 
 <div class="skill-list">
+  <a class="skill-button" href="skills/machine-learning.html">
+    <span class="skill-name">Machine learning</span>
+    <span class="skill-note">Develop and evaluate predictive models for classification, forecasting and risk assessment.</span>
+  </a>
+  <a class="skill-button" href="skills/natural-language-processing.html">
+    <span class="skill-name">Generative AI</span>
+    <span class="skill-note">Build LLM-powered applications using RAG, retrieval pipelines and agentic workflows.</span>
+  </a>
   <a class="skill-button" href="skills/agentic-ai.html">
     <span class="skill-name">Agentic AI</span>
-    <span class="skill-note">AI that can plan a task, take several steps, and use tools, rather than answering in a single pass.</span>
+    <span class="skill-note">Design multi-agent workflows that plan a task, call tools, and verify results before an outcome is returned.</span>
+  </a>
+  <a class="skill-button" href="skills/data-analysis.html">
+    <span class="skill-name">Data analytics</span>
+    <span class="skill-note">Transform complex datasets into actionable insights through statistical analysis and visualisation.</span>
   </a>
   <a class="skill-button" href="skills/computer-vision.html">
     <span class="skill-name">Computer vision</span>
-    <span class="skill-note">Teaching a model to understand images, and to reuse that ability on a new kind of picture.</span>
+    <span class="skill-note">Apply and fine-tune pretrained vision models for fine-grained image classification.</span>
   </a>
-  <a class="skill-button" href="skills/machine-learning.html">
-    <span class="skill-name">Machine learning</span>
-    <span class="skill-note">Models that learn patterns from data, and the steps that take a model from an experiment into regular use.</span>
-  </a>
-  <a class="skill-button" href="skills/natural-language-processing.html">
-    <span class="skill-name">Natural language</span>
-    <span class="skill-note">Working with written language, so a system can find, read, and respond to text.</span>
-  </a>
-  <a class="skill-button" href="skills/data-analysis.html">
-    <span class="skill-name">Data analysis</span>
-    <span class="skill-note">Exploring data, finding patterns, and explaining what the numbers show.</span>
-  </a>
+</div>
+
+## Tools and technologies
+
+<div class="tools">
+  <p><strong>Languages</strong> Python, R</p>
+  <p><strong>Machine learning</strong> PyTorch, scikit-learn, XGBoost, LightGBM, Prophet</p>
+  <p><strong>Generative AI</strong> LangGraph, LangChain, Gemma</p>
+  <p><strong>Data platforms</strong> Apache Airflow, MLflow, Streamlit</p>
 </div>

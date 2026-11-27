@@ -132,6 +132,16 @@ a:hover {
   line-height: 1.4;
 }
 
+.tools p {
+  margin-bottom: 8px;
+}
+
+.tools strong {
+  display: inline-block;
+  min-width: 9.5em;
+  color: #317eac;
+}
+
 .viewer {
   margin: 8px 0 32px;
 }

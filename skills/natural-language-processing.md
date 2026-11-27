@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Natural language processing
+title: Generative AI
 ---
 
-# Natural language processing
+# Generative AI
 
 Retrieval over real-world documents, with a focus on making generated answers relevant, grounded and traceable to their sources.
 
