@@ -1,5 +1,6 @@
 title: Irine Tanudjaja
 theme: minima
+header_pages: []
 exclude:
   - hdb_v2.md
   - project.md
