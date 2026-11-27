@@ -31,4 +31,4 @@ We built the system around Gemma 3 4B and experimented with different retrieval 
 
 ### More Info
 
-[Virtual Historian slides](../decks/virtual-historian.pptx)
+[Virtual Historian slides](../decks/virtual-historian.pdf)

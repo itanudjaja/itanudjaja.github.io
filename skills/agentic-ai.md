@@ -49,4 +49,4 @@ The work resulted in product concepts and prototypes for both platforms.
 
 ### More Info
 
-[2Digit pitch deck](../decks/2digit-pitch.pptx)
+[2Digit pitch deck](../decks/2digit-pitch.pdf)

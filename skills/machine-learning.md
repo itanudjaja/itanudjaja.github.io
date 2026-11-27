@@ -21,7 +21,7 @@ We used Walmart point-of-sale data from 2011–2016 to forecast daily demand. Th
 
 ### More Info
 
-[Inventory forecast slides](../decks/inventory-forecast.pptx)
+[Inventory forecast slides](../decks/inventory-forecast.pdf)
 
 ## Late-delivery risk
 
@@ -45,4 +45,4 @@ We built an end-to-end machine learning pipeline covering data preparation, mode
 
 ### More Info
 
-[Late-delivery slides](../decks/late-delivery.pptx)
+[Late-delivery slides](../decks/late-delivery.pdf)
