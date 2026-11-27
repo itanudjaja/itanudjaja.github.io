@@ -9,11 +9,15 @@ title: Irine Tanudjaja
 
 ### Senior Principal Analyst, Energy Market Authority
 
-Prior to my postgraduate studies, I was involved in developing my organisation's cloud-based data analytics platform. This gave me exposure to how data infrastructure and analytics capabilities are built to support better data-driven decision-making across an organisation.
+I currently work on my organisation's data strategy, covering both internal and external initiatives, as well as AI governance. Much of my work involves exploring how we can make better use of data and AI across the organisation.
 
-I subsequently completed the Master of IT in Business (AI track) at Singapore Management University, where I gained hands-on experience in AI development through projects spanning machine learning, computer vision, natural language processing and agentic AI.
+Before this, I was involved in building the organisation's cloud-based data analytics platform, which gave me a good understanding of how data infrastructure and analytics capabilities come together.
 
-These experiences have shaped my interest in the responsible use of AI, particularly AI governance and how organisations can put AI and data to work in ways that are useful, trustworthy and beneficial. I am interested in both sides of the equation: developing what AI can do, and ensuring it is used well.
+I later pursued a Master of IT in Business (AI track) at Singapore Management University, where I had the opportunity to work on projects involving machine learning, computer vision, natural language processing and agentic AI.
+
+Through my work and studies, I've developed an interest in how AI can be put to practical use, while making sure it is applied responsibly.
+
+Outside work, I enjoy keeping active through sports, learning the piano and reading.
 
 [irine.tanudjaja@gmail.com](mailto:irine.tanudjaja@gmail.com)
 
