@@ -5,8 +5,6 @@ title: Data analytics
 
 # Data analytics
 
-Conducting using R.
-
 ## HDB resale prices
 
 Resale transactions from data.gov.sg, joined with MRT stations, malls, schools, and COE premiums, to see how those surroundings relate to price.
