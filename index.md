@@ -28,25 +28,25 @@ Dean's List
 ## Technical skills
 
 <div class="skill-list">
-  <a class="skill-button" href="skills/machine-learning.html">
-    <span class="skill-name">Machine Learning & MLOps</span>
-    <span class="skill-note">Develop and evaluate predictive models for classification, forecasting and risk assessment.</span>
-  </a>
-  <a class="skill-button" href="skills/natural-language-processing.html">
-    <span class="skill-name">Generative AI</span>
-    <span class="skill-note">Build LLM-powered applications using RAG, retrieval pipelines and agentic workflows.</span>
-  </a>
   <a class="skill-button" href="skills/agentic-ai.html">
     <span class="skill-name">Agentic AI</span>
     <span class="skill-note">Design multi-agent workflows that plan a task, call tools, and verify results before an outcome is returned.</span>
+  </a>
+  <a class="skill-button" href="skills/computer-vision.html">
+    <span class="skill-name">Computer vision</span>
+    <span class="skill-note">Apply and fine-tune pretrained vision models for fine-grained image classification.</span>
   </a>
   <a class="skill-button" href="skills/data-analysis.html">
     <span class="skill-name">Data analytics</span>
     <span class="skill-note">Transform complex datasets into actionable insights through statistical analysis and visualisation.</span>
   </a>
-  <a class="skill-button" href="skills/computer-vision.html">
-    <span class="skill-name">Computer vision</span>
-    <span class="skill-note">Apply and fine-tune pretrained vision models for fine-grained image classification.</span>
+  <a class="skill-button" href="skills/natural-language-processing.html">
+    <span class="skill-name">Generative AI</span>
+    <span class="skill-note">Build LLM-powered applications using RAG, retrieval pipelines and agentic workflows.</span>
+  </a>
+  <a class="skill-button" href="skills/machine-learning.html">
+    <span class="skill-name">Machine Learning & MLOps</span>
+    <span class="skill-note">Develop and evaluate predictive models for classification, forecasting and risk assessment.</span>
   </a>
 </div>
 
