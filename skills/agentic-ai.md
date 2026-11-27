@@ -7,13 +7,9 @@ title: Agentic AI
 
 ## Finsight
 
-Young investors increasingly turn to financial influencers for investment information. But how do you check whether an influencer's claim about a company is actually supported by the facts?
+Inexperienced investors often rely on financial influencers for investment information. But how do we check whether an influencer's claim about a company is actually supported by the facts?
 
-A single language model can produce a convincing answer without properly grounding it in evidence. Even retrieval-augmented generation (RAG), which brings in company filings and related documents, does not guarantee that the final verdict is supported by the retrieved evidence.
-
-### Approach
-
-FinSight uses a multi-agent workflow to break claim verification into separate tasks:
+FinSight uses a multi-agent workflow to break claim verification into separate tasks, making the process more structured, evidence-based and transparent.
 
 - Claim extraction: Identifies the company, financial metric or claim, and what needs to be verified.
 
@@ -22,8 +18,6 @@ FinSight uses a multi-agent workflow to break claim verification into separate t
 - Verdict assessment: Evaluates whether the evidence supports, partially supports, or challenges the claim, or whether there is insufficient evidence to reach a conclusion.
 
 - Auditing: Checks the verdict against the cited sources, including whether figures and statements in the assessment can actually be traced back to the evidence.
-
-An important design choice was allowing the system to return Insufficient Evidence. When the available sources do not support a clear conclusion, it should say so rather than force a verdict.
 
 ### Slides
 
@@ -55,24 +49,17 @@ An important design choice was allowing the system to return Insufficient Eviden
 </div>
 </div>
 
-
 ## 2Digit
 
-2Digit's products provide investors with information, but there is an opportunity to give them a reason to return. We explored this through two products: AI SEC, delivered through Samsung mPOP, and NineMemos, 2Digit's own investment research platform.
+2Digit's challenge was how to deliver value earlier in the investor journey, helping users discover relevant insights without having to search for them or sign in before experiencing the product.
 
-The main question was how to deliver value earlier in the investor journey, rather than making users work to find it or asking them to sign in before they have seen what the platform offers.
+- AI SEC: Analysed 2025 usage data to understand investor behaviour and identify engagement gaps. Designed an event-driven experience that connects market events with affected companies, concise explanations and supporting evidence.
 
-### What we experimented with
+- NineMemos: Used surveys, interviews, competitor research and two rounds of usability testing to identify investor needs. Developed a prototype that delivers relevant market insights before login and highlights what has changed since the user's last visit.
 
-We looked at the two products separately, as the information available to us was quite different.
+- Agentic AI workflow: Designed and evaluated a structured multi-agent workflow using LangGraph to classify events, summarise information, identify affected companies and retrieve supporting evidence. Implemented publishing rules to determine whether content should be published, held for review or suppressed.
 
-- AI SEC: We analysed its 2025 usage data and found that most sessions started from stock or report pages, while repeat visits within a week were low. We explored an event-driven experience that brings together the companies affected, a short explanation of what happened, supporting evidence and relevant follow-up information.
-
-- NineMemos: Without an existing usage baseline, we used surveys, interviews, competitor research and two rounds of usability testing to understand what investors needed. Our prototype brings relevant market information to the user before login, with a follow-up view highlighting what has changed since their last visit.
-
-- Agent workflow: We also compared a free-form AI prompt with a more structured workflow. The latter breaks the task into steps: classifying events, summarising information, identifying affected companies and attaching supporting evidence. LangGraph manages the workflow, while predefined rules determine whether the content should be published, held for review or suppressed.
-
-The work resulted in product concepts and prototypes for both platforms. 
+The project translated behavioural insights and user research into product concepts and working prototypes for both platforms.
 
 ### Slides
 
