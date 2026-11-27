@@ -25,9 +25,22 @@ FinSight uses a multi-agent workflow to break claim verification into separate t
 
 An important design choice was allowing the system to return Insufficient Evidence. When the available sources do not support a clear conclusion, it should say so rather than force a verdict.
 
-### More Info
+### Slides
 
-[Finsight slides](../decks/finsight.pdf)
+![Finsight, slide 1 of 7](../slides/finsight/01.jpg)
+
+![Finsight, slide 2 of 7](../slides/finsight/02.jpg)
+
+![Finsight, slide 3 of 7](../slides/finsight/03.jpg)
+
+![Finsight, slide 4 of 7](../slides/finsight/04.jpg)
+
+![Finsight, slide 5 of 7](../slides/finsight/05.jpg)
+
+![Finsight, slide 6 of 7](../slides/finsight/06.jpg)
+
+![Finsight, slide 7 of 7](../slides/finsight/07.jpg)
+
 
 ## 2Digit
 
@@ -47,6 +60,38 @@ We looked at the two products separately, as the information available to us was
 
 The work resulted in product concepts and prototypes for both platforms. 
 
-### More Info
+### Slides
 
-[2Digit pitch deck](../decks/2digit-pitch.pdf)
+![2Digit, slide 1 of 17](../slides/2digit/01.jpg)
+
+![2Digit, slide 2 of 17](../slides/2digit/02.jpg)
+
+![2Digit, slide 3 of 17](../slides/2digit/03.jpg)
+
+![2Digit, slide 4 of 17](../slides/2digit/04.jpg)
+
+![2Digit, slide 5 of 17](../slides/2digit/05.jpg)
+
+![2Digit, slide 6 of 17](../slides/2digit/06.jpg)
+
+![2Digit, slide 7 of 17](../slides/2digit/07.jpg)
+
+![2Digit, slide 8 of 17](../slides/2digit/08.jpg)
+
+![2Digit, slide 9 of 17](../slides/2digit/09.jpg)
+
+![2Digit, slide 10 of 17](../slides/2digit/10.jpg)
+
+![2Digit, slide 11 of 17](../slides/2digit/11.jpg)
+
+![2Digit, slide 12 of 17](../slides/2digit/12.jpg)
+
+![2Digit, slide 13 of 17](../slides/2digit/13.jpg)
+
+![2Digit, slide 14 of 17](../slides/2digit/14.jpg)
+
+![2Digit, slide 15 of 17](../slides/2digit/15.jpg)
+
+![2Digit, slide 16 of 17](../slides/2digit/16.jpg)
+
+![2Digit, slide 17 of 17](../slides/2digit/17.jpg)

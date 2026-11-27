@@ -1,5 +1,13 @@
 <header class="site-header" role="banner">
-  <div class="wrapper">
-    <a class="home-link" href="{{ '/' | relative_url }}">Home</a>
+  <div class="nav-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">Irine Tanudjaja</a>
+    <nav class="site-nav">
+      <a href="{{ '/' | relative_url }}" {% if page.url == "/" or page.url == "/index.html" %}class="active"{% endif %}>Home</a>
+      <a href="{{ '/skills/agentic-ai.html' | relative_url }}" {% if page.url contains "agentic-ai" %}class="active"{% endif %}>Agentic AI</a>
+      <a href="{{ '/skills/computer-vision.html' | relative_url }}" {% if page.url contains "computer-vision" %}class="active"{% endif %}>Computer vision</a>
+      <a href="{{ '/skills/machine-learning.html' | relative_url }}" {% if page.url contains "machine-learning" %}class="active"{% endif %}>Machine learning</a>
+      <a href="{{ '/skills/natural-language-processing.html' | relative_url }}" {% if page.url contains "natural-language" %}class="active"{% endif %}>Natural language</a>
+      <a href="{{ '/skills/data-analysis.html' | relative_url }}" {% if page.url contains "data-analysis" %}class="active"{% endif %}>Data analysis</a>
+    </nav>
   </div>
 </header>
