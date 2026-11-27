@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Machine learning and data pipelines
+title: Machine Learning & MLOps
 ---
 
-# Machine learning and data pipelines
+# Machine Learning & MLOps
 
 Forecasting, classification and the engineering pipelines that take models beyond experimentation. 
 

@@ -29,7 +29,7 @@ Dean's List
 
 <div class="skill-list">
   <a class="skill-button" href="skills/machine-learning.html">
-    <span class="skill-name">Machine learning</span>
+    <span class="skill-name">Machine Learning & MLOps</span>
     <span class="skill-note">Develop and evaluate predictive models for classification, forecasting and risk assessment.</span>
   </a>
   <a class="skill-button" href="skills/natural-language-processing.html">
