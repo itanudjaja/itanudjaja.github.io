@@ -31,20 +31,14 @@ We built the system around Gemma 3 4B and experimented with different retrieval 
 
 ### Slides
 
-![Virtual Historian, slide 1 of 9](../slides/historian/01.jpg)
-
-![Virtual Historian, slide 2 of 9](../slides/historian/02.jpg)
-
-![Virtual Historian, slide 3 of 9](../slides/historian/03.jpg)
-
-![Virtual Historian, slide 4 of 9](../slides/historian/04.jpg)
-
-![Virtual Historian, slide 5 of 9](../slides/historian/05.jpg)
-
-![Virtual Historian, slide 6 of 9](../slides/historian/06.jpg)
-
-![Virtual Historian, slide 7 of 9](../slides/historian/07.jpg)
-
-![Virtual Historian, slide 8 of 9](../slides/historian/08.jpg)
-
-![Virtual Historian, slide 9 of 9](../slides/historian/09.jpg)
+<div class="deck">
+<img src="../slides/historian/01.jpg" alt="Virtual Historian, slide 1 of 9">
+<img src="../slides/historian/02.jpg" alt="Virtual Historian, slide 2 of 9">
+<img src="../slides/historian/03.jpg" alt="Virtual Historian, slide 3 of 9">
+<img src="../slides/historian/04.jpg" alt="Virtual Historian, slide 4 of 9">
+<img src="../slides/historian/05.jpg" alt="Virtual Historian, slide 5 of 9">
+<img src="../slides/historian/06.jpg" alt="Virtual Historian, slide 6 of 9">
+<img src="../slides/historian/07.jpg" alt="Virtual Historian, slide 7 of 9">
+<img src="../slides/historian/08.jpg" alt="Virtual Historian, slide 8 of 9">
+<img src="../slides/historian/09.jpg" alt="Virtual Historian, slide 9 of 9">
+</div>

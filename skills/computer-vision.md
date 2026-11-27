@@ -21,18 +21,13 @@ With a training budget of approximately two GPU-hours, we explored two ways to a
 
 ### Slides
 
-![Fine-grained classification, slide 1 of 8](../slides/vision/01.jpg)
-
-![Fine-grained classification, slide 2 of 8](../slides/vision/02.jpg)
-
-![Fine-grained classification, slide 3 of 8](../slides/vision/03.jpg)
-
-![Fine-grained classification, slide 4 of 8](../slides/vision/04.jpg)
-
-![Fine-grained classification, slide 5 of 8](../slides/vision/05.jpg)
-
-![Fine-grained classification, slide 6 of 8](../slides/vision/06.jpg)
-
-![Fine-grained classification, slide 7 of 8](../slides/vision/07.jpg)
-
-![Fine-grained classification, slide 8 of 8](../slides/vision/08.jpg)
+<div class="deck">
+<img src="../slides/vision/01.jpg" alt="Fine-grained classification, slide 1 of 8">
+<img src="../slides/vision/02.jpg" alt="Fine-grained classification, slide 2 of 8">
+<img src="../slides/vision/03.jpg" alt="Fine-grained classification, slide 3 of 8">
+<img src="../slides/vision/04.jpg" alt="Fine-grained classification, slide 4 of 8">
+<img src="../slides/vision/05.jpg" alt="Fine-grained classification, slide 5 of 8">
+<img src="../slides/vision/06.jpg" alt="Fine-grained classification, slide 6 of 8">
+<img src="../slides/vision/07.jpg" alt="Fine-grained classification, slide 7 of 8">
+<img src="../slides/vision/08.jpg" alt="Fine-grained classification, slide 8 of 8">
+</div>

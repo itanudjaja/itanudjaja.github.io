@@ -94,10 +94,81 @@ a:hover {
   color: #178acc;
 }
 
-.page-content img {
-  display: block;
+.deck {
+  margin: 8px 0 32px;
+}
+
+.deck .stage {
+  position: relative;
+  background: #f4f8fb;
+  border: 1px solid #d9e6ef;
+}
+
+.deck > img {
+  display: none;
   width: 100%;
   height: auto;
-  margin: 0 0 18px;
-  border: 1px solid #d9e6ef;
+  margin: 0;
+  border: none;
+}
+
+.deck > img:first-of-type {
+  display: block;
+}
+
+.deck .slide {
+  display: none;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border: none;
+}
+
+.deck .slide.active {
+  display: block;
+}
+
+.deck-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 46px;
+  border: none;
+  background: rgba(47, 164, 231, 0.9);
+  color: #ffffff;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.deck-arrow.prev {
+  left: 0;
+}
+
+.deck-arrow.next {
+  right: 0;
+}
+
+.deck .thumbs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 0 2px;
+}
+
+.deck .thumbs img {
+  width: 96px;
+  height: 60px;
+  object-fit: cover;
+  object-position: top;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.deck .thumbs img.active {
+  border-color: #2fa4e7;
 }

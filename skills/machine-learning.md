@@ -21,21 +21,16 @@ We used Walmart point-of-sale data from 2011–2016 to forecast daily demand. Th
 
 ### Slides
 
-![Inventory forecast, slide 1 of 8](../slides/inventory/01.jpg)
-
-![Inventory forecast, slide 2 of 8](../slides/inventory/02.jpg)
-
-![Inventory forecast, slide 3 of 8](../slides/inventory/03.jpg)
-
-![Inventory forecast, slide 4 of 8](../slides/inventory/04.jpg)
-
-![Inventory forecast, slide 5 of 8](../slides/inventory/05.jpg)
-
-![Inventory forecast, slide 6 of 8](../slides/inventory/06.jpg)
-
-![Inventory forecast, slide 7 of 8](../slides/inventory/07.jpg)
-
-![Inventory forecast, slide 8 of 8](../slides/inventory/08.jpg)
+<div class="deck">
+<img src="../slides/inventory/01.jpg" alt="Inventory forecast, slide 1 of 8">
+<img src="../slides/inventory/02.jpg" alt="Inventory forecast, slide 2 of 8">
+<img src="../slides/inventory/03.jpg" alt="Inventory forecast, slide 3 of 8">
+<img src="../slides/inventory/04.jpg" alt="Inventory forecast, slide 4 of 8">
+<img src="../slides/inventory/05.jpg" alt="Inventory forecast, slide 5 of 8">
+<img src="../slides/inventory/06.jpg" alt="Inventory forecast, slide 6 of 8">
+<img src="../slides/inventory/07.jpg" alt="Inventory forecast, slide 7 of 8">
+<img src="../slides/inventory/08.jpg" alt="Inventory forecast, slide 8 of 8">
+</div>
 
 
 ## Late-delivery risk
@@ -60,20 +55,14 @@ We built an end-to-end machine learning pipeline covering data preparation, mode
 
 ### Slides
 
-![Late-delivery risk, slide 1 of 9](../slides/late-delivery/01.jpg)
-
-![Late-delivery risk, slide 2 of 9](../slides/late-delivery/02.jpg)
-
-![Late-delivery risk, slide 3 of 9](../slides/late-delivery/03.jpg)
-
-![Late-delivery risk, slide 4 of 9](../slides/late-delivery/04.jpg)
-
-![Late-delivery risk, slide 5 of 9](../slides/late-delivery/05.jpg)
-
-![Late-delivery risk, slide 6 of 9](../slides/late-delivery/06.jpg)
-
-![Late-delivery risk, slide 7 of 9](../slides/late-delivery/07.jpg)
-
-![Late-delivery risk, slide 8 of 9](../slides/late-delivery/08.jpg)
-
-![Late-delivery risk, slide 9 of 9](../slides/late-delivery/09.jpg)
+<div class="deck">
+<img src="../slides/late-delivery/01.jpg" alt="Late-delivery risk, slide 1 of 9">
+<img src="../slides/late-delivery/02.jpg" alt="Late-delivery risk, slide 2 of 9">
+<img src="../slides/late-delivery/03.jpg" alt="Late-delivery risk, slide 3 of 9">
+<img src="../slides/late-delivery/04.jpg" alt="Late-delivery risk, slide 4 of 9">
+<img src="../slides/late-delivery/05.jpg" alt="Late-delivery risk, slide 5 of 9">
+<img src="../slides/late-delivery/06.jpg" alt="Late-delivery risk, slide 6 of 9">
+<img src="../slides/late-delivery/07.jpg" alt="Late-delivery risk, slide 7 of 9">
+<img src="../slides/late-delivery/08.jpg" alt="Late-delivery risk, slide 8 of 9">
+<img src="../slides/late-delivery/09.jpg" alt="Late-delivery risk, slide 9 of 9">
+</div>
