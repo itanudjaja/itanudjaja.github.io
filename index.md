@@ -25,34 +25,36 @@ Dean's List
 
 ## Skills
 
-### Agentic AI
+### [Agentic AI](skills/agentic-ai.html)
 
 Building multi-agent systems that verify information, coordinate tasks and deliver more reliable outcomes.
 
-- [Finsight](skills/agentic-ai.html), verifying a financial influencer's claim against source documents
-- [2Digit](skills/agentic-ai.html), an agent workflow designed to turn investors' initial questions into continued engagement
+- Finsight, verifying a financial influencer's claim against source documents
+- 2Digit, an agent workflow designed to turn investors' initial questions into continued engagement
 
-### Computer vision
+### [Computer vision](skills/computer-vision.html)
 
 Vision Transformers, full fine-tuning and parameter-efficient model adaptation.
 
-- [Fine-grained classification](skills/computer-vision.html), of images across 10,000 visually similar classes
+- Fine-grained classification of images across 10,000 visually similar classes
 
-### Machine learning and data pipelines
+### [Machine learning and data pipelines](skills/machine-learning.html)
 
 Forecasting, classification and the engineering pipelines that take models from raw data to operational decisions.
 
-- [Demand forecasting and inventory prioritisation](skills/machine-learning.html), making inventory decisions when warehouse capacity is limited
-- [Late-delivery risk](skills/machine-learning.html), predicting e-commerce delivery delays, from raw data processing to model monitoring
+- Demand forecasting and inventory prioritisation when warehouse capacity is limited
+- Late-delivery risk for e-commerce orders, from raw data processing to model monitoring
 
-### Natural language processing
+### [Natural language processing](skills/natural-language-processing.html)
 
 Building retrieval-based question-answering systems that produce grounded, traceable answers.
 
-- [Virtual Historian](skills/natural-language-processing.html), evaluating retrieval, reranking, verification and citations for Singapore history questions
+- Virtual Historian, evaluating retrieval, reranking, verification and citations for Singapore history questions
 
-### Data analysis
+### [Data analysis](skills/data-analysis.html)
 
-- [HDB resale prices](skills/data-analysis.html)
-- [Retractions and journal rank](skills/data-analysis.html)
-- [Populating an institutional repository](skills/data-analysis.html)
+Exploration and public data in R.
+
+- HDB resale prices
+- Retractions and journal rank
+- Populating an institutional repository
