@@ -1,0 +1,13 @@
+title: Irine Tanudjaja
+theme: minima
+exclude:
+  - hdb_v2.md
+  - project.md
+  - retractions.md
+  - index.Rmd
+  - hdb_v2.Rmd
+  - project.Rmd
+  - retractions.Rmd
+  - itanudjaja.github.io.Rproj
+  - project_cache
+  - README.html
