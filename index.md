@@ -53,6 +53,6 @@ Dean's List
 ## Tools and technologies
 
 <div class="tools">
-  <p><strong>Languages</strong> Python, R</p>
+  <p><strong>Languages</strong> Python, R, SQL</p>
   <p><strong>Platforms</strong> Apache Airflow, MLflow, Streamlit</p>
 </div>
