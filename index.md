@@ -25,36 +25,25 @@ Dean's List
 
 ## Skills
 
-### [Agentic AI](skills/agentic-ai.html)
-
-Building multi-agent systems that verify information, coordinate tasks and deliver more reliable outcomes.
-
-- Finsight, verifying a financial influencer's claim against source documents
-- 2Digit, an agent workflow designed to turn investors' initial questions into continued engagement
-
-### [Computer vision](skills/computer-vision.html)
-
-Vision Transformers, full fine-tuning and parameter-efficient model adaptation.
-
-- Fine-grained classification of images across 10,000 visually similar classes
-
-### [Machine learning and data pipelines](skills/machine-learning.html)
-
-Forecasting, classification and the engineering pipelines that take models from raw data to operational decisions.
-
-- Demand forecasting and inventory prioritisation when warehouse capacity is limited
-- Late-delivery risk for e-commerce orders, from raw data processing to model monitoring
-
-### [Natural language processing](skills/natural-language-processing.html)
-
-Building retrieval-based question-answering systems that produce grounded, traceable answers.
-
-- Virtual Historian, evaluating retrieval, reranking, verification and citations for Singapore history questions
-
-### [Data analysis](skills/data-analysis.html)
-
-Exploration and public data in R.
-
-- HDB resale prices
-- Retractions and journal rank
-- Populating an institutional repository
+<div class="skill-list">
+  <a class="skill-button" href="skills/agentic-ai.html">
+    <span class="skill-name">Agentic AI</span>
+    <span class="skill-note">Systems that check a claim, instead of trusting one model's answer.</span>
+  </a>
+  <a class="skill-button" href="skills/computer-vision.html">
+    <span class="skill-name">Computer vision</span>
+    <span class="skill-note">Adapting a vision transformer when classes look alike and labelled photos are few.</span>
+  </a>
+  <a class="skill-button" href="skills/machine-learning.html">
+    <span class="skill-name">Machine learning</span>
+    <span class="skill-note">Forecasting, classification, and the pipeline that carries a model into use.</span>
+  </a>
+  <a class="skill-button" href="skills/natural-language-processing.html">
+    <span class="skill-name">Natural language</span>
+    <span class="skill-note">Answers tied to real documents, with a check before the model replies.</span>
+  </a>
+  <a class="skill-button" href="skills/data-analysis.html">
+    <span class="skill-name">Data analysis</span>
+    <span class="skill-note">Exploration and public data in R, from before the degree.</span>
+  </a>
+</div>
