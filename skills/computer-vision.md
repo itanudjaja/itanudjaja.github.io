@@ -21,13 +21,33 @@ With a training budget of approximately two GPU-hours, we explored two ways to a
 
 ### Slides
 
-<div class="deck">
-<img src="../slides/vision/01.jpg" alt="Fine-grained classification, slide 1 of 8">
-<img src="../slides/vision/02.jpg" alt="Fine-grained classification, slide 2 of 8">
-<img src="../slides/vision/03.jpg" alt="Fine-grained classification, slide 3 of 8">
-<img src="../slides/vision/04.jpg" alt="Fine-grained classification, slide 4 of 8">
-<img src="../slides/vision/05.jpg" alt="Fine-grained classification, slide 5 of 8">
-<img src="../slides/vision/06.jpg" alt="Fine-grained classification, slide 6 of 8">
-<img src="../slides/vision/07.jpg" alt="Fine-grained classification, slide 7 of 8">
-<img src="../slides/vision/08.jpg" alt="Fine-grained classification, slide 8 of 8">
+<div class="viewer">
+<input type="radio" name="d6" id="d6-1" checked>
+<input type="radio" name="d6" id="d6-2">
+<input type="radio" name="d6" id="d6-3">
+<input type="radio" name="d6" id="d6-4">
+<input type="radio" name="d6" id="d6-5">
+<input type="radio" name="d6" id="d6-6">
+<input type="radio" name="d6" id="d6-7">
+<input type="radio" name="d6" id="d6-8">
+<div class="stage">
+<div class="frame"><img src="../slides/vision/01.jpg" alt="Fine-grained classification, slide 1 of 8"><label class="deck-arrow prev" for="d6-8" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d6-2" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/vision/02.jpg" alt="Fine-grained classification, slide 2 of 8"><label class="deck-arrow prev" for="d6-1" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d6-3" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/vision/03.jpg" alt="Fine-grained classification, slide 3 of 8"><label class="deck-arrow prev" for="d6-2" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d6-4" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/vision/04.jpg" alt="Fine-grained classification, slide 4 of 8"><label class="deck-arrow prev" for="d6-3" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d6-5" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/vision/05.jpg" alt="Fine-grained classification, slide 5 of 8"><label class="deck-arrow prev" for="d6-4" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d6-6" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/vision/06.jpg" alt="Fine-grained classification, slide 6 of 8"><label class="deck-arrow prev" for="d6-5" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d6-7" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/vision/07.jpg" alt="Fine-grained classification, slide 7 of 8"><label class="deck-arrow prev" for="d6-6" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d6-8" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/vision/08.jpg" alt="Fine-grained classification, slide 8 of 8"><label class="deck-arrow prev" for="d6-7" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d6-1" aria-label="Next slide">&#8250;</label></div>
+</div>
+<div class="thumbs">
+<label for="d6-1"><img src="../slides/vision/01.jpg" alt=""></label>
+<label for="d6-2"><img src="../slides/vision/02.jpg" alt=""></label>
+<label for="d6-3"><img src="../slides/vision/03.jpg" alt=""></label>
+<label for="d6-4"><img src="../slides/vision/04.jpg" alt=""></label>
+<label for="d6-5"><img src="../slides/vision/05.jpg" alt=""></label>
+<label for="d6-6"><img src="../slides/vision/06.jpg" alt=""></label>
+<label for="d6-7"><img src="../slides/vision/07.jpg" alt=""></label>
+<label for="d6-8"><img src="../slides/vision/08.jpg" alt=""></label>
+</div>
 </div>

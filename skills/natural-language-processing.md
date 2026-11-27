@@ -31,14 +31,36 @@ We built the system around Gemma 3 4B and experimented with different retrieval 
 
 ### Slides
 
-<div class="deck">
-<img src="../slides/historian/01.jpg" alt="Virtual Historian, slide 1 of 9">
-<img src="../slides/historian/02.jpg" alt="Virtual Historian, slide 2 of 9">
-<img src="../slides/historian/03.jpg" alt="Virtual Historian, slide 3 of 9">
-<img src="../slides/historian/04.jpg" alt="Virtual Historian, slide 4 of 9">
-<img src="../slides/historian/05.jpg" alt="Virtual Historian, slide 5 of 9">
-<img src="../slides/historian/06.jpg" alt="Virtual Historian, slide 6 of 9">
-<img src="../slides/historian/07.jpg" alt="Virtual Historian, slide 7 of 9">
-<img src="../slides/historian/08.jpg" alt="Virtual Historian, slide 8 of 9">
-<img src="../slides/historian/09.jpg" alt="Virtual Historian, slide 9 of 9">
+<div class="viewer">
+<input type="radio" name="d3" id="d3-1" checked>
+<input type="radio" name="d3" id="d3-2">
+<input type="radio" name="d3" id="d3-3">
+<input type="radio" name="d3" id="d3-4">
+<input type="radio" name="d3" id="d3-5">
+<input type="radio" name="d3" id="d3-6">
+<input type="radio" name="d3" id="d3-7">
+<input type="radio" name="d3" id="d3-8">
+<input type="radio" name="d3" id="d3-9">
+<div class="stage">
+<div class="frame"><img src="../slides/historian/01.jpg" alt="Virtual Historian, slide 1 of 9"><label class="deck-arrow prev" for="d3-9" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d3-2" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/historian/02.jpg" alt="Virtual Historian, slide 2 of 9"><label class="deck-arrow prev" for="d3-1" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d3-3" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/historian/03.jpg" alt="Virtual Historian, slide 3 of 9"><label class="deck-arrow prev" for="d3-2" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d3-4" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/historian/04.jpg" alt="Virtual Historian, slide 4 of 9"><label class="deck-arrow prev" for="d3-3" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d3-5" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/historian/05.jpg" alt="Virtual Historian, slide 5 of 9"><label class="deck-arrow prev" for="d3-4" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d3-6" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/historian/06.jpg" alt="Virtual Historian, slide 6 of 9"><label class="deck-arrow prev" for="d3-5" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d3-7" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/historian/07.jpg" alt="Virtual Historian, slide 7 of 9"><label class="deck-arrow prev" for="d3-6" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d3-8" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/historian/08.jpg" alt="Virtual Historian, slide 8 of 9"><label class="deck-arrow prev" for="d3-7" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d3-9" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/historian/09.jpg" alt="Virtual Historian, slide 9 of 9"><label class="deck-arrow prev" for="d3-8" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d3-1" aria-label="Next slide">&#8250;</label></div>
+</div>
+<div class="thumbs">
+<label for="d3-1"><img src="../slides/historian/01.jpg" alt=""></label>
+<label for="d3-2"><img src="../slides/historian/02.jpg" alt=""></label>
+<label for="d3-3"><img src="../slides/historian/03.jpg" alt=""></label>
+<label for="d3-4"><img src="../slides/historian/04.jpg" alt=""></label>
+<label for="d3-5"><img src="../slides/historian/05.jpg" alt=""></label>
+<label for="d3-6"><img src="../slides/historian/06.jpg" alt=""></label>
+<label for="d3-7"><img src="../slides/historian/07.jpg" alt=""></label>
+<label for="d3-8"><img src="../slides/historian/08.jpg" alt=""></label>
+<label for="d3-9"><img src="../slides/historian/09.jpg" alt=""></label>
+</div>
 </div>

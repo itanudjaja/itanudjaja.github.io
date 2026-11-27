@@ -27,14 +27,32 @@ An important design choice was allowing the system to return Insufficient Eviden
 
 ### Slides
 
-<div class="deck">
-<img src="../slides/finsight/01.jpg" alt="Finsight, slide 1 of 7">
-<img src="../slides/finsight/02.jpg" alt="Finsight, slide 2 of 7">
-<img src="../slides/finsight/03.jpg" alt="Finsight, slide 3 of 7">
-<img src="../slides/finsight/04.jpg" alt="Finsight, slide 4 of 7">
-<img src="../slides/finsight/05.jpg" alt="Finsight, slide 5 of 7">
-<img src="../slides/finsight/06.jpg" alt="Finsight, slide 6 of 7">
-<img src="../slides/finsight/07.jpg" alt="Finsight, slide 7 of 7">
+<div class="viewer">
+<input type="radio" name="d1" id="d1-1" checked>
+<input type="radio" name="d1" id="d1-2">
+<input type="radio" name="d1" id="d1-3">
+<input type="radio" name="d1" id="d1-4">
+<input type="radio" name="d1" id="d1-5">
+<input type="radio" name="d1" id="d1-6">
+<input type="radio" name="d1" id="d1-7">
+<div class="stage">
+<div class="frame"><img src="../slides/finsight/01.jpg" alt="Finsight, slide 1 of 7"><label class="deck-arrow prev" for="d1-7" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d1-2" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/finsight/02.jpg" alt="Finsight, slide 2 of 7"><label class="deck-arrow prev" for="d1-1" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d1-3" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/finsight/03.jpg" alt="Finsight, slide 3 of 7"><label class="deck-arrow prev" for="d1-2" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d1-4" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/finsight/04.jpg" alt="Finsight, slide 4 of 7"><label class="deck-arrow prev" for="d1-3" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d1-5" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/finsight/05.jpg" alt="Finsight, slide 5 of 7"><label class="deck-arrow prev" for="d1-4" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d1-6" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/finsight/06.jpg" alt="Finsight, slide 6 of 7"><label class="deck-arrow prev" for="d1-5" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d1-7" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/finsight/07.jpg" alt="Finsight, slide 7 of 7"><label class="deck-arrow prev" for="d1-6" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d1-1" aria-label="Next slide">&#8250;</label></div>
+</div>
+<div class="thumbs">
+<label for="d1-1"><img src="../slides/finsight/01.jpg" alt=""></label>
+<label for="d1-2"><img src="../slides/finsight/02.jpg" alt=""></label>
+<label for="d1-3"><img src="../slides/finsight/03.jpg" alt=""></label>
+<label for="d1-4"><img src="../slides/finsight/04.jpg" alt=""></label>
+<label for="d1-5"><img src="../slides/finsight/05.jpg" alt=""></label>
+<label for="d1-6"><img src="../slides/finsight/06.jpg" alt=""></label>
+<label for="d1-7"><img src="../slides/finsight/07.jpg" alt=""></label>
+</div>
 </div>
 
 
@@ -58,22 +76,60 @@ The work resulted in product concepts and prototypes for both platforms.
 
 ### Slides
 
-<div class="deck">
-<img src="../slides/2digit/01.jpg" alt="2Digit, slide 1 of 17">
-<img src="../slides/2digit/02.jpg" alt="2Digit, slide 2 of 17">
-<img src="../slides/2digit/03.jpg" alt="2Digit, slide 3 of 17">
-<img src="../slides/2digit/04.jpg" alt="2Digit, slide 4 of 17">
-<img src="../slides/2digit/05.jpg" alt="2Digit, slide 5 of 17">
-<img src="../slides/2digit/06.jpg" alt="2Digit, slide 6 of 17">
-<img src="../slides/2digit/07.jpg" alt="2Digit, slide 7 of 17">
-<img src="../slides/2digit/08.jpg" alt="2Digit, slide 8 of 17">
-<img src="../slides/2digit/09.jpg" alt="2Digit, slide 9 of 17">
-<img src="../slides/2digit/10.jpg" alt="2Digit, slide 10 of 17">
-<img src="../slides/2digit/11.jpg" alt="2Digit, slide 11 of 17">
-<img src="../slides/2digit/12.jpg" alt="2Digit, slide 12 of 17">
-<img src="../slides/2digit/13.jpg" alt="2Digit, slide 13 of 17">
-<img src="../slides/2digit/14.jpg" alt="2Digit, slide 14 of 17">
-<img src="../slides/2digit/15.jpg" alt="2Digit, slide 15 of 17">
-<img src="../slides/2digit/16.jpg" alt="2Digit, slide 16 of 17">
-<img src="../slides/2digit/17.jpg" alt="2Digit, slide 17 of 17">
+<div class="viewer">
+<input type="radio" name="d2" id="d2-1" checked>
+<input type="radio" name="d2" id="d2-2">
+<input type="radio" name="d2" id="d2-3">
+<input type="radio" name="d2" id="d2-4">
+<input type="radio" name="d2" id="d2-5">
+<input type="radio" name="d2" id="d2-6">
+<input type="radio" name="d2" id="d2-7">
+<input type="radio" name="d2" id="d2-8">
+<input type="radio" name="d2" id="d2-9">
+<input type="radio" name="d2" id="d2-10">
+<input type="radio" name="d2" id="d2-11">
+<input type="radio" name="d2" id="d2-12">
+<input type="radio" name="d2" id="d2-13">
+<input type="radio" name="d2" id="d2-14">
+<input type="radio" name="d2" id="d2-15">
+<input type="radio" name="d2" id="d2-16">
+<input type="radio" name="d2" id="d2-17">
+<div class="stage">
+<div class="frame"><img src="../slides/2digit/01.jpg" alt="2Digit, slide 1 of 17"><label class="deck-arrow prev" for="d2-17" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-2" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/02.jpg" alt="2Digit, slide 2 of 17"><label class="deck-arrow prev" for="d2-1" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-3" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/03.jpg" alt="2Digit, slide 3 of 17"><label class="deck-arrow prev" for="d2-2" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-4" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/04.jpg" alt="2Digit, slide 4 of 17"><label class="deck-arrow prev" for="d2-3" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-5" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/05.jpg" alt="2Digit, slide 5 of 17"><label class="deck-arrow prev" for="d2-4" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-6" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/06.jpg" alt="2Digit, slide 6 of 17"><label class="deck-arrow prev" for="d2-5" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-7" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/07.jpg" alt="2Digit, slide 7 of 17"><label class="deck-arrow prev" for="d2-6" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-8" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/08.jpg" alt="2Digit, slide 8 of 17"><label class="deck-arrow prev" for="d2-7" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-9" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/09.jpg" alt="2Digit, slide 9 of 17"><label class="deck-arrow prev" for="d2-8" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-10" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/10.jpg" alt="2Digit, slide 10 of 17"><label class="deck-arrow prev" for="d2-9" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-11" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/11.jpg" alt="2Digit, slide 11 of 17"><label class="deck-arrow prev" for="d2-10" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-12" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/12.jpg" alt="2Digit, slide 12 of 17"><label class="deck-arrow prev" for="d2-11" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-13" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/13.jpg" alt="2Digit, slide 13 of 17"><label class="deck-arrow prev" for="d2-12" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-14" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/14.jpg" alt="2Digit, slide 14 of 17"><label class="deck-arrow prev" for="d2-13" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-15" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/15.jpg" alt="2Digit, slide 15 of 17"><label class="deck-arrow prev" for="d2-14" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-16" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/16.jpg" alt="2Digit, slide 16 of 17"><label class="deck-arrow prev" for="d2-15" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-17" aria-label="Next slide">&#8250;</label></div>
+<div class="frame"><img src="../slides/2digit/17.jpg" alt="2Digit, slide 17 of 17"><label class="deck-arrow prev" for="d2-16" aria-label="Previous slide">&#8249;</label><label class="deck-arrow next" for="d2-1" aria-label="Next slide">&#8250;</label></div>
+</div>
+<div class="thumbs">
+<label for="d2-1"><img src="../slides/2digit/01.jpg" alt=""></label>
+<label for="d2-2"><img src="../slides/2digit/02.jpg" alt=""></label>
+<label for="d2-3"><img src="../slides/2digit/03.jpg" alt=""></label>
+<label for="d2-4"><img src="../slides/2digit/04.jpg" alt=""></label>
+<label for="d2-5"><img src="../slides/2digit/05.jpg" alt=""></label>
+<label for="d2-6"><img src="../slides/2digit/06.jpg" alt=""></label>
+<label for="d2-7"><img src="../slides/2digit/07.jpg" alt=""></label>
+<label for="d2-8"><img src="../slides/2digit/08.jpg" alt=""></label>
+<label for="d2-9"><img src="../slides/2digit/09.jpg" alt=""></label>
+<label for="d2-10"><img src="../slides/2digit/10.jpg" alt=""></label>
+<label for="d2-11"><img src="../slides/2digit/11.jpg" alt=""></label>
+<label for="d2-12"><img src="../slides/2digit/12.jpg" alt=""></label>
+<label for="d2-13"><img src="../slides/2digit/13.jpg" alt=""></label>
+<label for="d2-14"><img src="../slides/2digit/14.jpg" alt=""></label>
+<label for="d2-15"><img src="../slides/2digit/15.jpg" alt=""></label>
+<label for="d2-16"><img src="../slides/2digit/16.jpg" alt=""></label>
+<label for="d2-17"><img src="../slides/2digit/17.jpg" alt=""></label>
+</div>
 </div>

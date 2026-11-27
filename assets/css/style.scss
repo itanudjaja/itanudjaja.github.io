@@ -132,81 +132,119 @@ a:hover {
   line-height: 1.4;
 }
 
-.deck {
+.viewer {
   margin: 8px 0 32px;
 }
 
-.deck .stage {
+.viewer input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.viewer .stage {
   position: relative;
   background: #f4f8fb;
   border: 1px solid #d9e6ef;
 }
 
-.deck > img {
+.viewer .frame {
   display: none;
+  position: relative;
+}
+
+.viewer .frame img {
+  display: block;
   width: 100%;
   height: auto;
   margin: 0;
   border: none;
 }
 
-.deck > img:first-of-type {
+.viewer input:nth-of-type(1):checked ~ .stage .frame:nth-child(1),
+.viewer input:nth-of-type(2):checked ~ .stage .frame:nth-child(2),
+.viewer input:nth-of-type(3):checked ~ .stage .frame:nth-child(3),
+.viewer input:nth-of-type(4):checked ~ .stage .frame:nth-child(4),
+.viewer input:nth-of-type(5):checked ~ .stage .frame:nth-child(5),
+.viewer input:nth-of-type(6):checked ~ .stage .frame:nth-child(6),
+.viewer input:nth-of-type(7):checked ~ .stage .frame:nth-child(7),
+.viewer input:nth-of-type(8):checked ~ .stage .frame:nth-child(8),
+.viewer input:nth-of-type(9):checked ~ .stage .frame:nth-child(9),
+.viewer input:nth-of-type(10):checked ~ .stage .frame:nth-child(10),
+.viewer input:nth-of-type(11):checked ~ .stage .frame:nth-child(11),
+.viewer input:nth-of-type(12):checked ~ .stage .frame:nth-child(12),
+.viewer input:nth-of-type(13):checked ~ .stage .frame:nth-child(13),
+.viewer input:nth-of-type(14):checked ~ .stage .frame:nth-child(14),
+.viewer input:nth-of-type(15):checked ~ .stage .frame:nth-child(15),
+.viewer input:nth-of-type(16):checked ~ .stage .frame:nth-child(16),
+.viewer input:nth-of-type(17):checked ~ .stage .frame:nth-child(17) {
   display: block;
 }
 
-.deck .slide {
-  display: none;
-  width: 100%;
-  height: auto;
-  margin: 0;
-  border: none;
-}
-
-.deck .slide.active {
-  display: block;
-}
-
-.deck-arrow {
+.viewer .deck-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 34px;
-  height: 46px;
-  border: none;
-  background: rgba(47, 164, 231, 0.9);
+  width: 36px;
+  height: 48px;
+  background: rgba(47, 164, 231, 0.92);
   color: #ffffff;
-  font-size: 28px;
-  line-height: 1;
+  font-size: 30px;
+  line-height: 48px;
+  text-align: center;
+  text-decoration: none;
   cursor: pointer;
   z-index: 1;
 }
 
-.deck-arrow.prev {
+.viewer .deck-arrow.prev {
   left: 0;
 }
 
-.deck-arrow.next {
+.viewer .deck-arrow.next {
   right: 0;
 }
 
-.deck .thumbs {
+.viewer .thumbs {
   display: flex;
   gap: 8px;
   overflow-x: auto;
   padding: 10px 0 2px;
 }
 
-.deck .thumbs img {
+.viewer .thumbs label {
+  flex: 0 0 auto;
+  border: 2px solid transparent;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.viewer .thumbs img {
   width: 96px;
   height: 60px;
   object-fit: cover;
   object-position: top;
-  flex: 0 0 auto;
   margin: 0;
-  border: 2px solid transparent;
-  cursor: pointer;
+  border: none;
+  display: block;
 }
 
-.deck .thumbs img.active {
+.viewer input:nth-of-type(1):checked ~ .thumbs label:nth-child(1),
+.viewer input:nth-of-type(2):checked ~ .thumbs label:nth-child(2),
+.viewer input:nth-of-type(3):checked ~ .thumbs label:nth-child(3),
+.viewer input:nth-of-type(4):checked ~ .thumbs label:nth-child(4),
+.viewer input:nth-of-type(5):checked ~ .thumbs label:nth-child(5),
+.viewer input:nth-of-type(6):checked ~ .thumbs label:nth-child(6),
+.viewer input:nth-of-type(7):checked ~ .thumbs label:nth-child(7),
+.viewer input:nth-of-type(8):checked ~ .thumbs label:nth-child(8),
+.viewer input:nth-of-type(9):checked ~ .thumbs label:nth-child(9),
+.viewer input:nth-of-type(10):checked ~ .thumbs label:nth-child(10),
+.viewer input:nth-of-type(11):checked ~ .thumbs label:nth-child(11),
+.viewer input:nth-of-type(12):checked ~ .thumbs label:nth-child(12),
+.viewer input:nth-of-type(13):checked ~ .thumbs label:nth-child(13),
+.viewer input:nth-of-type(14):checked ~ .thumbs label:nth-child(14),
+.viewer input:nth-of-type(15):checked ~ .thumbs label:nth-child(15),
+.viewer input:nth-of-type(16):checked ~ .thumbs label:nth-child(16),
+.viewer input:nth-of-type(17):checked ~ .thumbs label:nth-child(17) {
   border-color: #2fa4e7;
 }
