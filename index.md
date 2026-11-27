@@ -54,7 +54,5 @@ Dean's List
 
 <div class="tools">
   <p><strong>Languages</strong> Python, R</p>
-  <p><strong>Machine learning</strong> PyTorch, scikit-learn, XGBoost, LightGBM, Prophet</p>
-  <p><strong>Generative AI</strong> LangGraph, LangChain, Gemma</p>
-  <p><strong>Data platforms</strong> Apache Airflow, MLflow, Streamlit</p>
+  <p><strong>Platforms</strong> Apache Airflow, MLflow, Streamlit</p>
 </div>
